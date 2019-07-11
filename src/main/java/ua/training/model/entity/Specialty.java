@@ -74,7 +74,7 @@ public class Specialty {
         private String title_ukr;
         private List<Subject> requiredExams;
 
-        private SpecialtyBuilder() {
+        public SpecialtyBuilder() {
         }
 
         public static SpecialtyBuilder aSpecialty() {

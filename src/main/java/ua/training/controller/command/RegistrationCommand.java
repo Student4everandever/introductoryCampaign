@@ -46,15 +46,14 @@ public class RegistrationCommand implements Command {
                 .build();
 
 
-//            if (UserService.validateUserData(user) && !(CommandUtility.checkUserIsLogged(request, user.getLogin(), user.getRole()))) {
+           if (UserService.validateUserData(user) && !(CommandUtility.checkUserIsLogged(request, user.getLogin(), user.getRole()))) {
 
         UserService.createUser(user);
-        //CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
-//                return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
-        return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
-            /*} else {
+        CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
+                return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
+            } else {
                 return "/registration.jsp";
-            }*/
+            }
     }
 }
 

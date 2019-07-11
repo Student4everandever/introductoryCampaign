@@ -27,10 +27,12 @@ public class Servlet extends HttpServlet {
         commands.put("admin/admin_base", new AdminCommand());
         commands.put("admin/add_university", new AddUniversityCommand());
         commands.put("admin/edit_university", new EditUniversityCommand());
+        commands.put("admin/edit_university_specialties", new EditUniversitySpecialties());
         commands.put("admin/delete_university", new DeleteUniversityCommand());
         commands.put("admin/add_specialty", new AddSpecialtyCommand());
         commands.put("admin/edit_specialty", new EditSpecialtyCommand());
         commands.put("admin/delete_specialty", new DeleteSpecialtyCommand());
+        commands.put("admin/add_subject", new AddSubjectCommand());
         commands.put("admin/put_marks", new PutMarksCommand());
         commands.put("admin/form_applicants_rating", new RatingCommand());
         commands.put("admin/send_mails", new MailsCommand());

@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class University {
     private int id;
-    private String appellation;
-    private String appellation_ukr;
+    private String name;
+    private String name_ukr;
 
     private List<User> students;
     private List<Specialty> specialties;
@@ -19,20 +19,20 @@ public class University {
         this.id = id;
     }
 
-    public String getAppellation() {
-        return appellation;
+    public String getName() {
+        return name;
     }
 
-    public void setAppellation(String appellation) {
-        this.appellation = appellation;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAppellation_ukr() {
-        return appellation_ukr;
+    public String getName_ukr() {
+        return name_ukr;
     }
 
-    public void setAppellation_ukr(String appellation_ukr) {
-        this.appellation_ukr = appellation_ukr;
+    public void setName_ukr(String name_ukr) {
+        this.name_ukr = name_ukr;
     }
 
     public List<User> getStudents() {
@@ -57,39 +57,35 @@ public class University {
         if (o == null || getClass() != o.getClass()) return false;
         University that = (University) o;
         return id == that.id &&
-                Objects.equals(appellation, that.appellation) &&
-                Objects.equals(appellation_ukr, that.appellation_ukr) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(name_ukr, that.name_ukr) &&
                 Objects.equals(students, that.students) &&
                 Objects.equals(specialties, that.specialties);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, appellation, appellation_ukr, students, specialties);
+        return Objects.hash(id, name, name_ukr, students, specialties);
     }
 
     @Override
     public String toString() {
         return "University{" +
                 "id=" + id +
-                ", appellation='" + appellation + '\'' +
-                ", appellation_ukr='" + appellation_ukr + '\'' +
+                ", name='" + name + '\'' +
+                ", name_ukr='" + name_ukr + '\'' +
                 '}';
     }
 
 
     public static final class UniversityBuilder {
         private int id;
-        private String appellation;
-        private String appellation_ukr;
+        private String name;
+        private String name_ukr;
         private List<User> students;
         private List<Specialty> specialties;
 
-        private UniversityBuilder() {
-        }
-
-        public static UniversityBuilder anUniversity() {
-            return new UniversityBuilder();
+        public UniversityBuilder() {
         }
 
         public UniversityBuilder setId(int id) {
@@ -97,13 +93,13 @@ public class University {
             return this;
         }
 
-        public UniversityBuilder setAppellation(String appellation) {
-            this.appellation = appellation;
+        public UniversityBuilder setName(String name) {
+            this.name = name;
             return this;
         }
 
-        public UniversityBuilder setAppellation_ukr(String appellation_ukr) {
-            this.appellation_ukr = appellation_ukr;
+        public UniversityBuilder setName_ukr(String name_ukr) {
+            this.name_ukr = name_ukr;
             return this;
         }
 
@@ -120,8 +116,8 @@ public class University {
         public University build() {
             University university = new University();
             university.setId(id);
-            university.setAppellation(appellation);
-            university.setAppellation_ukr(appellation_ukr);
+            university.setName(name);
+            university.setName_ukr(name_ukr);
             university.setStudents(students);
             university.setSpecialties(specialties);
             return university;

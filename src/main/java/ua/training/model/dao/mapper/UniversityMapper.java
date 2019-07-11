@@ -9,7 +9,11 @@ import java.util.Map;
 public class UniversityMapper implements ObjectMapper<University> {
     @Override
     public University extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        return new University.UniversityBuilder()
+                .setId(rs.getInt("university_id"))
+                .setName(rs.getString("university_name").replaceAll("\"","”"))
+                .setName_ukr(rs.getString("university_name_ukr").replaceAll("\"","\\\""))
+                .build();
     }
 
     @Override

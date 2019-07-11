@@ -9,7 +9,11 @@ import java.util.Map;
 public class SpecialtyMapper implements ObjectMapper<Specialty> {
     @Override
     public Specialty extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        return new Specialty.SpecialtyBuilder()
+                .setId(rs.getInt("specialty_id"))
+                .setTitle(rs.getString("title"))
+                .setTitle_ukr(rs.getString("title_ukr"))
+                .build();
     }
 
     @Override

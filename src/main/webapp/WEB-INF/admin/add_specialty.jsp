@@ -32,14 +32,14 @@
                         <label for="university"><fmt:message key="add_specialty_university_name"
                                                              bundle="${link}"/></label>
                         <select class="custom-select" name="university" id="university" required>
-                            <c:forEach var="speaker" items="${requestScope.universities}">
+                            <c:forEach var="university" items="${requestScope.universities}">
                                 <c:if test="${language != 'en'}">
-                                    <option value="${speaker.lastName_ukr}"
-                                            selected>${speaker.name_ukr} ${speaker.lastName_ukr}</option>
+                                    <option value="${university.name_ukr}"
+                                            selected>${university.name_ukr}</option>
                                 </c:if>
                                 <c:if test="${language == 'en'}">
-                                    <option value="${speaker.lastName}"
-                                            selected>${speaker.name} ${speaker.lastName}</option>
+                                    <option value="${university.name}"
+                                            selected>${university.name}</option>
                                 </c:if>
                             </c:forEach>
                         </select>
@@ -72,16 +72,14 @@
                         <label for="subject_1"><fmt:message key="add_specialty_choose_subject1"
                                                             bundle="${link}"/></label>
                         <select class="custom-select" name="subject_1" id="subject_1" required>
-                            <c:forEach var="speaker" items="${requestScope.speakers}">
                                 <c:if test="${language != 'en'}">
-                                    <option value="${speaker.lastName_ukr}"
-                                            selected>${speaker.name_ukr} ${speaker.lastName_ukr}</option>
+                                    <option value="${subject.name_ukr}"
+                                            selected>${subject.name_ukr}</option>
                                 </c:if>
                                 <c:if test="${language == 'en'}">
-                                    <option value="${speaker.lastName}"
-                                            selected>${speaker.name} ${speaker.lastName}</option>
+                                    <option value="${subject.name}"
+                                            selected>${subject.name}</option>
                                 </c:if>
-                            </c:forEach>
                         </select>
                     </div>
 

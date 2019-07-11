@@ -41,7 +41,7 @@
 
                 <div class="mb-3">
                     <label for="name_ukr"><fmt:message key="edit_university_university_name_ukr"
-                                                        bundle="${link}"/></label>
+                                                       bundle="${link}"/></label>
                     <input type="text" class="form-control" name="name_ukr" id="name_ukr"
                            placeholder="${university.name_ukr}" value="" required>
                     <div class="invalid-feedback">
@@ -49,14 +49,15 @@
                     </div>
                 </div>
 
-                <input type="text" id="id" name="id" value="${university.id}" hidden>
-                <input type="hidden" name="submitted" value="true">
+                <input type="text" id="id1" name="id1" value="${university.id}" hidden>
+                <input type="hidden" name="submitted1" value="true">
 
 
                 <hr class="mb-4">
-                <input type="submit" class="form-control btn-submit" name="editUniversity"
-                       value="<fmt:message key="edit_university_edit" bundle="${link}"/>">
+                <input type="submit" class="form-control btn-submit" name="editUniversityName"
+                       value="<fmt:message key="edit_university_edit_name" bundle="${link}"/>">
             </form>
+
         </div>
     </div>
 </div>
