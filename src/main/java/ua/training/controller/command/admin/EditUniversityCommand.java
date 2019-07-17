@@ -24,7 +24,7 @@ public class EditUniversityCommand implements Command {
         String message;
 
         if(idString == null) {
-            return "redirect:/campaign/admin/admin_base";
+            return "redirect:/campaign/admin/show_universities";
         }
 
         int id = Integer.parseInt(idString);

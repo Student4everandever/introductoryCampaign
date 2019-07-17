@@ -11,7 +11,7 @@
     <title>Add specialty page</title>
 </head>
 <body>
-<a href="/campaign/admin/admin_base">back</a>
+<a href="/campaign/admin/show_specialties">back</a>
 <br/>
 
 <h2><fmt:message key="add_specialty_enter_data" bundle="${link}"/></h2>
@@ -27,24 +27,20 @@
             <form action="${pageContext.request.contextPath}/campaign/admin/add_specialty" method="post"
                   class="needs-validation">
 
-                <div class="row">
-                    <div class="col-md-4 mb-2">
+                    <div class="mb-3">
                         <label for="university"><fmt:message key="add_specialty_university_name"
                                                              bundle="${link}"/></label>
                         <select class="custom-select" name="university" id="university" required>
                             <c:forEach var="university" items="${requestScope.universities}">
                                 <c:if test="${language != 'en'}">
-                                    <option value="${university.name_ukr}"
-                                            selected>${university.name_ukr}</option>
+                                    <option value="${university.name_ukr}">${university.name_ukr}</option>
                                 </c:if>
                                 <c:if test="${language == 'en'}">
-                                    <option value="${university.name}"
-                                            selected>${university.name}</option>
+                                    <option value="${university.name}">${university.name}</option>
                                 </c:if>
                             </c:forEach>
                         </select>
                     </div>
-                </div>
 
                 <div class="mb-3">
                     <label for="title"><fmt:message key="add_specialty_specialty_title" bundle="${link}"/></label>
@@ -71,47 +67,36 @@
                     <div class="col-md-4 mb-2">
                         <label for="subject_1"><fmt:message key="add_specialty_choose_subject1"
                                                             bundle="${link}"/></label>
-                        <select class="custom-select" name="subject_1" id="subject_1" required>
-                                <c:if test="${language != 'en'}">
-                                    <option value="${subject.name_ukr}"
-                                            selected>${subject.name_ukr}</option>
-                                </c:if>
-                                <c:if test="${language == 'en'}">
-                                    <option value="${subject.name}"
-                                            selected>${subject.name}</option>
-                                </c:if>
-                        </select>
+                        <input type="text" class="form-control" name="subject_1" id="subject_1" value="<fmt:message key="add_specialty_subject1" bundle="${link}"/>">
                     </div>
 
                     <div class="col-md-4 mb-2">
+                        <br/>
                         <label for="subject_2"><fmt:message key="add_specialty_choose_subject2"
                                                             bundle="${link}"/></label>
-                        <select class="custom-select" name="subject_2" id="subject_2" required>
-                            <c:forEach var="speaker" items="${requestScope.speakers}">
+                        <select class="custom-select" multiple name="subject_2" id="subject_2">
+                            <c:forEach var="subject" items="${requestScope.subjects}">
                                 <c:if test="${language != 'en'}">
-                                    <option value="${speaker.lastName_ukr}"
-                                            selected>${speaker.name_ukr} ${speaker.lastName_ukr}</option>
+                                    <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
                                 <c:if test="${language == 'en'}">
-                                    <option value="${speaker.lastName}"
-                                            selected>${speaker.name} ${speaker.lastName}</option>
+                                    <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>
                         </select>
                     </div>
 
                     <div class="col-md-4 mb-2">
+                        <br/>
                         <label for="subject_3"><fmt:message key="add_specialty_choose_subject3"
                                                             bundle="${link}"/></label>
-                        <select class="custom-select" name="subject_3" id="subject_3" required>
-                            <c:forEach var="speaker" items="${requestScope.speakers}">
+                        <select class="custom-select" multiple name="subject_3" id="subject_3">
+                            <c:forEach var="subject" items="${requestScope.subjects}">
                                 <c:if test="${language != 'en'}">
-                                    <option value="${speaker.lastName_ukr}"
-                                            selected>${speaker.name_ukr} ${speaker.lastName_ukr}</option>
+                                    <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
                                 <c:if test="${language == 'en'}">
-                                    <option value="${speaker.lastName}"
-                                            selected>${speaker.name} ${speaker.lastName}</option>
+                                    <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>
                         </select>

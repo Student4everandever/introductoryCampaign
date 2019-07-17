@@ -9,7 +9,11 @@ import java.util.Map;
 public class SubjectMapper implements ObjectMapper<Subject> {
     @Override
     public Subject extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        return new Subject.SubjectBuilder()
+                .setId(rs.getInt("subject_id"))
+                .setName(rs.getString("subject_name"))
+                .setName_ukr(rs.getString("subject_name_ukr"))
+                .build();
     }
 
     @Override

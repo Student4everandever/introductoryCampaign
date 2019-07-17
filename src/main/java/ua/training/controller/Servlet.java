@@ -25,6 +25,8 @@ public class Servlet extends HttpServlet {
         commands.put("login", new LoginCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("admin/admin_base", new AdminCommand());
+        commands.put("admin/show_universities", new ShowUniversitiesCommand());
+        commands.put("admin/show_specialties", new ShowSpecialtiesCommand());
         commands.put("admin/add_university", new AddUniversityCommand());
         commands.put("admin/edit_university", new EditUniversityCommand());
         commands.put("admin/edit_university_specialties", new EditUniversitySpecialties());

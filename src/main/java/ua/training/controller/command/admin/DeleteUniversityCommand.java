@@ -13,7 +13,7 @@ public class DeleteUniversityCommand implements Command {
         String idString = request.getParameter("university_id");
 
         if (idString != null && UniversityService.deleteUniversity(Integer.parseInt(idString))) {
-            return "redirect:/campaign/admin/admin_base";
+            return "redirect:/campaign/admin/show_universities";
         }
 
         return "redirect:/campaign/exception";

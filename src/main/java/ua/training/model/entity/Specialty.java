@@ -77,10 +77,6 @@ public class Specialty {
         public SpecialtyBuilder() {
         }
 
-        public static SpecialtyBuilder aSpecialty() {
-            return new SpecialtyBuilder();
-        }
-
         public SpecialtyBuilder setId(int id) {
             this.id = id;
             return this;

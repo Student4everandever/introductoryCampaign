@@ -10,7 +10,7 @@
     <title>Admin page to add university</title>
 </head>
 <body>
-<a href="/campaign/admin/admin_base">back</a>
+<a href="/campaign/admin/show_universities">back</a>
 <br/>
 
 <h2><fmt:message key="add_university_enter_data" bundle="${link}"/></h2>

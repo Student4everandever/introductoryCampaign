@@ -11,8 +11,7 @@ public class AdminCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
-        List<University> allUniversities = UniversityService.getAllUniversities();
-        request.setAttribute("universities", allUniversities);
+
         return "/WEB-INF/admin/admin_base.jsp";
     }
 }

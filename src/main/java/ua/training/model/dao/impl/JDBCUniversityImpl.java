@@ -96,8 +96,7 @@ public class JDBCUniversityImpl implements UniversityDao {
                              "university_specialty_delete"));
              PreparedStatement insertQuery = connection
                      .prepareStatement(sqlRequest.getString(
-                             "university_specialty_input"))
-             ) {
+                             "university_specialty_input"))) {
             connection.setAutoCommit(false);
             deleteQuery.setInt(1, university.getId());
             deleteQuery.executeUpdate();
@@ -111,6 +110,26 @@ public class JDBCUniversityImpl implements UniversityDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public University findByStringName(String universityString) {
+        University university = new University();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString("university_find_by_string_name"))) {
+            ps.setString(1, universityString);
+            ps.setString(2, universityString);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                university = universityMapper.extractFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return university;
     }
 
     @Override

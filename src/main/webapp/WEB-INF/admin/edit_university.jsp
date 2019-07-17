@@ -12,7 +12,7 @@
     <title>Admin edit university page</title>
 </head>
 <body>
-<a href="/campaign/admin/admin_base">Back</a>
+<a href="/campaign/admin/show_universities">Back</a>
 <br/>
 
 <h2><fmt:message key="edit_university_enter_new_data" bundle="${link}"/></h2>

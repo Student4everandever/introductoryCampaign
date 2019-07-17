@@ -10,4 +10,6 @@ public interface UniversityDao extends GenericDao<University> {
     Optional<University> findByName(University university);
 
     void updateUniversitySpecialties(University university, List<Specialty> specialties);
+
+    University findByStringName(String universityString);
 }

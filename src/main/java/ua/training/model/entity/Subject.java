@@ -61,7 +61,7 @@ public class Subject {
         private String name;
         private String name_ukr;
 
-        private SubjectBuilder() {
+        public SubjectBuilder() {
         }
 
         public SubjectBuilder setId(int id) {
