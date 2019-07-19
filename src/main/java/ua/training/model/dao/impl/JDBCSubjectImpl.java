@@ -5,6 +5,8 @@ import ua.training.model.dao.cp.ConnectionPoolHolder;
 import ua.training.model.dao.mapper.SubjectMapper;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.Subject;
+import ua.training.model.entity.University;
+import ua.training.model.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -117,6 +119,8 @@ public class JDBCSubjectImpl implements SubjectDao {
              PreparedStatement ps = connection
                      .prepareStatement(sqlRequest.getString(
                              "subject_find_by_specialty_and_number"))) {
+            ps.setInt(1, specialty.getId());
+            ps.setInt(2, number);
             ResultSet rs = ps.executeQuery();
             List<Subject> result = new ArrayList<>();
             while (rs.next()) {
@@ -143,6 +147,30 @@ public class JDBCSubjectImpl implements SubjectDao {
                 result.add(subject);
             }
             return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void addSubjectsToUser(User user, University university, Specialty specialty, List<Subject> subjects) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement subjectQuery = connection
+                     .prepareStatement(sqlRequest.getString("subject_add_to_user"));
+             PreparedStatement userQuery = connection
+                     .prepareStatement(sqlRequest.getString("user_add_university_and_specialty"))) {
+            connection.setAutoCommit(false);
+            for (Subject subject : subjects) {
+                subjectQuery.setInt(1, user.getId());
+                subjectQuery.setInt(2, subject.getId());
+                subjectQuery.executeUpdate();
+            }
+            userQuery.setInt(1, university.getId());
+            userQuery.setInt(2, specialty.getId());
+            userQuery.setInt(3, user.getId());
+            userQuery.executeUpdate();
+
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

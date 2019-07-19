@@ -255,4 +255,24 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Specialty findByNameString(String specialtyString) {
+        Specialty specialty = new Specialty();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString("specialty_find_by_string_name"))) {
+            ps.setString(1, specialtyString);
+            ps.setString(2, specialtyString);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                specialty = specialtyMapper.extractFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return specialty;
+    }
 }

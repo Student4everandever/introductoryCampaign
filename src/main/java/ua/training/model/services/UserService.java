@@ -55,4 +55,8 @@ public class UserService {
     public static Optional<User> login(String login) {
         return userDao.findByLogin(login);
     }
+
+    public static Optional<User> findUserByLogin(String userLogin) {
+        return userDao.findByLogin(userLogin);
+    }
 }

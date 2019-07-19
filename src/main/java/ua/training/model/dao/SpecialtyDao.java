@@ -18,4 +18,6 @@ public interface SpecialtyDao extends GenericDao<Specialty> {
     void updateSpecialtyWithSubjects(Specialty specialty, List<Subject> subjects2, List<Subject> subjects3);
 
     void createWithUniversityAndSubjects(Specialty specialty, University university, List<Subject> subjects2, List<Subject> subjects3);
+
+    Specialty findByNameString(String specialtyString);
 }

@@ -27,6 +27,7 @@ public class Servlet extends HttpServlet {
         commands.put("admin/admin_base", new AdminCommand());
         commands.put("admin/show_universities", new ShowUniversitiesCommand());
         commands.put("admin/show_specialties", new ShowSpecialtiesCommand());
+        commands.put("admin/show_subjects", new ShowSubjectsCommand());
         commands.put("admin/add_university", new AddUniversityCommand());
         commands.put("admin/edit_university", new EditUniversityCommand());
         commands.put("admin/edit_university_specialties", new EditUniversitySpecialties());
@@ -40,6 +41,7 @@ public class Servlet extends HttpServlet {
         commands.put("admin/send_mails", new MailsCommand());
         commands.put("applicant/applicant_base", new ApplicantCommand());
         commands.put("applicant/choose_specialty", new ChooseSpecialtyCommand());
+        commands.put("applicant/choose_subjects", new ChooseSubjectsCommand());
         commands.put("exception", new ExceptionCommand());
     }
 

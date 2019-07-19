@@ -78,12 +78,11 @@
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
                                 <c:if test="${language == 'en'}">
-                                    <option value="${subject.name}" selected>${subject.name}</option>
+                                    <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>
                         </select>
                     </div>
-
                 </div>
 
 
