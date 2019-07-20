@@ -41,13 +41,12 @@ public class JDBCSubjectImpl implements SubjectDao {
 
     @Override
     public List<Subject> findAll() {
-
+        List<Subject> result = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection
                      .prepareStatement(sqlRequest.getString(
                              "subject_find_all"))) {
             ResultSet rs = ps.executeQuery();
-            List<Subject> result = new ArrayList<>();
             while (rs.next()) {
                 Subject subject = subjectMapper.extractFromResultSet(rs);
                 result.add(subject);
@@ -82,7 +81,6 @@ public class JDBCSubjectImpl implements SubjectDao {
                      .prepareStatement(sqlRequest.getString("subject_find_by_name"))) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getName_ukr());
-
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 subject = Optional.ofNullable(subjectMapper.extractFromResultSet(rs));
@@ -102,7 +100,6 @@ public class JDBCSubjectImpl implements SubjectDao {
                      .prepareStatement(sqlRequest.getString("subject_find_by_string_name"))) {
             ps.setString(1, name);
             ps.setString(2, name);
-
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 subject = subjectMapper.extractFromResultSet(rs);
@@ -115,6 +112,7 @@ public class JDBCSubjectImpl implements SubjectDao {
 
     @Override
     public List<Subject> findSubjectBySpecialtyAndNumber(Specialty specialty, int number) {
+        List<Subject> result = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection
                      .prepareStatement(sqlRequest.getString(
@@ -122,7 +120,6 @@ public class JDBCSubjectImpl implements SubjectDao {
             ps.setInt(1, specialty.getId());
             ps.setInt(2, number);
             ResultSet rs = ps.executeQuery();
-            List<Subject> result = new ArrayList<>();
             while (rs.next()) {
                 Subject subject = subjectMapper.extractFromResultSet(rs);
                 result.add(subject);
@@ -135,13 +132,13 @@ public class JDBCSubjectImpl implements SubjectDao {
 
     @Override
     public List<Subject> findAllButFirst() {
+        List<Subject> result = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection
                      .prepareStatement(sqlRequest.getString(
                              "subject_find_all_but_first"))) {
             ps.setInt(1, 1);
             ResultSet rs = ps.executeQuery();
-            List<Subject> result = new ArrayList<>();
             while (rs.next()) {
                 Subject subject = subjectMapper.extractFromResultSet(rs);
                 result.add(subject);
@@ -160,10 +157,14 @@ public class JDBCSubjectImpl implements SubjectDao {
              PreparedStatement userQuery = connection
                      .prepareStatement(sqlRequest.getString("user_add_university_and_specialty"))) {
             connection.setAutoCommit(false);
+            int i = 1;
             for (Subject subject : subjects) {
+
                 subjectQuery.setInt(1, user.getId());
                 subjectQuery.setInt(2, subject.getId());
+                subjectQuery.setInt(3, i);
                 subjectQuery.executeUpdate();
+                i++;
             }
             userQuery.setInt(1, university.getId());
             userQuery.setInt(2, specialty.getId());
@@ -171,6 +172,25 @@ public class JDBCSubjectImpl implements SubjectDao {
             userQuery.executeUpdate();
 
             connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Subject> findSubjectsOfUser(User user) {
+        List<Subject> result = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString(
+                             "subject_find_subjects_for_user"))) {
+            ps.setInt(1, user.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Subject subject = subjectMapper.extractFromResultSet(rs);
+                result.add(subject);
+            }
+            return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

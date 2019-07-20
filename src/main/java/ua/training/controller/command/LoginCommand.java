@@ -31,7 +31,7 @@ public class LoginCommand implements Command {
         }
         System.out.println(login + " " + pass);
 
-        Optional<User> user = UserService.login(login);
+        Optional<User> user = UserService.findUserByLogin(login);
 
         if (user.isPresent() && pass.equals(user.get().getPassword())) {
 

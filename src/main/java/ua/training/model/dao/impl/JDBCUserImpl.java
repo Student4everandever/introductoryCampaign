@@ -10,9 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class JDBCUserImpl implements UserDao {
 
@@ -84,5 +82,43 @@ public class JDBCUserImpl implements UserDao {
             throw new RuntimeException(e);
         }
         return result;
+    }
+
+    @Override
+    public Map<Integer, User> findUsersWithExams() {
+
+        Map<Integer, User> uniqueUsers = new HashMap<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString(
+                             "user_find_with_exams"))) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = userMapper.extractFromResultSet(rs);
+                userMapper.makeUnique(uniqueUsers, user);
+            }
+            return uniqueUsers;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void putMarks(List<String> userMarks, User user) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
+                             "user_put_marks"))) {
+            connection.setAutoCommit(false);
+
+            for (int i = 0; i < userMarks.size(); i++) {
+                ps.setInt(1, Integer.parseInt(userMarks.get(i)));
+                ps.setInt(2, i + 1);
+                ps.setInt(3, user.getId());
+                ps.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

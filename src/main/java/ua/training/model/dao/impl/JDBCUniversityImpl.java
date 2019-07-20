@@ -56,13 +56,12 @@ public class JDBCUniversityImpl implements UniversityDao {
 
     @Override
     public List<University> findAll() {
-
+        List<University> result = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection
                      .prepareStatement(sqlRequest.getString(
                              "university_find_all"))) {
             ResultSet rs = ps.executeQuery();
-            List<University> result = new ArrayList<>();
             while (rs.next()) {
                 University university = universityMapper.extractFromResultSet(rs);
                 result.add(university);

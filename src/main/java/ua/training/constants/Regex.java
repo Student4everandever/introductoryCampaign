@@ -23,6 +23,7 @@ public interface Regex {
     String REGEX_SUBJECT_UKR = "^[-.,А-ЯІЇЄа-яіїє'0-9 ]+$";
     //Subject cyrillic title
     String REGEX_SUBJECT_LAT = "^[-.,\\w ]+$";
-
+    //User marks
+    String REGEX_USER_MARKS = "^([1-9]|[01][0-9]|[01][0-9][0-9]|20[0-0])$";
 
 }

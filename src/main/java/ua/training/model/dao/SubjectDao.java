@@ -19,4 +19,6 @@ public interface SubjectDao extends GenericDao<Subject> {
     List<Subject> findAllButFirst();
 
     void addSubjectsToUser(User user, University university, Specialty specialty, List<Subject> subjects);
+
+    List<Subject> findSubjectsOfUser(User user);
 }
