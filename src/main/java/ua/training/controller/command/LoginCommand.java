@@ -40,8 +40,6 @@ public class LoginCommand implements Command {
             }
 
             CommandUtility.addUserToLoggedUsers(request, user.get().getLogin(), user.get().getRole());
-            request.getSession().setAttribute("userLogin", login);
-            request.getSession().setAttribute("userRole", user.get().getRole());
 
             return pages.getOrDefault(user.get().getRole().name().toLowerCase(), pages.get("login"));
         }

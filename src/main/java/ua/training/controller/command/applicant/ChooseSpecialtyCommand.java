@@ -4,13 +4,16 @@ import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.Subject;
 import ua.training.model.entity.University;
+import ua.training.model.entity.User;
 import ua.training.model.services.SpecialtyService;
 import ua.training.model.services.SubjectService;
 import ua.training.model.services.UniversityService;
+import ua.training.model.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ChooseSpecialtyCommand implements Command {
     @Override
@@ -19,11 +22,15 @@ public class ChooseSpecialtyCommand implements Command {
         String universityString = request.getParameter("university");
         List<University> allUniversities = UniversityService.getAllUniversities();
         request.setAttribute("universities", allUniversities);
+        String error;
 
+        String userLogin = (String) request.getSession().getAttribute("userLogin");
+        Optional<User> user = UserService.findUserByLogin(userLogin);
+        if (user.isPresent() && UserService.appliedAlready(user.get())) {
 
-        if (universityString == null) {
-
-            return "/WEB-INF/applicant/choose_specialty.jsp";
+            error = "You already applied";
+            request.setAttribute("error", error);
+            return "/campaign/applicant/applicant_base";
         }
         List<University> chosenUniversity = new ArrayList<>();
         University university = UniversityService.getUniversityByName(universityString);

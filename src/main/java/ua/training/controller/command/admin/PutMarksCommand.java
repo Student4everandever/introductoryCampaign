@@ -15,6 +15,7 @@ public class PutMarksCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
+        double index1 = 0.2, index2 = 0.5, index3 = 0.2;
         String userLogin = request.getParameter("login");
         String mark1 = request.getParameter("mark1");
         String mark2 = request.getParameter("mark2");
@@ -26,11 +27,6 @@ public class PutMarksCommand implements Command {
         if(userLogin == null || !(user = UserService.findUserByLogin(userLogin)).isPresent()) {
             return "/login.jsp";
         }
-
-        System.out.println(user.get());
-        System.out.println(mark1);
-        System.out.println(mark2);
-        System.out.println(mark3);
 
         if((mark1 == null || mark1.equals("") ||
                 mark2 == null || mark2.equals("") ||
@@ -55,7 +51,8 @@ public class PutMarksCommand implements Command {
             return "/WEB-INF/admin/put_marks.jsp";
         }
 
-        UserService.putUserMarks(userMarks, user.get());
+        int rating = (int) (index1 * Integer.valueOf(mark1) + index2 * Integer.valueOf(mark2) + index3 * Integer.valueOf(mark3));
+        UserService.putUserMarks(userMarks, rating, user.get());
         message = "Marks were successfully added";
 
         request.setAttribute("message", message);

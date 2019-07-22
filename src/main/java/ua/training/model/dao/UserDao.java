@@ -13,5 +13,7 @@ public interface UserDao extends GenericDao<User> {
 
     Map<Integer, User> findUsersWithExams();
 
-    void putMarks(List<String> userMarks, User user);
+    void putMarks(List<String> userMarks, int rating, User user);
+
+    Optional<List<Integer>> findUserMarks(User user);
 }

@@ -38,11 +38,11 @@ public class Servlet extends HttpServlet {
         commands.put("admin/add_subject", new AddSubjectCommand());
         commands.put("admin/users_with_exams", new UsersWithExamsCommand());
         commands.put("admin/put_marks", new PutMarksCommand());
-        commands.put("admin/form_applicants_rating", new RatingCommand());
         commands.put("admin/send_mails", new MailsCommand());
         commands.put("applicant/applicant_base", new ApplicantCommand());
         commands.put("applicant/choose_specialty", new ChooseSpecialtyCommand());
         commands.put("applicant/choose_subjects", new ChooseSubjectsCommand());
+        commands.put("applicant/form_applicant_rating", new RatingCommand());
         commands.put("exception", new ExceptionCommand());
     }
 

@@ -47,7 +47,7 @@ class CommandUtility {
 
         HttpSession session = request.getSession();
 
-        session.setAttribute("login", login);
-        session.setAttribute("role", role);
+        session.setAttribute("userLogin", login);
+        session.setAttribute("userRole", role);
     }
 }

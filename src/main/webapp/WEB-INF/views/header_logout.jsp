@@ -25,8 +25,8 @@
         <ul class="navbar-nav">
 
             <li class="nav-item active">
-                <a href="${pageContext.request.contextPath}/conference/home"><fmt:message key="header_home" bundle="${link}"/></a>
-                <a href="${pageContext.request.contextPath}/conference/logout"><fmt:message key="header_log_out" bundle="${link}"/></a>
+                <a href="${pageContext.request.contextPath}/campaign/welcome"><fmt:message key="header_home" bundle="${link}"/></a>
+                <a href="${pageContext.request.contextPath}/campaign/logout"><fmt:message key="header_log_out" bundle="${link}"/></a>
             </li>
 
         </ul>

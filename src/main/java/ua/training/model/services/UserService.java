@@ -42,11 +42,6 @@ public class UserService {
             return true;
         }
 
-
-        public static User getSpeakerById(int id) {
-            return userDao.findById(id);
-        }
-
         public static Optional<User> login(String login) {
             return userDao.findByLogin(login);
         }
@@ -73,8 +68,16 @@ public class UserService {
         return true;
     }
 
-    public static void putUserMarks(List<String> userMarks, User user) {
-        userDao.putMarks(userMarks, user);
+    public static void putUserMarks(List<String> userMarks, int rating, User user) {
+        userDao.putMarks(userMarks, rating, user);
+    }
+
+    public static Optional<List<Integer>> getUserMarks(User user) {
+        return userDao.findUserMarks(user);
+    }
+
+    public static boolean appliedAlready(User user) {
+        return userDao.findUserMarks(user).isPresent();
     }
 }
 

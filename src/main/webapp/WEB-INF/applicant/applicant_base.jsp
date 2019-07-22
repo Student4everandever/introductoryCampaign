@@ -5,14 +5,19 @@
     <title>Applicant Page</title>
 </head>
 <body>
-<h1><fmt:message key="applicant_base_hello" bundle="${link}"/></h1>
-<br/>
+<h2><fmt:message key="applicant_base_hello" bundle="${link}"/></h2>
 
-<c:if test="${requestScope.message == null}">
-    <a href="${pageContext.request.contextPath}/campaign/applicant/choose_specialty"><fmt:message
-            key="applicant_base_apply_for_exams" bundle="${link}"/></a>
-    <br/>
-</c:if>
+<div>
+    <ul class="navbar-nav">
+
+        <li class="nav-item active">
+            <a href="${pageContext.request.contextPath}/campaign/applicant/choose_specialty"><fmt:message key="applicant_base_apply_for_exams" bundle="${link}"/></a>
+            <a href="${pageContext.request.contextPath}/campaign/applicant/form_applicant_rating"><fmt:message key="applicant_base_form_rating" bundle="${link}"/></a>
+        </li>
+
+    </ul>
+</div>
+
 <h5 style="color: red"><c:out value="${error}"/></h5>
 <h5 style="color: limegreen"><c:out value="${message}"/></h5>
 

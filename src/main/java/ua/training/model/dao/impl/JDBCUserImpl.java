@@ -104,21 +104,51 @@ public class JDBCUserImpl implements UserDao {
     }
 
     @Override
-    public void putMarks(List<String> userMarks, User user) {
+    public void putMarks(List<String> userMarks, int rating, User user) {
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
-                             "user_put_marks"))) {
+             PreparedStatement marksQuery = connection.prepareStatement(sqlRequest.getString(
+                             "user_put_marks"));
+             PreparedStatement ratingQuery = connection.prepareStatement(sqlRequest.getString(
+                             "user_update_put_marks"))
+        ) {
             connection.setAutoCommit(false);
 
             for (int i = 0; i < userMarks.size(); i++) {
-                ps.setInt(1, Integer.parseInt(userMarks.get(i)));
-                ps.setInt(2, i + 1);
-                ps.setInt(3, user.getId());
-                ps.executeUpdate();
+                marksQuery.setInt(1, Integer.parseInt(userMarks.get(i)));
+                marksQuery.setInt(2, i + 1);
+                marksQuery.setInt(3, user.getId());
+                marksQuery.executeUpdate();
+            }
+            ratingQuery.setInt(1, rating);
+            ratingQuery.setInt(2, user.getId());
+            ratingQuery.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Optional<List<Integer>> findUserMarks(User user) {
+        Optional<List<Integer>> result = Optional.of(new ArrayList<>());
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement marksQuery = connection.prepareStatement(sqlRequest.getString(
+                     "user_get_marks"))) {
+            connection.setAutoCommit(false);
+
+            for (int i = 0; i < 3; i++) {
+                marksQuery.setInt(1, user.getId());
+                marksQuery.setInt(2, i + 1);
+                ResultSet rs = marksQuery.executeQuery();
+                if(rs.next()) {
+                    result.get().add(rs.getInt("mark"));
+                }
             }
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return result;
     }
 }
