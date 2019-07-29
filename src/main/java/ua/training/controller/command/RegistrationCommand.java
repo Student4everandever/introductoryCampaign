@@ -17,15 +17,16 @@ public class RegistrationCommand implements Command {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String eMail = request.getParameter("email");
-        String role = request.getParameter("role");
+        String role = Role.APPLICANT.toString();
 
         if (name == null || name.equals("") || nameUkr == null || nameUkr.equals("")
                 || lastName == null || lastName.equals("") || lastNameUkr == null || lastNameUkr.equals("")
                 || login == null || login.equals("") || password == null || password.equals("")
-                || eMail == null || eMail.equals("") || role == null || role.equals("")) {
+                || eMail == null || eMail.equals("")) {
 
             return "/registration.jsp";
         }
+
 
 /*
         System.out.println(name + " " + lastName + " "
@@ -44,7 +45,6 @@ public class RegistrationCommand implements Command {
                 .setPassword(password)
                 .setEmail(eMail)
                 .build();
-
 
            if (UserService.validateUserData(user) && !(CommandUtility.checkUserIsLogged(request, user.getLogin(), user.getRole()))) {
 

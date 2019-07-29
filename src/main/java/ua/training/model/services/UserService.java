@@ -2,7 +2,6 @@ package ua.training.model.services;
 
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.factory.DaoFactory;
-import ua.training.model.entity.Subject;
 import ua.training.model.entity.User;
 
 import java.util.ArrayList;
@@ -72,12 +71,27 @@ public class UserService {
         userDao.putMarks(userMarks, rating, user);
     }
 
-    public static Optional<List<Integer>> getUserMarks(User user) {
+    public static List<Integer> getUserMarks(User user) {
         return userDao.findUserMarks(user);
     }
 
     public static boolean appliedAlready(User user) {
-        return userDao.findUserMarks(user).isPresent();
+        return userDao.findUserMarks(user).size() > 0;
+    }
+
+    public static String[] getStudents(int rating) {
+        List<User> usersList =  userDao.findUsersWithRequiredRating(rating);
+        int i = 0;
+        String [] mails = new String[usersList.size()];
+        for (User user: usersList) {
+            mails [i] = user.getEmail();
+            i++;
+        }
+        return mails;
+    }
+
+    public static List<User> getUsersWithRating() {
+        return userDao.findUsersWithRating();
     }
 }
 

@@ -20,7 +20,7 @@ public class JDBCUniversityImpl implements UniversityDao {
 
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
     private UniversityMapper universityMapper = new UniversityMapper();
-    private ResourceBundle sqlRequest = ResourceBundle.getBundle("SQLRequests");
+    private ResourceBundle sqlRequest = ResourceBundle.getBundle("sqlRequests");
 
     @Override
     public void create(University entity) {
@@ -66,10 +66,10 @@ public class JDBCUniversityImpl implements UniversityDao {
                 University university = universityMapper.extractFromResultSet(rs);
                 result.add(university);
             }
-            return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return result;
     }
 
     @Override

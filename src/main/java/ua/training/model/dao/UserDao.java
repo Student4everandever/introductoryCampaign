@@ -1,6 +1,5 @@
 package ua.training.model.dao;
 
-import ua.training.model.entity.Subject;
 import ua.training.model.entity.User;
 
 import java.util.List;
@@ -15,5 +14,9 @@ public interface UserDao extends GenericDao<User> {
 
     void putMarks(List<String> userMarks, int rating, User user);
 
-    Optional<List<Integer>> findUserMarks(User user);
+    List<Integer> findUserMarks(User user);
+
+    List<User> findUsersWithRequiredRating(int rating);
+
+    List<User> findUsersWithRating();
 }

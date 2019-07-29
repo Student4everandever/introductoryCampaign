@@ -12,13 +12,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class JDBCSpecialtyImpl implements SpecialtyDao {
 
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
     private SpecialtyMapper specialtyMapper = new SpecialtyMapper();
-    private ResourceBundle sqlRequest = ResourceBundle.getBundle("SQLRequests");
+    private ResourceBundle sqlRequest = ResourceBundle.getBundle("sqlRequests");
 
 
     @Override

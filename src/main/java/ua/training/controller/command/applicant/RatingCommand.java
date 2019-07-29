@@ -20,17 +20,17 @@ public class RatingCommand implements Command {
             return "/login.jsp";
         }
 
-        Optional<List<Integer>> marksAndRating = UserService.getUserMarks(user.get());
+        List<Integer> marksAndRating = UserService.getUserMarks(user.get());
 
-        if(!marksAndRating.isPresent() || user.get().getRating() == 0) {
+        if(marksAndRating.size() == 0 || user.get().getRating() == 0) {
 
             error = "The ratings are not ready yet";
             request.setAttribute("error", error);
             return "/campaign/applicant/applicant_base";
         }
 
-        marksAndRating.get().add(user.get().getRating());
-        request.setAttribute("marks", marksAndRating.get());
+        marksAndRating.add(user.get().getRating());
+        request.setAttribute("marks", marksAndRating);
         return "/WEB-INF/applicant/form_applicants_rating.jsp";
     }
 }

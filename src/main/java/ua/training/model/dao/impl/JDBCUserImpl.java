@@ -16,7 +16,7 @@ public class JDBCUserImpl implements UserDao {
 
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
     private UserMapper userMapper = new UserMapper();
-    private ResourceBundle sqlRequest = ResourceBundle.getBundle("SQLRequests");
+    private ResourceBundle sqlRequest = ResourceBundle.getBundle("sqlRequests");
 
 
     @Override
@@ -107,9 +107,9 @@ public class JDBCUserImpl implements UserDao {
     public void putMarks(List<String> userMarks, int rating, User user) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement marksQuery = connection.prepareStatement(sqlRequest.getString(
-                             "user_put_marks"));
+                     "user_put_marks"));
              PreparedStatement ratingQuery = connection.prepareStatement(sqlRequest.getString(
-                             "user_update_put_marks"))
+                     "user_update_put_marks"))
         ) {
             connection.setAutoCommit(false);
 
@@ -130,8 +130,8 @@ public class JDBCUserImpl implements UserDao {
     }
 
     @Override
-    public Optional<List<Integer>> findUserMarks(User user) {
-        Optional<List<Integer>> result = Optional.of(new ArrayList<>());
+    public List<Integer> findUserMarks(User user) {
+        List<Integer> result = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
              PreparedStatement marksQuery = connection.prepareStatement(sqlRequest.getString(
                      "user_get_marks"))) {
@@ -141,8 +141,8 @@ public class JDBCUserImpl implements UserDao {
                 marksQuery.setInt(1, user.getId());
                 marksQuery.setInt(2, i + 1);
                 ResultSet rs = marksQuery.executeQuery();
-                if(rs.next()) {
-                    result.get().add(rs.getInt("mark"));
+                if (rs.next()) {
+                    result.add(rs.getInt("mark"));
                 }
             }
             connection.commit();
@@ -150,5 +150,41 @@ public class JDBCUserImpl implements UserDao {
             throw new RuntimeException(e);
         }
         return result;
+    }
+
+    @Override
+    public List<User> findUsersWithRating() {
+        List<User> result = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
+                     "user_find_with_rating"))) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = userMapper.extractFromResultSet(rs);
+                result.add(user);
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<User> findUsersWithRequiredRating(int rating) {
+
+        List<User> result = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
+                     "user_find_with_required_rating"))) {
+            ps.setInt(1, rating);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = userMapper.extractFromResultSet(rs);
+                result.add(user);
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
