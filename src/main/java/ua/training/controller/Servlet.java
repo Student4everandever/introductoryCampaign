@@ -43,6 +43,7 @@ public class Servlet extends HttpServlet {
         commands.put("applicant/choose_specialty", new ChooseSpecialtyCommand());
         commands.put("applicant/choose_subjects", new ChooseSubjectsCommand());
         commands.put("applicant/form_applicant_rating", new RatingCommand());
+        commands.put("applicant/show_marks", new ShowMarksCommand());
         commands.put("exception", new ExceptionCommand());
     }
 

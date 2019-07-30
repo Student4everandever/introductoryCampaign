@@ -170,6 +170,26 @@ public class JDBCUserImpl implements UserDao {
     }
 
     @Override
+    public List<User> getUsersPerPage(int rows, int pageNumber) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
+                     "user_find_per_page"))) {
+
+            ps.setInt(1, rows);
+            ps.setInt(2, pageNumber * rows - rows);
+            ResultSet rs = ps.executeQuery();
+            List<User> result = new ArrayList<>();
+            while (rs.next()) {
+                User user = userMapper.extractFromResultSet(rs);
+                result.add(user);
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public List<User> findUsersWithRequiredRating(int rating) {
 
         List<User> result = new ArrayList<>();

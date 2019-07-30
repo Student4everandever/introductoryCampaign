@@ -12,4 +12,6 @@ public interface UniversityDao extends GenericDao<University> {
     void updateUniversitySpecialties(University university, List<Specialty> specialties);
 
     University findByStringName(String universityString);
+
+    List<University> getUniversitiesPerPage(int rows, int pageNumber);
 }

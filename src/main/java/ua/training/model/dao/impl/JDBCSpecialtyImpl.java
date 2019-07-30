@@ -278,4 +278,24 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
         }
         return specialty;
     }
+
+    @Override
+    public List<Specialty> getSpecialtiesPerPage(int rows, int pageNumber) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString("specialty_find_per_page"))) {
+
+            ps.setInt(1, rows);
+            ps.setInt(2, pageNumber * rows - rows);
+            ResultSet rs = ps.executeQuery();
+            List<Specialty> result = new ArrayList<>();
+            while (rs.next()) {
+                Specialty specialty = specialtyMapper.extractFromResultSet(rs);
+                result.add(specialty);
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

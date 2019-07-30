@@ -5,7 +5,6 @@ import ua.training.model.entity.Subject;
 import ua.training.model.entity.University;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface SpecialtyDao extends GenericDao<Specialty> {
@@ -20,4 +19,6 @@ public interface SpecialtyDao extends GenericDao<Specialty> {
     void createWithUniversityAndSubjects(Specialty specialty, University university, List<Subject> subjects2, List<Subject> subjects3);
 
     Specialty findByNameString(String specialtyString);
+
+    List<Specialty> getSpecialtiesPerPage(int rows, int pageNumber);
 }

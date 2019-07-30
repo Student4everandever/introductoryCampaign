@@ -6,31 +6,34 @@ import ua.training.model.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 public class RatingCommand implements Command {
+
     @Override
     public String execute(HttpServletRequest request) {
 
-        String userLogin = (String) request.getSession().getAttribute("userLogin");
+        final int ROW_NUMBER = 5;
         String error;
-        Optional<User> user;
 
-        if(userLogin == null || !(user = UserService.findUserByLogin(userLogin)).isPresent()) {
-            return "/login.jsp";
-        }
+        int numberOfPages = UserService.getNumberOfPages(ROW_NUMBER);
 
-        List<Integer> marksAndRating = UserService.getUserMarks(user.get());
-
-        if(marksAndRating.size() == 0 || user.get().getRating() == 0) {
-
+        if (numberOfPages == 0) {
             error = "The ratings are not ready yet";
             request.setAttribute("error", error);
             return "/campaign/applicant/applicant_base";
         }
 
-        marksAndRating.add(user.get().getRating());
-        request.setAttribute("marks", marksAndRating);
-        return "/WEB-INF/applicant/form_applicants_rating.jsp";
+        if (request.getParameter("page") == null) {
+            return "/campaign/applicant/form_applicant_rating?page=1";
+        }
+        int pageNumber = Integer.parseInt(request.getParameter("page"));
+        if (pageNumber > 0 && numberOfPages >= pageNumber) {
+            List<User> allUsersWithRatingByPage = UserService.getUsersPerPage(ROW_NUMBER, pageNumber);
+            request.setAttribute("numberOfPages", numberOfPages);
+            request.setAttribute("allUsersByPage", allUsersWithRatingByPage);
+            return "/WEB-INF/applicant/form_applicants_rating.jsp";
+        } else {
+            return "/WEB-INF/applicant/form_applicants_rating" + (pageNumber > 0 ? numberOfPages : 1);
+        }
     }
 }

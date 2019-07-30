@@ -12,7 +12,7 @@
     <title>Admin edit specialty title page</title>
 </head>
 <body>
-<a href="/campaign/admin/show_specialties">Back</a>
+<a href="/campaign/admin/show_specialties"><fmt:message key="edit_specialty_back" bundle="${link}"/></a>
 <br/>
 
 <h2><fmt:message key="edit_specialty_enter_new_data" bundle="${link}"/></h2>

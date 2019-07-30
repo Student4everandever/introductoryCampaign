@@ -11,7 +11,7 @@
     <title>Add specialty page</title>
 </head>
 <body>
-<a href="/campaign/admin/show_specialties">back</a>
+<a href="/campaign/admin/show_specialties"><fmt:message key="add_specialty_back" bundle="${link}"/></a>
 <br/>
 
 <h2><fmt:message key="add_specialty_enter_data" bundle="${link}"/></h2>

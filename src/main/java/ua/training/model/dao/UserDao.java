@@ -19,4 +19,6 @@ public interface UserDao extends GenericDao<User> {
     List<User> findUsersWithRequiredRating(int rating);
 
     List<User> findUsersWithRating();
+
+    List<User> getUsersPerPage(int rows, int pageNumber);
 }

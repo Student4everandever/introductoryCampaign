@@ -93,5 +93,14 @@ public class UserService {
     public static List<User> getUsersWithRating() {
         return userDao.findUsersWithRating();
     }
+
+    public static int getNumberOfPages(int rows) {
+        int numberOfUsers = userDao.findUsersWithRating().size();
+        return (int) Math.ceil((double) numberOfUsers / rows);
+    }
+
+    public static List<User> getUsersPerPage(int rows, int pageNumber) {
+        return userDao.getUsersPerPage(rows, pageNumber);
+    }
 }
 

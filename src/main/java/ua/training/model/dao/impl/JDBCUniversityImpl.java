@@ -132,6 +132,26 @@ public class JDBCUniversityImpl implements UniversityDao {
     }
 
     @Override
+    public List<University> getUniversitiesPerPage(int rows, int pageNumber) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString("university_find_per_page"))) {
+
+            ps.setInt(1, rows);
+            ps.setInt(2, pageNumber * rows - rows);
+            ResultSet rs = ps.executeQuery();
+            List<University> result = new ArrayList<>();
+            while (rs.next()) {
+                University university = universityMapper.extractFromResultSet(rs);
+                result.add(university);
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean delete(int id) {
 
         try (Connection connection = dataSource.getConnection();

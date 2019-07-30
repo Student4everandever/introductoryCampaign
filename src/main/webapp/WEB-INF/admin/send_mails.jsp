@@ -10,7 +10,7 @@
     <ul class="navbar-nav">
 
         <li class="nav-item active">
-            <a href="${pageContext.request.contextPath}/campaign/admin/admin_base">Admin main</a>
+            <a href="${pageContext.request.contextPath}/campaign/admin/admin_base"><fmt:message key="admin_mails_send_to_admin_main" bundle="${link}"/></a>
         </li>
 
     </ul>
