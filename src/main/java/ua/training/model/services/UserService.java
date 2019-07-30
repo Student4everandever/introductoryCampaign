@@ -25,26 +25,6 @@ public class UserService {
                 user.getPassword().matches(REGEX_PASSWORD);
     }
 
-
-    /*
-        public static List<User> getAllSpeakers() {
-            return userDao.findAllSpeakers();
-        }
-
-        public static boolean signUpIsPossible(String login, int conferenceId) {
-            int userId;
-            Optional<User> user = userDao.findByLogin(login);
-            if (user.isPresent()) {
-                userId = user.get().getId();
-                return !userDao.getVisitorsConferences(userId, conferenceId);
-            }
-            return true;
-        }
-
-        public static Optional<User> login(String login) {
-            return userDao.findByLogin(login);
-        }
-    */
     public static void createUser(User user) {
         userDao.create(user);
     }
@@ -101,6 +81,10 @@ public class UserService {
 
     public static List<User> getUsersPerPage(int rows, int pageNumber) {
         return userDao.getUsersPerPage(rows, pageNumber);
+    }
+
+    public static boolean checkIfExist(String login, String eMail) {
+        return userDao.findUserByLoginOrEmail(login, eMail);
     }
 }
 

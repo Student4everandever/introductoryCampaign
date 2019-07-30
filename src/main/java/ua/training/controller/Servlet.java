@@ -47,8 +47,7 @@ public class Servlet extends HttpServlet {
         commands.put("exception", new ExceptionCommand());
     }
 
-    public void doGet(HttpServletRequest request,
-                      HttpServletResponse response)
+    public void doGet(HttpServletRequest request,HttpServletResponse response)
             throws IOException, ServletException {
         processRequest(request, response);
     }
@@ -62,10 +61,8 @@ public class Servlet extends HttpServlet {
             throws ServletException, IOException {
 
         String path = request.getRequestURI();
-        System.out.println(path);
         path = path.replaceAll(".*/campaign/", "");
-        System.out.println(path);
-        Command command = commands.getOrDefault(path, (req) -> "/welcome.jsp");
+        Command command = commands.getOrDefault(path, (req) -> "/index.jsp");
         String page = command.execute(request);
         if (page.contains("redirect")) {
             response.sendRedirect(page.replace("redirect:", ""));

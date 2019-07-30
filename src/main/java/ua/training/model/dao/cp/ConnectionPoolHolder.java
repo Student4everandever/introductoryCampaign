@@ -1,12 +1,18 @@
 package ua.training.model.dao.cp;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.constants.Messages;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
 
 public class ConnectionPoolHolder {
+
+    private final static Logger logger = LogManager.getLogger(ConnectionPoolHolder.class);
+
 
     private static volatile DataSource dataSource;
 
@@ -30,6 +36,7 @@ public class ConnectionPoolHolder {
                         dataSource = ds;
 
                     } catch (IOException e) {
+                        logger.error(Messages.CONNECTION_POOL_DATA_FAIL);
                         throw new RuntimeException(e);
                     }
                 }

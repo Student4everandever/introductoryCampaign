@@ -1,5 +1,8 @@
 package ua.training.controller.command.admin;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.Subject;
@@ -13,6 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class AddSpecialtyCommand implements Command {
+
+    private final static Logger logger = LogManager.getLogger(AddSpecialtyCommand.class);
+
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -59,6 +65,7 @@ public class AddSpecialtyCommand implements Command {
             List<Subject> specialtySubjects = SubjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
             request.setAttribute("error", error);
+            logger.warn(Messages.VALIDATION_FAIL);
             return "/WEB-INF/admin/add_specialty.jsp";
         }
 
@@ -70,6 +77,7 @@ public class AddSpecialtyCommand implements Command {
             List<Subject> specialtySubjects = SubjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
             request.setAttribute("error", error);
+            logger.warn(String.format(Messages.ADMIN_ADD_SPECIALTY_ALREADY_EXIST, specialty.getTitle(), specialty.getTitle_ukr()));
             return "/WEB-INF/admin/add_specialty.jsp";
         }
 
@@ -78,6 +86,7 @@ public class AddSpecialtyCommand implements Command {
         List<Subject> specialtySubjects = SubjectService.getAllButFirst();
         request.setAttribute("subjects", specialtySubjects);
         request.setAttribute("message", message);
+        logger.info(String.format(Messages.ADMIN_ADD_SPECIALTY_SUCCESS, specialty.getTitle(), specialty.getTitle_ukr()));
         return "/WEB-INF/admin/add_specialty.jsp";
     }
 }

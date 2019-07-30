@@ -1,20 +1,18 @@
 package ua.training.controller.command.admin;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
-import ua.training.model.entity.Specialty;
 import ua.training.model.entity.University;
-import ua.training.model.services.SpecialtyService;
 import ua.training.model.services.UniversityService;
 
-import javax.servlet.Filter;
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public class EditUniversityCommand implements Command {
+
+    private final static Logger logger = LogManager.getLogger(EditUniversityCommand.class);
+
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -43,6 +41,7 @@ public class EditUniversityCommand implements Command {
         UniversityService.editUniversity(university);
         message = "University was successfully updated";
         request.setAttribute("message", message);
+        logger.info(String.format(Messages.ADMIN_EDIT_UNIVERSITY_NAME, university));
         return "redirect:/campaign/admin/edit_university";
     }
 }

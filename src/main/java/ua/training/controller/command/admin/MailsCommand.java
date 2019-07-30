@@ -1,14 +1,20 @@
 package ua.training.controller.command.admin;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
 import ua.training.controller.mail.sender.SendMail;
 import ua.training.model.entity.User;
 import ua.training.model.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 public class MailsCommand implements Command {
+
+    private final static Logger logger = LogManager.getLogger(MailsCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -51,6 +57,7 @@ public class MailsCommand implements Command {
 
         message = "Email sent successfully";
         request.setAttribute("message", message);
+        logger.info(String.format(Messages.ADMIN_MAIL_COMMAND_SENT_SUCCESS,  Arrays.toString(to)));
         return "/campaign/admin/admin_base";
     }
 }

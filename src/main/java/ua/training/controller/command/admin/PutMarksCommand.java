@@ -1,5 +1,8 @@
 package ua.training.controller.command.admin;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Subject;
 import ua.training.model.entity.User;
@@ -12,6 +15,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class PutMarksCommand implements Command {
+
+    private final static Logger logger = LogManager.getLogger(PutMarksCommand.class);
+
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -48,6 +54,7 @@ public class PutMarksCommand implements Command {
             request.setAttribute("subjects", userSubjects);
             request.setAttribute("user", user.get());
             request.setAttribute("error", error);
+            logger.warn(Messages.VALIDATION_FAIL);
             return "/WEB-INF/admin/put_marks.jsp";
         }
 
@@ -56,6 +63,7 @@ public class PutMarksCommand implements Command {
         message = "Marks were successfully added";
 
         request.setAttribute("message", message);
+        logger.info(String.format(Messages.ADMIN_PUT_MARKS_SUCCSESS, user.get()));
         return "/campaign/admin/users_with_exams";
     }
 }
