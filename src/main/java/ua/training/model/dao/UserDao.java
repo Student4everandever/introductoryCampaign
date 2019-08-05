@@ -23,4 +23,6 @@ public interface UserDao extends GenericDao<User> {
     List<User> getUsersPerPage(int rows, int pageNumber);
 
     boolean findUserByLoginOrEmail(String login, String eMail);
+
+    List<User> findAllApplicants();
 }

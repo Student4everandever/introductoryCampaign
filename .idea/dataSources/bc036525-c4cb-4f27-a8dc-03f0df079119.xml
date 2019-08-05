@@ -1410,6 +1410,7 @@
       <RefSchemaName>introductory_campaign_db</RefSchemaName>
       <RefTableName>university</RefTableName>
       <RefColNames>university_id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="347" parent="295" name="fk_university_has_specialty_specialty1">
       <ColNames>specialty_id</ColNames>

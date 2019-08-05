@@ -27,6 +27,10 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
     private SpecialtyMapper specialtyMapper = new SpecialtyMapper();
     private ResourceBundle sqlRequest = ResourceBundle.getBundle("sqlRequests");
 
+    public JDBCSpecialtyImpl() {
+
+    }
+
 
     @Override
     public void create(Specialty entity) {

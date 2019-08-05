@@ -13,9 +13,10 @@ import static ua.training.constants.Regex.*;
 
 public class UserService {
 
+
     private static UserDao userDao = DaoFactory.getInstance().createUserDao();
 
-    public static boolean validateUserData(User user) {
+    public boolean validateUserData(User user) {
         return user.getName().matches(REGEX_NAME_LAT) &&
                 user.getName_ukr().matches(REGEX_NAME_UKR) &&
                 user.getLastName().matches(REGEX_NAME_LAT) &&
@@ -25,20 +26,20 @@ public class UserService {
                 user.getPassword().matches(REGEX_PASSWORD);
     }
 
-    public static void createUser(User user) {
+    public void createUser(User user) {
         userDao.create(user);
     }
 
-    public static Optional<User> findUserByLogin(String userLogin) {
+    public Optional<User> findUserByLogin(String userLogin) {
         return userDao.findByLogin(userLogin);
     }
 
-    public static List<User> getUsersWithExams() {
+    public List<User> getUsersWithExams() {
         Map<Integer, User> usersWithExams = userDao.findUsersWithExams();
         return new ArrayList<>(usersWithExams.values());
     }
 
-    public static boolean validateMarks(List<String> userMarks) {
+    public boolean validateMarks(List<String> userMarks) {
         for (String mark : userMarks) {
             if (!mark.matches(REGEX_USER_MARKS)) {
                 return false;
@@ -47,19 +48,19 @@ public class UserService {
         return true;
     }
 
-    public static void putUserMarks(List<String> userMarks, int rating, User user) {
+    public void putUserMarks(List<String> userMarks, int rating, User user) {
         userDao.putMarks(userMarks, rating, user);
     }
 
-    public static List<Integer> getUserMarks(User user) {
+    public List<Integer> getUserMarks(User user) {
         return userDao.findUserMarks(user);
     }
 
-    public static boolean appliedAlready(User user) {
-        return userDao.findUserMarks(user).size() > 0;
+    public boolean appliedAlready(User user) {
+        return userDao.findAllApplicants().contains(user);
     }
 
-    public static String[] getStudents(int rating) {
+    public String[] getStudentsMails(int rating) {
         List<User> usersList =  userDao.findUsersWithRequiredRating(rating);
         int i = 0;
         String [] mails = new String[usersList.size()];
@@ -70,20 +71,20 @@ public class UserService {
         return mails;
     }
 
-    public static List<User> getUsersWithRating() {
+    public List<User> getUsersWithRating() {
         return userDao.findUsersWithRating();
     }
 
-    public static int getNumberOfPages(int rows) {
+    public int getNumberOfPages(int rows) {
         int numberOfUsers = userDao.findUsersWithRating().size();
         return (int) Math.ceil((double) numberOfUsers / rows);
     }
 
-    public static List<User> getUsersPerPage(int rows, int pageNumber) {
+    public List<User> getUsersPerPage(int rows, int pageNumber) {
         return userDao.getUsersPerPage(rows, pageNumber);
     }
 
-    public static boolean checkIfExist(String login, String eMail) {
+    public boolean checkIfExist(String login, String eMail) {
         return userDao.findUserByLoginOrEmail(login, eMail);
     }
 }

@@ -2,7 +2,6 @@ package ua.training.controller.command;
 
 import ua.training.model.entity.enums.Role;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashSet;
@@ -23,15 +22,7 @@ class CommandUtility {
 
     }
 
-    static void setUserRole(HttpServletRequest request,
-                            Role role, String login) {
-        HttpSession session = request.getSession();
-        ServletContext context = request.getServletContext();
-        context.setAttribute("login", login);
-        session.setAttribute("role", role);
-    }
-
-    static boolean checkUserIsLogged(HttpServletRequest request, String login, Role role){
+    static boolean userIsLogged(HttpServletRequest request, String login){
         HashSet<String> loggedUsers = (HashSet<String>) request.getSession().getServletContext()
                 .getAttribute("loggedUsers");
 

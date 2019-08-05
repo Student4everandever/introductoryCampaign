@@ -12,7 +12,7 @@
     <title>Admin edit university page</title>
 </head>
 <body>
-<a href="/campaign/admin/show_universities"><fmt:message key="edit_university_back" bundle="${link}"/></a>
+<a href="/campaign/admin/show_universities?page=${page}"><fmt:message key="edit_university_back" bundle="${link}"/></a>
 <br/>
 
 <h2><fmt:message key="edit_university_enter_new_data" bundle="${link}"/></h2>
@@ -49,8 +49,9 @@
                     </div>
                 </div>
 
-                <input type="text" id="id1" name="id1" value="${university.id}" hidden>
-                <input type="hidden" name="submitted1" value="true">
+                <input type="text" id="id" name="id" value="${university.id}" hidden>
+                <input type="text" id="page" name="page" value="${page}" hidden>
+                <input type="hidden" name="submitted" value="true">
 
 
                 <hr class="mb-4">

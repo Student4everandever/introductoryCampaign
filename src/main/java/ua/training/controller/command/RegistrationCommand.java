@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
 import ua.training.model.entity.User;
 import ua.training.model.entity.enums.Role;
-import ua.training.model.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,14 +34,7 @@ public class RegistrationCommand implements Command {
             return "/registration.jsp";
         }
 
-
-/*
-        System.out.println(name + " " + lastName + " "
-                         + nameUkr + " " + lastNameUkr + " "
-                         + login + " " + password + " "
-                         + eMail + " " + role);
-*/
-        if(!UserService.checkIfExist(login, eMail)) {
+        if(!userService.checkIfExist(login, eMail)) {
 
         user = new User.UserBuilder()
                 .setRole(Role.valueOf(role))
@@ -61,9 +53,13 @@ public class RegistrationCommand implements Command {
             return "/registration.jsp";
         }
 
-        if (UserService.validateUserData(user) && !(CommandUtility.checkUserIsLogged(request, user.getLogin(), user.getRole()))) {
+        System.out.println(user);
+        System.out.println(userService.validateUserData(user));
+        System.out.println(CommandUtility.userIsLogged(request, user.getLogin()));
 
-            UserService.createUser(user);
+        if (userService.validateUserData(user) && !(CommandUtility.userIsLogged(request, user.getLogin()))) {
+
+            userService.createUser(user);
             CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
             logger.info(String.format(Messages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));
             return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";

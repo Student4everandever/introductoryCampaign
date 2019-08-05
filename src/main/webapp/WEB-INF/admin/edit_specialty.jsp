@@ -33,7 +33,7 @@
                 <div class="mb-3">
                     <label for="title"><fmt:message key="edit_specialty_specialty_title" bundle="${link}"/></label>
                     <input type="text" class="form-control" name="title" id="title"
-                           placeholder="${specialty.title}" value="" required>
+                           placeholder="${specialty.title}" value="">
                     <div class="invalid-feedback">
                         Please enter valid title.
                     </div>
@@ -43,7 +43,7 @@
                     <label for="title_ukr"><fmt:message key="edit_specialty_specialty_title_ukr"
                                                         bundle="${link}"/></label>
                     <input type="text" class="form-control" name="title_ukr" id="title_ukr"
-                           placeholder="${specialty.title_ukr}" value="" required>
+                           placeholder="${specialty.title_ukr}" value="">
                     <div class="invalid-feedback">
                         Please enter valid title in ukrainian.
                     </div>
@@ -51,14 +51,26 @@
 
                 <div class="row">
                     <div class="col-md-4 mb-2">
-                        <label for="subject_1"><fmt:message key="edit_specialty_subject_label_subject1" bundle="${link}"/></label>
+                        <label for="subject_1"><fmt:message key="edit_specialty_subject_label_subject1"
+                                                            bundle="${link}"/></label>
                         <input type="text" class="form-control" name="subject_1" id="subject_1" value="" hidden>
                         <p><fmt:message key="edit_specialty_subject_subject1" bundle="${link}"/></p>
                     </div>
 
                     <div class="col-md-4 mb-2">
-                        <label for="subject_2"><fmt:message key="edit_specialty_subject_choose_subject2" bundle="${link}"/></label>
-                        <select class="custom-select" multiple name="subject_2" id="subject_2" required>
+                        <label for="subject_2"><fmt:message key="edit_specialty_subject_choose_subject2"
+                                                            bundle="${link}"/>
+                            <br/>
+                            <c:forEach var="exam" items="${requestScope.exam2}">
+                                <c:if test="${language != 'en'}">
+                                    <c:out value="${exam.name_ukr}"/>
+                                </c:if>
+                                <c:if test="${language == 'en'}">
+                                    <c:out value="${exam.name}"/>
+                                </c:if>
+                            </c:forEach>
+                        </label>
+                        <select class="custom-select" multiple name="subject_2" id="subject_2">
                             <c:forEach var="subject" items="${requestScope.subjects}">
                                 <c:if test="${language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
@@ -71,8 +83,19 @@
                     </div>
 
                     <div class="col-md-4 mb-2">
-                        <label for="subject_3"><fmt:message key="edit_specialty_subject_choose_subject3" bundle="${link}"/></label>
-                        <select class="custom-select" multiple name="subject_3" id="subject_3" required>
+                        <label for="subject_3"><fmt:message key="edit_specialty_subject_choose_subject3"
+                                                            bundle="${link}"/>
+                            <br/>
+                            <c:forEach var="exams" items="${requestScope.exam3}">
+                                <c:if test="${language != 'en'}">
+                                    <c:out value="${exams.name_ukr}"/>
+                                </c:if>
+                                <c:if test="${language == 'en'}">
+                                    <c:out value="${exams.name}"/>
+                                </c:if>
+                            </c:forEach>
+                        </label>
+                        <select class="custom-select" multiple name="subject_3" id="subject_3">
                             <c:forEach var="subject" items="${requestScope.subjects}">
                                 <c:if test="${language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>

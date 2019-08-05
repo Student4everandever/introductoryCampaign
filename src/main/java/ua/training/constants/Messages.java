@@ -26,7 +26,7 @@ public interface Messages {
     String ADMIN_DELETE_UNIVERSITY_SUCCESS = "University with id %s was successfully deleted.";
     String ADMIN_EDIT_SPECIALTY_SUCCESS = "Specialty %s, %s was successfully updated.";
     String ADMIN_EDIT_SPECIALTY_ALREADY_EXIST = "Attempt to create existing specialty %s, %s.";
-    String ADMIN_EDIT_UNIVERSITY_NAME = "University name was updated successfully fo university %s.";
+    String ADMIN_EDIT_UNIVERSITY_NAME = "University name was updated successfully for university %s.";
     String ADMIN_EDIT_UNIVERSITY_SPECIALTIES = "Specialties were updated successfully fo university %s.";
     String ADMIN_MAIL_COMMAND_SENT_SUCCESS = "Emails were sent successfully to applicants %s.";
     String ADMIN_PUT_MARKS_SUCCSESS = "Marks were entered successfully for applicant %s.";
@@ -71,6 +71,7 @@ public interface Messages {
     String JDBC_UNIVERSITY_FIND_BY_NAME_FAIL = "Failed to find university with names: %s and %s.";
 
     String JDBC_USER_CREATION_FAIL = "Failed to create new user with email: %s.";
+    String JDBC_USER_FIND_ALL_APPLICANTS_FAIL = "Failed to find all users applied for exams.";
     String JDBC_USER_FINDING_FAIL = "Failed to find user with login: %s.";
     String JDBC_USER_FINDING_WITH_EXAMS_FAIL = "Failed to find users with exams.";
     String JDBC_USER_PUTTING_MARKS_FAIL = "Failed to put marks for user %s.";

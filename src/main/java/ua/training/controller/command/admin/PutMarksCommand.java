@@ -6,8 +6,6 @@ import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Subject;
 import ua.training.model.entity.User;
-import ua.training.model.services.SubjectService;
-import ua.training.model.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -30,14 +28,14 @@ public class PutMarksCommand implements Command {
         String message;
         Optional<User> user;
 
-        if(userLogin == null || !(user = UserService.findUserByLogin(userLogin)).isPresent()) {
+        if(userLogin == null || !(user = userService.findUserByLogin(userLogin)).isPresent()) {
             return "/login.jsp";
         }
 
         if((mark1 == null || mark1.equals("") ||
                 mark2 == null || mark2.equals("") ||
                 mark3 == null || mark3.equals(""))) {
-            List<Subject> userSubjects = SubjectService.getUserSubjects(user.get());
+            List<Subject> userSubjects = subjectService.getUserSubjects(user.get());
             request.setAttribute("subjects", userSubjects);
             request.setAttribute("user", user.get());
             return "/WEB-INF/admin/put_marks.jsp";
@@ -48,9 +46,9 @@ public class PutMarksCommand implements Command {
         userMarks.add(mark2);
         userMarks.add(mark3);
 
-        if(!UserService.validateMarks(userMarks)) {
+        if(!userService.validateMarks(userMarks)) {
             error = "You can put only numbers from 1 up to 200";
-            List<Subject> userSubjects = SubjectService.getUserSubjects(user.get());
+            List<Subject> userSubjects = subjectService.getUserSubjects(user.get());
             request.setAttribute("subjects", userSubjects);
             request.setAttribute("user", user.get());
             request.setAttribute("error", error);
@@ -59,7 +57,7 @@ public class PutMarksCommand implements Command {
         }
 
         int rating = (int) (index1 * Integer.valueOf(mark1) + index2 * Integer.valueOf(mark2) + index3 * Integer.valueOf(mark3));
-        UserService.putUserMarks(userMarks, rating, user.get());
+        userService.putUserMarks(userMarks, rating, user.get());
         message = "Marks were successfully added";
 
         request.setAttribute("message", message);

@@ -6,7 +6,6 @@ import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
 import ua.training.controller.mail.sender.SendMail;
 import ua.training.model.entity.User;
-import ua.training.model.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -20,14 +19,14 @@ public class MailsCommand implements Command {
     public String execute(HttpServletRequest request) {
 
         int requiredRating = 100;
-        String[] to = UserService.getStudents(requiredRating);
+        String[] to = userService.getStudentsMails(requiredRating);
         String sendMails = request.getParameter("send_mail");
         String user = "ukrposhta@gmail.com";
         String password = "dikanskaya1";
         String message;
 
         if (sendMails == null) {
-            List<User> usersWithRating = UserService.getUsersWithRating();
+            List<User> usersWithRating = userService.getUsersWithRating();
             request.setAttribute("users", usersWithRating);
             return "/WEB-INF/admin/send_mails.jsp";
         }

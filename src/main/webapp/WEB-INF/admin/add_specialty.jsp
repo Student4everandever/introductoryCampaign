@@ -67,7 +67,9 @@
                     <div class="col-md-4 mb-2">
                         <label for="subject_1"><fmt:message key="add_specialty_choose_subject1"
                                                             bundle="${link}"/></label>
-                        <input type="text" class="form-control" name="subject_1" id="subject_1" value="<fmt:message key="add_specialty_subject1" bundle="${link}"/>">
+                        <input type="text" class="form-control" name="subject_1" id="subject_1" value="<fmt:message key="add_specialty_subject1" bundle="${link}"/>" hidden>
+                        <p><fmt:message key="add_specialty_subject_subject1" bundle="${link}"/></p>
+
                     </div>
 
                     <div class="col-md-4 mb-2">

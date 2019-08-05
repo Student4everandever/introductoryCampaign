@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
 import ua.training.model.entity.User;
-import ua.training.model.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -34,11 +33,11 @@ public class LoginCommand implements Command {
             return "/login.jsp";
         }
 
-        Optional<User> user = UserService.findUserByLogin(login);
+        Optional<User> user = userService.findUserByLogin(login);
 
         if (user.isPresent() && pass.equals(user.get().getPassword())) {
 
-            if (CommandUtility.checkUserIsLogged(request, user.get().getLogin(), user.get().getRole())) {
+            if (CommandUtility.userIsLogged(request, user.get().getLogin())) {
                 logger.warn(String.format(Messages.LOGIN_LOGGED_ALREADY, user.get().getRole(), login));
                 return "/WEB-INF/error.jsp";
             }

@@ -25,11 +25,9 @@ public class UserMapper implements ObjectMapper<User> {
                 .build();
     }
 
-    @Override
-    public User makeUnique(Map<Integer, User> existing, User entity) {
+    public void makeUnique(Map<Integer, User> existing, User entity) {
+
         existing.putIfAbsent(entity.getId(), entity);
-
-        return existing.get(entity.getId());
+        existing.get(entity.getId());
     }
-
 }

@@ -23,7 +23,6 @@ public class JDBCUserImpl implements UserDao {
     private UserMapper userMapper = new UserMapper();
     private ResourceBundle sqlRequest = ResourceBundle.getBundle("sqlRequests");
 
-
     @Override
     public void create(User user) throws RuntimeException {
         try (Connection connection = dataSource.getConnection();
@@ -54,6 +53,25 @@ public class JDBCUserImpl implements UserDao {
     @Override
     public List<User> findAll() {
         return null;
+    }
+
+    @Override
+    public List<User> findAllApplicants() {
+        Map<Integer, User> uniqueUsers = new HashMap<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
+                     "user_find_all_applicants"))) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = userMapper.extractFromResultSet(rs);
+                userMapper.makeUnique(uniqueUsers, user);
+            }
+            return new ArrayList<>(uniqueUsers.values());
+        } catch (SQLException e) {
+            logger.error(Messages.JDBC_USER_FIND_ALL_APPLICANTS_FAIL);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

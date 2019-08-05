@@ -1,5 +1,7 @@
 package ua.training.model.entity;
 
+//import ua.training.model.entity.enums.Role;
+
 import ua.training.model.entity.enums.Role;
 
 import java.util.Objects;
@@ -16,6 +18,23 @@ public class User {
     private String password;
     private int rating;
     private int universityId;
+
+    public User() {
+    }
+
+    public User(int id, Role role, String name, String name_ukr, String lastName, String lastName_ukr, String email, String login, String password, int rating, int universityId) {
+        this.id = id;
+        this.role = role;
+        this.name = name;
+        this.name_ukr = name_ukr;
+        this.lastName = lastName;
+        this.lastName_ukr = lastName_ukr;
+        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.rating = rating;
+        this.universityId = universityId;
+    }
 
     public int getId() {
         return id;
@@ -110,22 +129,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                rating == user.rating &&
-                universityId == user.universityId &&
-                role == user.role &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(name_ukr, user.name_ukr) &&
-                Objects.equals(lastName, user.lastName) &&
-                Objects.equals(lastName_ukr, user.lastName_ukr) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password);
+        return id == user.id && Objects.equals(login, user.login);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, role, name, name_ukr, lastName, lastName_ukr, email, login, password, rating, universityId);
+        return Objects.hash(id, login);
     }
 
     @Override
@@ -144,7 +153,6 @@ public class User {
                 ", universityId=" + universityId +
                 '}';
     }
-
 
     public static final class UserBuilder {
         private int id;

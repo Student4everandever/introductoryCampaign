@@ -10,7 +10,7 @@
     <title>Admin page to add university</title>
 </head>
 <body>
-<a href="/campaign/admin/show_universities"><fmt:message key="add_university_back" bundle="${link}"/></a>
+<a href="/campaign/admin/show_universities?page=${page}"><fmt:message key="add_university_back" bundle="${link}"/></a>
 <br/>
 
 <h2><fmt:message key="add_university_enter_data" bundle="${link}"/></h2>
@@ -44,6 +44,8 @@
                         Please enter valid name in ukrainian.
                     </div>
                 </div>
+
+                <input type="text" id="page" name="page" value="${page}" hidden>
 
                 <hr class="mb-4">
                 <input type="submit" class="form-control btn-submit" name="addUniversity" value="<fmt:message key="add_university_add_university" bundle="${link}"/>">

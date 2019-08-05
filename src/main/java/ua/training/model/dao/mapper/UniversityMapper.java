@@ -4,7 +4,6 @@ import ua.training.model.entity.University;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class UniversityMapper implements ObjectMapper<University> {
     @Override
@@ -14,10 +13,5 @@ public class UniversityMapper implements ObjectMapper<University> {
                 .setName(rs.getString("university_name").replaceAll("\"","”"))
                 .setName_ukr(rs.getString("university_name_ukr").replaceAll("\"","\\\""))
                 .build();
-    }
-
-    @Override
-    public University makeUnique(Map<Integer, University> existing, University entity) {
-        return null;
     }
 }

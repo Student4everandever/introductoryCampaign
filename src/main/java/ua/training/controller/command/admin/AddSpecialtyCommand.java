@@ -7,9 +7,6 @@ import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.Subject;
 import ua.training.model.entity.University;
-import ua.training.model.services.SpecialtyService;
-import ua.training.model.services.SubjectService;
-import ua.training.model.services.UniversityService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -28,18 +25,18 @@ public class AddSpecialtyCommand implements Command {
         Optional<String[]> subjectsToAdd1 = Optional.ofNullable(request.getParameterValues("subject_2"));
         Optional<String[]> subjectsToAdd2 = Optional.ofNullable(request.getParameterValues("subject_3"));
 
-        List<University> allUniversities = UniversityService.getAllUniversities();
+        List<University> allUniversities = universityService.getAllUniversities();
         request.setAttribute("universities", allUniversities);
 
 
 
         if (title == null || title.equals("") || title_ukr == null || title_ukr.equals("") || universityString == null) {
-            List<Subject> specialtySubjects = SubjectService.getAllButFirst();
+            List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
             return "/WEB-INF/admin/add_specialty.jsp";
         }
         Specialty specialty = new Specialty();
-        University university = UniversityService.getUniversityByName(universityString);
+        University university = universityService.getUniversityByName(universityString);
         String message;
         String error;
 
@@ -49,20 +46,20 @@ public class AddSpecialtyCommand implements Command {
         if(!subjectsToAdd1.isPresent() || !subjectsToAdd2.isPresent()) {
 
             error = "Please choose subjects to put";
-            List<Subject> specialtySubjects = SubjectService.getAllButFirst();
+            List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
             request.setAttribute("error", error);
             return "/WEB-INF/admin/add_specialty.jsp";
         } else {
-            subjects2 = SubjectService.setSubjectsList(subjectsToAdd1.get(), number);
+            subjects2 = subjectService.setSubjectsList(subjectsToAdd1.get(), number);
             number = 3;
-            subjects3 = SubjectService.setSubjectsList(subjectsToAdd2.get(), number);
+            subjects3 = subjectService.setSubjectsList(subjectsToAdd2.get(), number);
         }
 
-        if (!SpecialtyService.validateSpecialtyData(title, title_ukr)) {
+        if (!specialtyService.validateSpecialtyData(title, title_ukr)) {
 
             error = "You input prohibited character";
-            List<Subject> specialtySubjects = SubjectService.getAllButFirst();
+            List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
             request.setAttribute("error", error);
             logger.warn(Messages.VALIDATION_FAIL);
@@ -72,18 +69,18 @@ public class AddSpecialtyCommand implements Command {
         specialty.setTitle(title);
         specialty.setTitle_ukr(title_ukr);
 
-        if (SpecialtyService.specialtyExists(specialty)) {
+        if (specialtyService.specialtyExists(specialty)) {
             error = "The specialty already in the system";
-            List<Subject> specialtySubjects = SubjectService.getAllButFirst();
+            List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
             request.setAttribute("error", error);
             logger.warn(String.format(Messages.ADMIN_ADD_SPECIALTY_ALREADY_EXIST, specialty.getTitle(), specialty.getTitle_ukr()));
             return "/WEB-INF/admin/add_specialty.jsp";
         }
 
-        SpecialtyService.addSpecialty(specialty, university, subjects2, subjects3);
+        specialtyService.addSpecialty(specialty, university, subjects2, subjects3);
         message = "Specialty was successfully added to base";
-        List<Subject> specialtySubjects = SubjectService.getAllButFirst();
+        List<Subject> specialtySubjects = subjectService.getAllButFirst();
         request.setAttribute("subjects", specialtySubjects);
         request.setAttribute("message", message);
         logger.info(String.format(Messages.ADMIN_ADD_SPECIALTY_SUCCESS, specialty.getTitle(), specialty.getTitle_ukr()));

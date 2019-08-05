@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
-import ua.training.model.services.SpecialtyService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +16,7 @@ public class DeleteSpecialtyCommand implements Command {
     public String execute(HttpServletRequest request) {
         String idString = request.getParameter("specialty_id");
 
-        if (idString != null && SpecialtyService.deleteSpecialty(Integer.parseInt(idString))) {
+        if (idString != null && specialtyService.deleteSpecialty(Integer.parseInt(idString))) {
             logger.info(String.format(Messages.ADMIN_DELETE_SPECIALTY_SUCCESS, Integer.parseInt(idString)));
             return "redirect:/campaign/admin/show_specialties";
         }
