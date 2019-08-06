@@ -43,11 +43,6 @@ public class JDBCSubjectImpl implements SubjectDao {
     }
 
     @Override
-    public Subject findById(int id) {
-        return null;
-    }
-
-    @Override
     public List<Subject> findAll() {
         List<Subject> result = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
@@ -64,21 +59,6 @@ public class JDBCSubjectImpl implements SubjectDao {
             logger.error(Messages.JDBC_SUBJECT_FIND_ALL_FAIL);
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void update(Subject subject) {
-
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
-
-    @Override
-    public void close() {
-
     }
 
     @Override

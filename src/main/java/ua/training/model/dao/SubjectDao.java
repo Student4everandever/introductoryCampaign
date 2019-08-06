@@ -6,10 +6,13 @@ import ua.training.model.entity.University;
 import ua.training.model.entity.User;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-public interface SubjectDao extends GenericDao<Subject> {
+public interface SubjectDao {
+    void create(Subject entity);
+
+    List<Subject> findAll();
+
     Optional<Subject> findByName(Subject subject);
 
     Subject findByStringName(String name);

@@ -42,7 +42,6 @@ public class AddSpecialtyCommand implements Command {
 
         List<Subject> subjects2;
         List<Subject> subjects3;
-        int number = 2;
         if(!subjectsToAdd1.isPresent() || !subjectsToAdd2.isPresent()) {
 
             error = "Please choose subjects to put";
@@ -51,9 +50,8 @@ public class AddSpecialtyCommand implements Command {
             request.setAttribute("error", error);
             return "/WEB-INF/admin/add_specialty.jsp";
         } else {
-            subjects2 = subjectService.setSubjectsList(subjectsToAdd1.get(), number);
-            number = 3;
-            subjects3 = subjectService.setSubjectsList(subjectsToAdd2.get(), number);
+            subjects2 = subjectService.setSubjectsList(subjectsToAdd1.get());
+            subjects3 = subjectService.setSubjectsList(subjectsToAdd2.get());
         }
 
         if (!specialtyService.validateSpecialtyData(title, title_ukr)) {

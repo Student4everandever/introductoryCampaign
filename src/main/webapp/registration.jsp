@@ -1,6 +1,7 @@
 <%@ include file="./WEB-INF/views/header_login.jsp"%>
 <h2><fmt:message key="registration_page" bundle="${link}"/></h2>
 <br/>
+<h5 style="color: red"><c:out value="${error}"/></h5>
 
 <div class="container" style="vertical-align: auto">
 

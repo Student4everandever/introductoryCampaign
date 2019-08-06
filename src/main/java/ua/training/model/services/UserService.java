@@ -1,5 +1,6 @@
 package ua.training.model.services;
 
+import ua.training.controller.exceptions.LoginAlreadyExistException;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.factory.DaoFactory;
 import ua.training.model.entity.User;
@@ -27,8 +28,8 @@ public class UserService {
                 user.getPassword().matches(REGEX_PASSWORD);
     }
 
-    public void createUser(User user) {
-        userDao.create(user);
+    public void createUser(User user) throws LoginAlreadyExistException {
+        userDao.createWithLoginEmailExistenceCheck(user);
     }
 
     public Optional<User> findUserByLogin(String userLogin) {
@@ -85,7 +86,7 @@ public class UserService {
         return userDao.getUsersPerPage(rows, pageNumber);
     }
 
-    public boolean checkIfExist(String login, String eMail) {
+    boolean checkIfExist(String login, String eMail) {
         return userDao.findUserByLoginOrEmail(login, eMail);
     }
 }

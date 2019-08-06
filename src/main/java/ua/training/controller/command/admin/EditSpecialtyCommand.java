@@ -80,7 +80,7 @@ public class EditSpecialtyCommand implements Command {
         int number = 2;
         if(subjectsToAdd1.isPresent()) {
 
-            subjects2 = subjectService.setSubjectsList(subjectsToAdd1.get(), number);
+            subjects2 = subjectService.setSubjectsList(subjectsToAdd1.get());
         } else {
             subjects2 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, number);
         }
@@ -88,7 +88,7 @@ public class EditSpecialtyCommand implements Command {
         List<Subject> subjects3;
         number = 3;
         if(subjectsToAdd2.isPresent()) {
-            subjects3 = subjectService.setSubjectsList(subjectsToAdd2.get(), number);
+            subjects3 = subjectService.setSubjectsList(subjectsToAdd2.get());
 
         } else {
             subjects3 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, number);
@@ -101,8 +101,6 @@ public class EditSpecialtyCommand implements Command {
             message = "";
         }
 
-        exam2 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, 2);
-        exam3 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, 3);
         List<Subject> specialtySubjects = subjectService.getAllButFirst();
         request.setAttribute("specialty", specialty);
         request.setAttribute("subjects", specialtySubjects);

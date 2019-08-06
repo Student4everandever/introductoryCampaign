@@ -4,6 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
+import ua.training.controller.exceptions.LoginAlreadyExistException;
 import ua.training.model.entity.User;
 import ua.training.model.entity.enums.Role;
 
@@ -35,7 +36,7 @@ public class RegistrationCommand implements Command {
             return "/registration.jsp";
         }
 
-        if(!userService.checkIfExist(login, eMail)) {
+ /*       if(!userService.checkIfExist(login, eMail)) {
 
         user = new User.UserBuilder()
                 .setRole(Role.valueOf(role))
@@ -53,6 +54,17 @@ public class RegistrationCommand implements Command {
             logger.error(String.format(Messages.REGISTRATION_ALREADY_EXIST, login, eMail));
             return "/registration.jsp";
         }
+*/
+        user = new User.UserBuilder()
+                .setRole(Role.valueOf(role))
+                .setName(name)
+                .setName_ukr(nameUkr)
+                .setLastName(lastName)
+                .setLastName_ukr(lastNameUkr)
+                .setLogin(login)
+                .setPassword(password)
+                .setEmail(eMail)
+                .build();
 
         if (!userService.validateUserData(user)) {
             error = "You input prohibited characters";
@@ -63,9 +75,16 @@ public class RegistrationCommand implements Command {
 
         user.setPassword(DigestUtils.md5Hex(password));
 
-        userService.createUser(user);
+        try {
+            userService.createUser(user);
             CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
-            logger.info(String.format(Messages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));
+        } catch (LoginAlreadyExistException e) {
+            error = "User with login or email you put already exists";
+            logger.error(String.format(Messages.REGISTRATION_ALREADY_EXIST, e.getLogin(), e.getEmail()));
+            request.setAttribute("error", error);
+            return "/registration.jsp";
+    }
+        logger.info(String.format(Messages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));
             return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
     }
 }

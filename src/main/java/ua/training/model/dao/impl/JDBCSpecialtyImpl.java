@@ -31,21 +31,6 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
 
     }
 
-
-    @Override
-    public void create(Specialty entity) {
-       /* try (Connection connection = dataSource.getConnection();
-             PreparedStatement ps = connection
-                     .prepareStatement(sqlRequest.getString("specialty_create"))) {
-            ps.setString(1, entity.getTitle());
-            ps.setString(2, entity.getTitle_ukr());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_CREATION_FAIL, entity.getTitle(), entity.getTitle_ukr()));
-            throw new RuntimeException(e);
-        }
-*/    }
-
     @Override
     public Specialty findById(int id) {
         Specialty result = new Specialty();
@@ -85,12 +70,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
         }
     }
 
-        @Override
-        public void update (Specialty specialty){
-
-        }
-
-        @Override
+    @Override
         public boolean delete (int id){
 
             try (Connection connection = dataSource.getConnection();
@@ -103,11 +83,6 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
                 logger.error(String.format(Messages.JDBC_SPECIALTY_DELETE_FAIL, id));
                 throw new RuntimeException(e);
             }
-        }
-
-        @Override
-        public void close () {
-
         }
 
         @Override

@@ -3,16 +3,14 @@ package ua.training.model.dao.impl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
+import ua.training.controller.exceptions.LoginAlreadyExistException;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.cp.ConnectionPoolHolder;
 import ua.training.model.dao.mapper.UserMapper;
 import ua.training.model.entity.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 public class JDBCUserImpl implements UserDao {
@@ -24,7 +22,7 @@ public class JDBCUserImpl implements UserDao {
     private ResourceBundle sqlRequest = ResourceBundle.getBundle("sqlRequests");
 
     @Override
-    public void create(User user) throws RuntimeException {
+    public void createWithLoginEmailExistenceCheck(User user) throws LoginAlreadyExistException {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
                      .prepareStatement(sqlRequest.getString("user_create"))) {
@@ -39,20 +37,12 @@ public class JDBCUserImpl implements UserDao {
             preparedStatement.setString(8, user.getEmail());
 
             preparedStatement.execute();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw new LoginAlreadyExistException(e.getMessage(), user.getLogin(), user.getEmail());
         } catch (SQLException e) {
             logger.error(String.format(Messages.JDBC_USER_CREATION_FAIL, user.getEmail()));
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public User findById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<User> findAll() {
-        return null;
     }
 
     @Override
@@ -72,21 +62,6 @@ public class JDBCUserImpl implements UserDao {
             logger.error(Messages.JDBC_USER_FIND_ALL_APPLICANTS_FAIL);
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void update(User user) {
-
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
-
-    @Override
-    public void close() {
-
     }
 
     @Override

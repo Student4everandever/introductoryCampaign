@@ -1,12 +1,15 @@
 package ua.training.model.dao;
 
+import ua.training.controller.exceptions.LoginAlreadyExistException;
 import ua.training.model.entity.User;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface UserDao extends GenericDao<User> {
+public interface UserDao {
+
+    void createWithLoginEmailExistenceCheck(User user) throws LoginAlreadyExistException;
 
     Optional<User> findByLogin(String login);
 

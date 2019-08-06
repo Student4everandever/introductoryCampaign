@@ -178,12 +178,6 @@ public class JDBCUniversityImpl implements UniversityDao {
         }
     }
 
-
-    @Override
-    public void close() {
-
-    }
-
     @Override
     public Optional<University> findByName(University entity) {
         Optional<University> university = Optional.empty();
