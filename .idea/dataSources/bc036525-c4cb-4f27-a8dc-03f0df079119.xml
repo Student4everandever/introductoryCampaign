@@ -1186,12 +1186,14 @@
       <RefSchemaName>introductory_campaign_db</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>user_id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="304" parent="290" name="fk_subject_has_user_subject1">
       <ColNames>subject_id</ColNames>
       <RefSchemaName>introductory_campaign_db</RefSchemaName>
       <RefTableName>subject</RefTableName>
       <RefColNames>subject_id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="305" parent="291" name="specialty_id">
       <Position>1</Position>
@@ -1282,6 +1284,7 @@
       <RefSchemaName>introductory_campaign_db</RefSchemaName>
       <RefTableName>subject</RefTableName>
       <RefColNames>subject_id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="322" parent="293" name="subject_id">
       <Position>1</Position>
@@ -1541,12 +1544,14 @@
       <RefSchemaName>introductory_campaign_db</RefSchemaName>
       <RefTableName>university</RefTableName>
       <RefColNames>university_id</RefColNames>
+      <OnDelete>set-null</OnDelete>
     </foreign-key>
     <foreign-key id="371" parent="296" name="fk_user_specialty">
       <ColNames>specialty_id</ColNames>
       <RefSchemaName>introductory_campaign_db</RefSchemaName>
       <RefTableName>specialty</RefTableName>
       <RefColNames>specialty_id</RefColNames>
+      <OnDelete>set-null</OnDelete>
     </foreign-key>
   </database-model>
 </dataSource>

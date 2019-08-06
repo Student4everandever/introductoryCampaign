@@ -17,6 +17,7 @@ public class UserService {
     private static UserDao userDao = DaoFactory.getInstance().createUserDao();
 
     public boolean validateUserData(User user) {
+
         return user.getName().matches(REGEX_NAME_LAT) &&
                 user.getName_ukr().matches(REGEX_NAME_UKR) &&
                 user.getLastName().matches(REGEX_NAME_LAT) &&

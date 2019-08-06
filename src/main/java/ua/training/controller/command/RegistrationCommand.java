@@ -1,5 +1,6 @@
 package ua.training.controller.command;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
@@ -53,20 +54,19 @@ public class RegistrationCommand implements Command {
             return "/registration.jsp";
         }
 
-        System.out.println(user);
-        System.out.println(userService.validateUserData(user));
-        System.out.println(CommandUtility.userIsLogged(request, user.getLogin()));
-
-        if (userService.validateUserData(user) && !(CommandUtility.userIsLogged(request, user.getLogin()))) {
-
-            userService.createUser(user);
-            CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
-            logger.info(String.format(Messages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));
-            return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
-        } else {
+        if (!userService.validateUserData(user)) {
+            error = "You input prohibited characters";
+            request.setAttribute("error", error);
             logger.error(String.format(Messages.REGISTRATION_FAIL_REGISTRATION, login));
             return "/registration.jsp";
         }
+
+        user.setPassword(DigestUtils.md5Hex(password));
+
+        userService.createUser(user);
+            CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
+            logger.info(String.format(Messages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));
+            return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
     }
 }
 

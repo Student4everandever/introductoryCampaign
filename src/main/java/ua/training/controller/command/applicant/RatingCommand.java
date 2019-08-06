@@ -23,6 +23,13 @@ public class RatingCommand implements Command {
             return "/campaign/applicant/applicant_base";
         }
 
+        System.out.println(subjectService.getUserSubjects(user.get()).size());
+
+        if(user.isPresent() && user.get().getRating() == 0) {
+            error = "The ratings are not ready yet";
+            request.setAttribute("error", error);
+            return "/campaign/applicant/applicant_base";
+        }
         int numberOfPages = userService.getNumberOfPages(ROW_NUMBER);
 
         if (numberOfPages == 0) {

@@ -11,7 +11,9 @@
     <ul class="navbar-nav">
 
         <li class="nav-item active">
+            <c:if test="${requestScope.applied == null}">
             <a href="${pageContext.request.contextPath}/campaign/applicant/choose_specialty"><fmt:message key="applicant_base_apply_for_exams" bundle="${link}"/></a>
+            </c:if>
             <a href="${pageContext.request.contextPath}/campaign/applicant/form_applicant_rating"><fmt:message key="applicant_base_form_rating" bundle="${link}"/></a>
         </li>
 

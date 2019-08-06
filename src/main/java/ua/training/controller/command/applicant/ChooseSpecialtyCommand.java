@@ -2,7 +2,6 @@ package ua.training.controller.command.applicant;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.University;
@@ -32,13 +31,6 @@ public class ChooseSpecialtyCommand implements Command {
         String userLogin = (String) request.getSession().getAttribute("userLogin");
         Optional<User> user = userService.findUserByLogin(userLogin);
 
-        if (user.isPresent() && userService.appliedAlready(user.get())) {
-
-            error = "You already applied";
-            request.setAttribute("error", error);
-            logger.error(String.format(Messages.APPLICANT_CHOOSE_SPECIALTY_SECOND_REGISTRATION_ATTEMPT, user.get().getLogin()));
-            return "/campaign/applicant/applicant_base";
-        }
         List<University> chosenUniversity = new ArrayList<>();
         University university = universityService.getUniversityByName(universityString);
         chosenUniversity.add(university);

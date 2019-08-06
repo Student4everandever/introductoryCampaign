@@ -1,5 +1,6 @@
 package ua.training.controller.command;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
@@ -34,8 +35,9 @@ public class LoginCommand implements Command {
         }
 
         Optional<User> user = userService.findUserByLogin(login);
+        String passHashed = DigestUtils.md5Hex(request.getParameter("pass"));
 
-        if (user.isPresent() && pass.equals(user.get().getPassword())) {
+        if (user.isPresent() && passHashed.equals(user.get().getPassword())) {
 
             if (CommandUtility.userIsLogged(request, user.get().getLogin())) {
                 logger.warn(String.format(Messages.LOGIN_LOGGED_ALREADY, user.get().getRole(), login));
