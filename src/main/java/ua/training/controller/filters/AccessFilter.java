@@ -17,10 +17,10 @@ public class AccessFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
         String login = (String) (((HttpServletRequest) servletRequest).getSession().getAttribute("userLogin"));
-        Role role = (Role)(((HttpServletRequest) servletRequest).getSession().getAttribute("userRole"));
+        Role role = (Role) (((HttpServletRequest) servletRequest).getSession().getAttribute("userRole"));
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String path = request.getRequestURI();
-        if(path.contains("admin")) {
+        if (path.contains("admin")) {
             if (login != null && role.equals(Role.ADMIN)) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {

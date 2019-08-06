@@ -1,21 +1,22 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Applicant choose specialty page</title>
 </head>
 <body>
-<a href="/campaign/applicant/applicant_base"><fmt:message key="choose_specialty_to_main" bundle="${link}"/></a>
+
+<a href="${pageContext.request.contextPath}/campaign/applicant/applicant_base"><fmt:message
+        key="choose_specialty_to_main" bundle="${link}"/></a>
 <br/>
 
 
 <h1><fmt:message key="choose_specialty_choose" bundle="${link}"/></h1>
 <br/>
-<h5 style="color: red"><c:out value="${error}"/></h5>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
 
 <div class="container" style="vertical-align: auto">
-
 
     <div class="row ">
 
@@ -105,7 +106,8 @@
     </div>
 </div>
 
-
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>

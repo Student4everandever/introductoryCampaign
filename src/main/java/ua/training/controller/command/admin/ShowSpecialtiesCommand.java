@@ -10,7 +10,7 @@ public class ShowSpecialtiesCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
-        final int ROW_NUMBER = 8;
+        final int ROW_NUMBER = 6;
 
         int numberOfPages = specialtyService.getNumberOfPages(ROW_NUMBER);
 

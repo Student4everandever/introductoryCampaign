@@ -36,25 +36,6 @@ public class RegistrationCommand implements Command {
             return "/registration.jsp";
         }
 
- /*       if(!userService.checkIfExist(login, eMail)) {
-
-        user = new User.UserBuilder()
-                .setRole(Role.valueOf(role))
-                .setName(name)
-                .setName_ukr(nameUkr)
-                .setLastName(lastName)
-                .setLastName_ukr(lastNameUkr)
-                .setLogin(login)
-                .setPassword(password)
-                .setEmail(eMail)
-                .build();
-        } else {
-            error = "Sorry, chosen login or e-mail already in the system. Choose different one";
-            request.setAttribute("error", error);
-            logger.error(String.format(Messages.REGISTRATION_ALREADY_EXIST, login, eMail));
-            return "/registration.jsp";
-        }
-*/
         user = new User.UserBuilder()
                 .setRole(Role.valueOf(role))
                 .setName(name)
@@ -88,5 +69,3 @@ public class RegistrationCommand implements Command {
             return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
     }
 }
-
-

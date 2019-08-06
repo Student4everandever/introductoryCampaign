@@ -1,11 +1,12 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Mails page</title>
 </head>
 <body>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
+
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
 <div>
     <ul class="navbar-nav">
 
@@ -19,6 +20,7 @@
 <div class="container-fluid col-lg-7 col-lg-offset-5 mt-3 pb-2 text-center ">
 
     <form action="${pageContext.request.contextPath}/campaign/admin/send_mails" method="post">
+        <label for="send_mail"></label>
         <input type="text" id="send_mail" name="send_mail" value="true" hidden>
 
         <input type="submit" class="form-control btn-submit" id="submit"
@@ -57,7 +59,8 @@
     </table>
 </div>
 
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>
-

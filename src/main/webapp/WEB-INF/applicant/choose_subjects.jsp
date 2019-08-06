@@ -1,36 +1,38 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Applicant choose subjects page</title>
 </head>
 <body>
-<a href="/campaign/applicant/applicant_base"><fmt:message key="choose_subjects_to_main" bundle="${link}"/></a>
+
+<a href="${pageContext.request.contextPath}/campaign/applicant/applicant_base"><fmt:message
+        key="choose_subjects_to_main" bundle="${link}"/></a>
 <br/>
 
 
 <h1><fmt:message key="choose_subjects_choose" bundle="${link}"/></h1>
 <br/>
-<h5 style="color: red"><c:out value="${error}"/></h5>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
 
 <div class="container" style="vertical-align: auto">
 
     <div class="row ">
         <div class="col-md-12 mb-3 mt-6">
             <c:if test="${language != 'en'}">
-                <h3>${university.name_ukr}</h3>
+                <h3>${requestScope.university.name_ukr}</h3>
             </c:if>
             <c:if test="${language == 'en'}">
-                <h3>${university.name}</h3>
+                <h3>${requestScope.university.name}</h3>
             </c:if>
         </div>
         <div class="col-md-12 mb-3 mt-6">
             <c:if test="${language != 'en'}">
-                <h4>${specialty.title_ukr}</h4>
+                <h4>${requestScope.specialty.title_ukr}</h4>
             </c:if>
             <c:if test="${language == 'en'}">
-                <h4>${specialty.title}</h4>
+                <h4>${requestScope.specialty.title}</h4>
             </c:if>
         </div>
     </div>
@@ -45,7 +47,8 @@
                     <div class="col-md-4 mb-2">
                         <label for="subject_1"><fmt:message key="choose_subjects_subject_label_subject1"
                                                             bundle="${link}"/></label>
-                        <input type="text" class="form-control" name="subject_1" id="subject_1" value="Ukrainian language and literature" hidden>
+                        <input type="text" class="form-control" name="subject_1" id="subject_1"
+                               value="Ukrainian language and literature" hidden>
                         <p><fmt:message key="choose_subjects_subject_subject1" bundle="${link}"/></p>
                     </div>
 
@@ -81,8 +84,10 @@
                 </div>
                 <hr class="mb-4">
 
-                <input type="text" id="university" name="university" value="${university.name}" hidden>
-                <input type="text" id="specialty" name="specialty" value="${specialty.title}" hidden>
+                <label for="university"></label>
+                <input type="text" id="university" name="university" value="${requestScope.university.name}" hidden>
+                <label for="specialty"></label>
+                <input type="text" id="specialty" name="specialty" value="${requestScope.specialty.title}" hidden>
 
                 <input type="submit" class="form-control btn-submit" name="chooseSpecialty"
                        value="<fmt:message key="choose_subjects_apply" bundle="${link}"/>">
@@ -91,7 +96,8 @@
     </div>
 </div>
 
-
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>

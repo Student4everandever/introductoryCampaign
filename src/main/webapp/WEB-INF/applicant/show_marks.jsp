@@ -1,14 +1,16 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Applicant marks and rating page</title>
 </head>
 <body>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
-<h5 style="color: red"><c:out value="${error}"/></h5>
 
-<a href="/campaign/applicant/form_applicant_rating"><fmt:message key="show_marks_back" bundle="${link}"/></a>
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+
+<a href="${pageContext.request.contextPath}/campaign/applicant/form_applicant_rating"><fmt:message key="show_marks_back"
+                                                                                                   bundle="${link}"/></a>
 <br/>
 
 <div class="container-fluid col-lg-7 col-lg-offset-5 mt-3 pb-2 text-center ">
@@ -42,6 +44,8 @@
     <h6><fmt:message key="show_marks_indices" bundle="${link}"/></h6>
 </div>
 
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>

@@ -1,22 +1,18 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle var="link" basename="lang" scope="session" />
-
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Admin page to add university</title>
 </head>
 <body>
-<a href="/campaign/admin/show_universities?page=${page}"><fmt:message key="add_university_back" bundle="${link}"/></a>
+
+<a href="${pageContext.request.contextPath}/campaign/admin/show_universities?page=${requestScope.page}"><fmt:message key="add_university_back" bundle="${link}"/></a>
 <br/>
 
 <h2><fmt:message key="add_university_enter_data" bundle="${link}"/></h2>
 
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
-<h5 style="color: red"><c:out value="${error}"/></h5>
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
 
 <div class="container" style="vertical-align: auto">
 
@@ -45,7 +41,8 @@
                     </div>
                 </div>
 
-                <input type="text" id="page" name="page" value="${page}" hidden>
+                <label for="page">
+                </label><input type="text" id="page" name="page" value="${requestScope.page}" hidden>
 
                 <hr class="mb-4">
                 <input type="submit" class="form-control btn-submit" name="addUniversity" value="<fmt:message key="add_university_add_university" bundle="${link}"/>">
@@ -54,7 +51,8 @@
     </div>
 </div>
 
-
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>

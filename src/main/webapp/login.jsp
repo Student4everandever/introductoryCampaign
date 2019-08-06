@@ -1,12 +1,20 @@
-<%@ include file="./WEB-INF/views/header_login.jsp"%>
+<html>
+<head>
+    <title>Login page</title>
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" type="text/css"/>
+</head>
+<%@ include file="./WEB-INF/views/header_login.jsp" %>
 
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle var="link" basename="lang" scope="session" />
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle var="link" basename="lang" scope="session"/>
 
-
+<body>
 <h2><fmt:message key="login_page" bundle="${link}"/></h2>
 <br/>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
 
 
     <div class=" text-center col-lg-3 my-5  ml-5">

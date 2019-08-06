@@ -1,11 +1,11 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" %><html>
 <head>
     <title>Admin page to show specialties</title>
 </head>
 <body>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
+
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
 <div>
     <ul class="navbar-nav">
 
@@ -81,6 +81,9 @@
         </ul>
     </nav>
 </div>
+
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>

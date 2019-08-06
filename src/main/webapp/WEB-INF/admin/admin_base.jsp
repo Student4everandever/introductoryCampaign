@@ -1,5 +1,5 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Admin Page</title>
@@ -20,7 +20,7 @@
 
     </ul>
 </div>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
 
 
 <%@ include file="../views/footer.jsp" %>

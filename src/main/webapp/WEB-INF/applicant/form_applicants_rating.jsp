@@ -1,14 +1,16 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Applicants rating page</title>
 </head>
 <body>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
-<h5 style="color: red"><c:out value="${error}"/></h5>
 
-<a href="/campaign/applicant/applicant_base"><fmt:message key="applicants_rating_back" bundle="${link}"/></a>
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+
+<a href="${pageContext.request.contextPath}/campaign/applicant/applicant_base"><fmt:message key="applicants_rating_back"
+                                                                                            bundle="${link}"/></a>
 <br/>
 
 <div class="container-fluid col-lg-7 col-lg-offset-5 mt-3 pb-2 text-center ">
@@ -53,10 +55,6 @@
     </table>
 </div>
 
-<%--<div style="position: absolute; bottom: 150px; width: 100%; height: 60px;">
-    <h6><fmt:message key="applicants_rating_formula" bundle="${link}"/></h6>
-    <h6><fmt:message key="applicants_rating_indices" bundle="${link}"/></h6>
-</div>--%>
 <div style="position: absolute;
   bottom: 80px;
   width: 100%;
@@ -71,6 +69,9 @@
         </ul>
     </nav>
 </div>
+
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>

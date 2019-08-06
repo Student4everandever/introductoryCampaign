@@ -1,24 +1,20 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page isELIgnored="false" %>
-
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle var="link" basename="lang" scope="session" />
-
 <html>
-<head>
+<header>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
+    <%@ page contentType="text/html;charset=UTF-8" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ page isELIgnored="false" %>
 
+    <c:set var="language"
+           value="${not empty param.language ? param.language : not empty applicationScope.language ? applicationScope.language : pageContext.request.locale}"
+           scope="session"/>
+    <fmt:setLocale value="${language}"/>
+    <fmt:setBundle var="link" basename="lang" scope="session"/>
+</header>
 
-</head>
 <body>
-<div class="myfooter" style="position: fixed;
+<div class="my_footer" style="position: fixed;
     left: 0; bottom: 0;
     padding: 20px;
     background: navy;
@@ -30,5 +26,6 @@
     </div>
 </footer>
 </div>
+
 </body>
 </html>

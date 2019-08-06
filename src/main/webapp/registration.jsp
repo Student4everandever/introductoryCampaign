@@ -1,7 +1,17 @@
+<html>
+<head>
+    <title>Registration Page</title>
+</head>
 <%@ include file="./WEB-INF/views/header_login.jsp"%>
+
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle var="link" basename="lang" scope="session" />
+
+<body>
 <h2><fmt:message key="registration_page" bundle="${link}"/></h2>
 <br/>
-<h5 style="color: red"><c:out value="${error}"/></h5>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
 
 <div class="container" style="vertical-align: auto">
 
@@ -80,3 +90,5 @@
 </div>
 
 <jsp:include page="./WEB-INF/views/footer.jsp"/>
+</body>
+</html>

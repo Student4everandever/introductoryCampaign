@@ -51,6 +51,8 @@ public class LoginCommand implements Command {
             logger.info(String.format(Messages.LOGIN_SUCCESSFUL_LOGIN, user.get().getRole(), login));
             return pages.getOrDefault(user.get().getRole().name().toLowerCase(), pages.get("login"));
         }
+        error = "Wrong login or password";
+        request.setAttribute("error", error);
         logger.error(String.format(Messages.LOGIN_FAIL_LOGIN, login));
         return pages.getOrDefault(login, pages.get("login"));
     }

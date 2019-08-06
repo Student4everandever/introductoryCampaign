@@ -1,12 +1,13 @@
 <%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Admin Page</title>
+    <title>Admin page to put marks</title>
 </head>
 <body>
-<h5 style="color: limegreen"><c:out value="${message}"/></h5>
-<h5 style="color: red"><c:out value="${error}"/></h5>
+
+<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
+<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
 
 <div>
     <ul class="navbar-nav">
@@ -76,7 +77,8 @@
             </tbody>
         </table>
 
-        <input type="text" id="login" name="login" value="${user.login}" hidden>
+        <label for="login"></label>
+        <input type="text" id="login" name="login" value="${requestScope.user.login}" hidden>
 
         <input type="submit" class="form-control btn-submit" id="submitMarks"
                value="<fmt:message key="put_marks_enter" bundle="${link}"/>">
@@ -84,6 +86,8 @@
 
 </div>
 
+<!-- Footer -->
 <%@ include file="../views/footer.jsp" %>
+
 </body>
 </html>

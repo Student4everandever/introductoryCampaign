@@ -1,9 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../views/header_logout.jsp"%>
-<%@ page isErrorPage="true"  contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<head>
+    <title>Error Page</title>
+</head>
+<body>
 
 <h2>Error Page</h2>
 <br/>
 <h3>Something went wrong! The page is not available</h3>
 
+<!-- Footer -->
 <jsp:include page="../views/footer.jsp"/>
+</body>
+</html>
