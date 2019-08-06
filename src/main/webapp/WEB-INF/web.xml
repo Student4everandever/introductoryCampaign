@@ -4,6 +4,11 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <filter>
+    <filter-name>AccessFilter</filter-name>
+    <filter-class>ua.training.controller.filters.AccessFilter</filter-class>
+  </filter>
   <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>ua.training.controller.filters.EncodingFilter</filter-class>
@@ -13,6 +18,10 @@
     <filter-class>ua.training.controller.filters.LocalizationFilter</filter-class>
   </filter>
   <filter-mapping>
+    <filter-name>AccessFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
@@ -20,6 +29,10 @@
     <filter-name>LocalizationFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <listener>
+    <listener-class>ua.training.controller.listeners.SessionListener</listener-class>
+  </listener>
 
   <servlet>
     <servlet-name>Servlet</servlet-name>
@@ -29,6 +42,16 @@
     <servlet-name>Servlet</servlet-name>
     <url-pattern>/campaign/*</url-pattern>
   </servlet-mapping>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/error/404.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/error/500.jsp</location>
+  </error-page>
 
   <resource-ref>
     <description>Resource for sending e-mails.</description>

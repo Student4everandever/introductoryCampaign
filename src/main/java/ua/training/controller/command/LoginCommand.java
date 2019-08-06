@@ -28,6 +28,7 @@ public class LoginCommand implements Command {
 
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
+        String error;
 
         if (login == null || login.equals("") || pass == null || pass.equals("")) {
 
@@ -40,8 +41,10 @@ public class LoginCommand implements Command {
         if (user.isPresent() && passHashed.equals(user.get().getPassword())) {
 
             if (CommandUtility.userIsLogged(request, user.get().getLogin())) {
+                error = "This user is already logged";
+                request.setAttribute("error", error);
                 logger.warn(String.format(Messages.LOGIN_LOGGED_ALREADY, user.get().getRole(), login));
-                return "/WEB-INF/error.jsp";
+                return "/login.jsp";
             }
 
             CommandUtility.addUserToLoggedUsers(request, user.get().getLogin(), user.get().getRole());

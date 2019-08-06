@@ -14,7 +14,6 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
 
 </head>
 <body class="d-flex flex-column">
@@ -25,7 +24,7 @@
         <ul class="navbar-nav">
 
             <li class="nav-item active">
-                <a href="${pageContext.request.contextPath}/campaign/welcome"><fmt:message key="header_home" bundle="${link}"/></a>
+                <%--<a href="${pageContext.request.contextPath}/campaign/welcome"><fmt:message key="header_home" bundle="${link}"/></a>--%>
                 <a href="${pageContext.request.contextPath}/campaign/logout"><fmt:message key="header_log_out" bundle="${link}"/></a>
             </li>
 

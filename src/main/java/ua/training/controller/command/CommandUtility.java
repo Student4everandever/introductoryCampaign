@@ -17,8 +17,8 @@ class CommandUtility {
 
         HttpSession session = request.getSession();
 
-        session.setAttribute("login", null);
-        session.setAttribute("role", null);
+        session.setAttribute("userLogin", null);
+        session.setAttribute("userRole", null);
 
     }
 
@@ -29,7 +29,7 @@ class CommandUtility {
         return loggedUsers.stream().anyMatch(login::equals);
     }
 
-    public static void addUserToLoggedUsers(HttpServletRequest request, String login, Role role) {
+    static void addUserToLoggedUsers(HttpServletRequest request, String login, Role role) {
         HashSet<String> loggedUsers = (HashSet<String>) request.getSession().getServletContext()
                 .getAttribute("loggedUsers");
 

@@ -13,7 +13,7 @@ public class LogoutCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
-        String userLogin = (String) request.getSession().getAttribute("login");
+        String userLogin = (String) request.getSession().getAttribute("userLogin");
         CommandUtility.logUserOut(request, userLogin);
         logger.info(String.format(Messages.LOG_LOGOUT, userLogin));
         return "/index.jsp";
