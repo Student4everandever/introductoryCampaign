@@ -1,0 +1,94 @@
+<%@ include file="../views/header_logout.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle var="link" basename="lang" scope="session"/>
+
+<html>
+<head>
+    <title>Admin edit university page</title>
+</head>
+<body>
+<a href="/campaign/admin/show_universities?page=${page}"><fmt:message key="edit_university_back" bundle="${link}"/></a>
+<br/>
+
+<h2><fmt:message key="edit_university_enter_new_data" bundle="${link}"/></h2>
+
+<h5 style="color: limegreen"><c:out value="${message}"/></h5>
+<h5 style="color: red"><c:out value="${error}"/></h5>
+
+<div class="container" style="vertical-align: auto">
+    <c:if test="${language != 'en'}">
+        <h3><c:out value="${university.name_ukr}"/></h3>    </c:if>
+    <c:if test="${language == 'en'}">
+        <h3><c:out value="${university.name}"/></h3>
+    </c:if>
+
+
+    <div class="row ">
+
+        <div class="col-md-12 mb-2 mt-4">
+
+            <div class="row">
+
+                <div class="col-md-12 mb-2 mt-4">
+
+                    <form action="${pageContext.request.contextPath}/campaign/admin/edit_university_specialties"
+                          method="post"
+                          class="needs-validation">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="add_specialty"><fmt:message key="edit_university_add_specialty"
+                                                                        bundle="${link}"/></label>
+                                <select class="custom-select" multiple name="add_specialty" id="add_specialty">
+                                    <c:forEach var="specialty1" items="${requestScope.nonUniversitySpecialties}">
+                                        <c:if test="${language != 'en'}">
+                                            <option value="${specialty1.title_ukr}">${specialty1.title_ukr}</option>
+                                        </c:if>
+                                        <c:if test="${language == 'en'}">
+                                            <option value="${specialty1.title}">${specialty1.title}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="remove_specialty"><fmt:message key="edit_university_remove_specialty"
+                                                                           bundle="${link}"/></label>
+                                <select class="custom-select" multiple name="remove_specialty"
+                                        id="remove_specialty">
+                                    <c:forEach var="specialty2" items="${requestScope.universitySpecialties}">
+                                        <c:if test="${language != 'en'}">
+                                            <option value="${specialty2.title_ukr}">${specialty2.title_ukr}</option>
+                                        </c:if>
+                                        <c:if test="${language == 'en'}">
+                                            <option value="${specialty2.title}">${specialty2.title}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input type="text" id="id" name="id" value="${university.id}" hidden>
+                        <input type="text" id="page" name="page" value="${page}" hidden>
+                        <input type="hidden" name="submitted" value="true">
+
+                        <hr class="mb-4">
+                        <input type="submit" class="form-control btn-submit" name="removeUniversitySpecialty"
+                               value="<fmt:message key="edit_university_edit_university_specialty" bundle="${link}"/>">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%@ include file="../views/footer.jsp" %>
+</body>
+</html>
+
