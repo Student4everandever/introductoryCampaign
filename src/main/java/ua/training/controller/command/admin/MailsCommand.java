@@ -15,6 +15,11 @@ public class MailsCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(MailsCommand.class);
 
+    /**
+     * Returns string with path to servlet for sending mails page and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -37,22 +42,6 @@ public class MailsCommand implements Command {
                 + "\n\nWe are happy to congratulate you with entering the chosen university!";
 
         sender.send(subject, text, user, to);
-/*
-        Email email = new SimpleEmail();
-        try {
-            email.setHostName("smtp.googlemail.com");
-            email.setSmtpPort(465);
-            email.setAuthenticator(new DefaultAuthenticator("ukrposhta@gmail.com", "dikanskaya1"));
-            email.setSSLOnConnect(true);
-            email.setFrom("ukrposhta@gmail.com");
-            email.setSubject("TestMail");
-            email.setMsg("This is a test mail ... :-)");
-            email.addTo("alexkidov@ukr.net");
-            email.send();
-        } catch (EmailException e) {
-            e.printStackTrace();
-        }
-*/
 
         message = "Email sent successfully";
         request.setAttribute("message", message);

@@ -1,6 +1,9 @@
 package ua.training.controller;
 
-import ua.training.controller.command.*;
+import ua.training.controller.command.Command;
+import ua.training.controller.command.LoginCommand;
+import ua.training.controller.command.LogoutCommand;
+import ua.training.controller.command.RegistrationCommand;
 import ua.training.controller.command.admin.*;
 import ua.training.controller.command.applicant.*;
 
@@ -17,11 +20,15 @@ import java.util.Map;
 public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
 
+    /**
+     * Servlet initialization, creates collection with commands and it's paths (triggers)
+     * @param servletConfig configuration object
+     */
     public void init(ServletConfig servletConfig) {
+
         servletConfig.getServletContext().setAttribute("loggedUsers", new HashSet<String>());
 
         commands.put("logout", new LogoutCommand());
-        commands.put("welcome", new WelcomeCommand());
         commands.put("login", new LoginCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("admin/admin_base", new AdminCommand());
@@ -44,21 +51,41 @@ public class Servlet extends HttpServlet {
         commands.put("applicant/choose_subjects", new ChooseSubjectsCommand());
         commands.put("applicant/form_applicant_rating", new RatingCommand());
         commands.put("applicant/show_marks", new ShowMarksCommand());
-        commands.put("exception", new ExceptionCommand());
     }
 
+    /**
+     * Handles a GET request
+     * @param request request information for HTTP servlet
+     * @param response response of the servlet to user
+     * @throws IOException input/output exception
+     * @throws ServletException general exception of a servlet
+     */
     public void doGet(HttpServletRequest request,HttpServletResponse response)
             throws IOException, ServletException {
         processRequest(request, response);
     }
 
+    /**
+     * Handles a POST request
+     * @param request request information for HTTP servlet
+     * @param response response of the servlet to user
+     * @throws IOException input/output exception
+     * @throws ServletException general exception of a servlet
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         processRequest(request, response);
     }
 
+    /**
+     * Resolves method to choose according to request URI
+     * @param request request information for HTTP servlet
+     * @param response response of the servlet to user
+     * @throws IOException input/output exception
+     * @throws ServletException general exception of a servlet
+     */
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException, ServletException {
 
         String path = request.getRequestURI();
         path = path.replaceAll(".*/campaign/", "");

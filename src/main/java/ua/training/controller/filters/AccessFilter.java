@@ -8,11 +8,23 @@ import java.io.IOException;
 
 public class AccessFilter implements Filter {
 
+    /**
+     * Initializes filter
+     * @param filterConfig parameters to setup filter
+     */
     @Override
     public void init(FilterConfig filterConfig) {
 
     }
 
+    /**
+     * Resolves if user can access certain pages according to user role
+     * @param servletRequest request to server, contains user data
+     * @param servletResponse response of server
+     * @param filterChain invokes next filter in the chain
+     * @throws IOException input/output exception
+     * @throws ServletException general exception of a servlet
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
@@ -20,6 +32,7 @@ public class AccessFilter implements Filter {
         Role role = (Role) (((HttpServletRequest) servletRequest).getSession().getAttribute("userRole"));
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String path = request.getRequestURI();
+
         if (path.contains("admin")) {
             if (login != null && role.equals(Role.ADMIN)) {
                 filterChain.doFilter(servletRequest, servletResponse);
@@ -37,6 +50,9 @@ public class AccessFilter implements Filter {
         }
     }
 
+    /**
+     * Destroys filter
+     */
     @Override
     public void destroy() {
     }

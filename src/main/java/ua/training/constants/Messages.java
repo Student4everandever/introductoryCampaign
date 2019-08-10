@@ -29,7 +29,7 @@ public interface Messages {
     String ADMIN_EDIT_UNIVERSITY_NAME = "University name was updated successfully for university %s.";
     String ADMIN_EDIT_UNIVERSITY_SPECIALTIES = "Specialties were updated successfully fo university %s.";
     String ADMIN_MAIL_COMMAND_SENT_SUCCESS = "Emails were sent successfully to applicants %s.";
-    String ADMIN_PUT_MARKS_SUCCSESS = "Marks were entered successfully for applicant %s.";
+    String ADMIN_PUT_MARKS_SUCCESS = "Marks were entered successfully for applicant %s.";
 
     String APPLICANT_CHOOSE_SUBJECTS_REGISTERED = "Applicant %s registered to pass the exams.";
     String APPLICANT_CHOOSE_SUBJECTS_FAIL = "Attempt to registered to pass the exams failed.";
@@ -78,6 +78,6 @@ public interface Messages {
     String JDBC_USER_FINDING_USER_MARKS_FAIL = "Failed to find marks for user %s.";
     String JDBC_USER_FINDING_WITH_RATING_FAIL = "Failed to find user with rating.";
     String JDBC_USER_GET_PER_PAGE = "Failed to find users per page for page %s with %s rows.";
-    String JDBC_USER_FINDING_BYLOGIN_OR_EMAIL_FAIL = "Failed to find users by login %s or email %s.";
+    String JDBC_USER_FINDING_BY_LOGIN_OR_EMAIL_FAIL = "Failed to find users by login %s or email %s.";
     String JDBC_USER_FIND_WITH_REQUIRED_RATING_FAIL = "Failed to find users with required rating.";
 }

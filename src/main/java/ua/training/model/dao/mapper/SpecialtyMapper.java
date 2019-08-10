@@ -6,6 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SpecialtyMapper implements ObjectMapper<Specialty> {
+
+    /**
+     * Maps the data from a JDBC result set to Specialty object
+     *
+     * @param rs resultSet with data from DB
+     * @return Specialty object
+     * @throws SQLException exception that provides information on a database access
+     *  error or other errors
+     */
     @Override
     public Specialty extractFromResultSet(ResultSet rs) throws SQLException {
         return new Specialty.SpecialtyBuilder()

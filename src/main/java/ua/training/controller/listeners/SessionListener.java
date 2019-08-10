@@ -4,11 +4,22 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.util.HashSet;
 
+@SuppressWarnings("unchecked")
 public class SessionListener implements HttpSessionListener {
+
+    /**
+     * Receives notification that a session has been created
+     * @param httpSessionEvent Containing the session
+     */
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
+
     }
 
+    /**
+     * Receives notification that a session is about to be invalidated
+     * @param httpSessionEvent Containing the session
+     */
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
         HashSet<String> loggedUsers = (HashSet<String>) httpSessionEvent

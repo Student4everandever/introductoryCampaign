@@ -9,6 +9,11 @@ import java.util.Optional;
 
 public class ShowMarksCommand implements Command {
 
+    /**
+     * Returns string with path to servlet for showing marks page and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String userLoginString = request.getParameter("login");

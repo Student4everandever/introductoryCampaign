@@ -42,6 +42,12 @@ public class Specialty {
         this.requiredExams = requiredExams;
     }
 
+    /**
+     * Compares Specialty object with given object
+     *
+     * @param o Object to compare with
+     * @return Boolean true if objects are equal, false if not equal
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,11 +59,21 @@ public class Specialty {
                 Objects.equals(requiredExams, specialty.requiredExams);
     }
 
+    /**
+     * Computes a hash code of Specialty object
+     *
+     * @return int hash code for Specialty
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, title, title_ukr, requiredExams);
     }
 
+    /**
+     * Returns String visualization of Specialty
+     *
+     * @return String with data about Specialty
+     */
     @Override
     public String toString() {
         return "Specialty{" +
@@ -72,37 +88,56 @@ public class Specialty {
         private int id;
         private String title;
         private String title_ukr;
-        private List<Subject> requiredExams;
 
+        /**
+         * Constructs SpecialtyBuilder without parameters
+         */
         public SpecialtyBuilder() {
         }
 
+        /**
+         * Sets id of SpecialtyBuilder
+         *
+         * @param id id to set
+         * @return SpecialtyBuilder object
+         */
         public SpecialtyBuilder setId(int id) {
             this.id = id;
             return this;
         }
 
+        /**
+         * Sets title of SpecialtyBuilder
+         *
+         * @param title title to set
+         * @return SpecialtyBuilder object
+         */
         public SpecialtyBuilder setTitle(String title) {
             this.title = title;
             return this;
         }
 
+        /**
+         * Sets ukrainian title of SpecialtyBuilder
+         *
+         * @param title_ukr title to set
+         * @return SpecialtyBuilder object
+         */
         public SpecialtyBuilder setTitle_ukr(String title_ukr) {
             this.title_ukr = title_ukr;
             return this;
         }
 
-        public SpecialtyBuilder setRequiredExams(List<Subject> requiredExams) {
-            this.requiredExams = requiredExams;
-            return this;
-        }
-
+        /**
+         * Builds SpecialtyBuilder object with builder setters
+         *
+         * @return SpecialtyBuilder object
+         */
         public Specialty build() {
             Specialty specialty = new Specialty();
             specialty.setId(id);
             specialty.setTitle(title);
             specialty.setTitle_ukr(title_ukr);
-            specialty.setRequiredExams(requiredExams);
             return specialty;
         }
     }

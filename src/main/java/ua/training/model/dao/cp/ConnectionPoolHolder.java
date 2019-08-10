@@ -1,6 +1,6 @@
 package ua.training.model.dao.cp;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.constants.Messages;
@@ -16,6 +16,10 @@ public class ConnectionPoolHolder {
 
     private static volatile DataSource dataSource;
 
+    /**
+     * Manages connection to database
+     * @return datasource object (singleton) with connection properties
+     */
     public static DataSource getDataSource() {
         if (dataSource == null) {
             synchronized (ConnectionPoolHolder.class) {
@@ -42,7 +46,6 @@ public class ConnectionPoolHolder {
                 }
             }
         }
-
         return dataSource;
     }
 }

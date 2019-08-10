@@ -17,13 +17,16 @@ public class EditUniversitySpecialties implements Command {
 
     private final static Logger logger = LogManager.getLogger(EditUniversitySpecialties.class);
 
+    /**
+     * Returns string with path to servlet for page to edit university specialties and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
         String idString = request.getParameter("id");
         int page = Integer.parseInt(request.getParameter("page"));
-
-        System.out.println(page);
 
         Optional<String[]> specialtiesToAdd = Optional.ofNullable(request.getParameterValues("add_specialty"));
         Optional<String[]> specialtiesToRemove = Optional.ofNullable(request.getParameterValues("remove_specialty"));

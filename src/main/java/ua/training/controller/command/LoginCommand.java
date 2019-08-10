@@ -23,6 +23,11 @@ public class LoginCommand implements Command {
         pages.put("applicant", "redirect:applicant/applicant_base");
     }
 
+    /**
+     * Returns string with path to servlet for login page and stores data about user in session
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

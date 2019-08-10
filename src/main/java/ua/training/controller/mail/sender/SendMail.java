@@ -18,11 +18,20 @@ public class SendMail {
     private String username;
     private String password;
 
-    public SendMail(String username, String password) {
-        this.username = username;
+    /**
+     * Construct new SendMail with email and password
+     * @param email sender's (project's) email
+     * @param password password to access email
+     */
+    public SendMail(String email, String password) {
+        this.username = email;
         this.password = password;
     }
 
+    /**
+     * Returns property for sending emails
+     * @return properties to send emails
+     */
     private Properties getProperties() {
         Properties props = new Properties();
         try {
@@ -34,6 +43,13 @@ public class SendMail {
         return props;
     }
 
+    /**
+     * Sends mail to group of users
+     * @param subject subject of th mail
+     * @param text body of the mail
+     * @param fromEmail email address of the sender
+     * @param toEmails array of the user's emails to send letters
+     */
     public void send(String subject, String text, String fromEmail, String[] toEmails) {
         Properties props = getProperties();
         Session session = Session.getInstance(props, new Authenticator() {

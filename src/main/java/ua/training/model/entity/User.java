@@ -72,7 +72,7 @@ public class User {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -80,7 +80,7 @@ public class User {
         return lastName_ukr;
     }
 
-    public void setLastName_ukr(String lastName_ukr) {
+    void setLastName_ukr(String lastName_ukr) {
         this.lastName_ukr = lastName_ukr;
     }
 
@@ -120,7 +120,7 @@ public class User {
         return universityId;
     }
 
-    public void setUniversityId(int universityId) {
+    void setUniversityId(int universityId) {
         this.universityId = universityId;
     }
 

@@ -12,6 +12,11 @@ public class EditUniversityCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(EditUniversityCommand.class);
 
+    /**
+     * Returns string with path to servlet for page to edit university name and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -28,8 +33,6 @@ public class EditUniversityCommand implements Command {
 
         int id = Integer.parseInt(idString);
         University university = universityService.getUniversityById(id);
-
-        System.out.println(university);
 
         if (name == null || name.equals("")
                 || name_ukr == null || name_ukr.equals("")

@@ -14,6 +14,11 @@ public class RegistrationCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(RegistrationCommand.class);
 
+    /**
+     * Returns string with path to servlet for registration page and stores data about user in session
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -61,8 +66,8 @@ public class RegistrationCommand implements Command {
             CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
         } catch (LoginAlreadyExistException e) {
             error = "User with login or email you put already exists";
-            logger.error(String.format(Messages.REGISTRATION_ALREADY_EXIST, e.getLogin(), e.getEmail()));
             request.setAttribute("error", error);
+            logger.error(String.format(Messages.REGISTRATION_ALREADY_EXIST, e.getLogin(), e.getEmail()));
             return "/registration.jsp";
     }
         logger.info(String.format(Messages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));

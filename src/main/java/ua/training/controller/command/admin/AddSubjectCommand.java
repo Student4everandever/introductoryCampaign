@@ -12,7 +12,11 @@ public class AddSubjectCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(AddSubjectCommand.class);
 
-
+    /**
+     * Returns string with path to servlet for page to add subject and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

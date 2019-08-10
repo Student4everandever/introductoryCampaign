@@ -5,9 +5,6 @@ import ua.training.model.dao.SpecialtyDao;
 import ua.training.model.dao.SubjectDao;
 import ua.training.model.dao.UniversityDao;
 import ua.training.model.dao.UserDao;
-import ua.training.model.entity.Specialty;
-import ua.training.model.entity.Subject;
-import ua.training.model.entity.University;
 
 public abstract class DaoFactory {
 
@@ -18,6 +15,10 @@ public abstract class DaoFactory {
     public abstract SubjectDao createSubjectDao();
     public abstract UniversityDao createUniversityDao();
 
+    /**
+     * Produces a different DAOs depending on which one is needed to work with DB
+     * @return DaoFactory object (singleton) to obtain and store data in DB
+     */
     public static DaoFactory getInstance() {
 
         if (daoFactory == null) {
@@ -29,5 +30,4 @@ public abstract class DaoFactory {
         }
         return daoFactory;
     }
-
 }

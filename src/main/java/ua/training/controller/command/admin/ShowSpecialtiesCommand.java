@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class ShowSpecialtiesCommand implements Command {
+
+    /**
+     * Returns string with path to servlet for specialties page and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

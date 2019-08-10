@@ -27,10 +27,12 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
     private SpecialtyMapper specialtyMapper = new SpecialtyMapper();
     private ResourceBundle sqlRequest = ResourceBundle.getBundle("sqlRequests");
 
-    public JDBCSpecialtyImpl() {
-
-    }
-
+    /**
+     * Finds Specialty in DB by it's id
+     *
+     * @param id id to find
+     * @return Specialty object from DB
+     */
     @Override
     public Specialty findById(int id) {
         Specialty result = new Specialty();
@@ -41,7 +43,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 result = specialtyMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
@@ -51,112 +53,146 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
         return result;
     }
 
+    /**
+     * Finds all Specialties in DB
+     *
+     * @return List of Specialties objects from DB
+     */
     @Override
     public List<Specialty> findAll() {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection
                      .prepareStatement(sqlRequest.getString(
                              "specialty_find_all"))) {
-            ResultSet rs = ps.executeQuery();
-            List<Specialty> result = new ArrayList<>();
-            while (rs.next()) {
-                Specialty specialty = specialtyMapper.extractFromResultSet(rs);
-                result.add(specialty);
-            }
-            return result;
+            return getSpecialties(ps);
         } catch (SQLException e) {
             logger.error(Messages.JDBC_SPECIALTY_FIND_ALL_FAIL);
             throw new RuntimeException(e);
         }
     }
 
+    private List<Specialty> getSpecialties(PreparedStatement ps) throws SQLException {
+        ResultSet rs = ps.executeQuery();
+        List<Specialty> result = new ArrayList<>();
+        while (rs.next()) {
+            Specialty specialty = specialtyMapper.extractFromResultSet(rs);
+            result.add(specialty);
+        }
+        return result;
+    }
+
+    /**
+     * Deletes Specialty from DB by it's id
+     *
+     * @param id id of a Specialty to delete
+     * @return boolean true if deletion is performed, false if not performed
+     */
     @Override
-        public boolean delete (int id){
+    public boolean delete(int id) {
 
-            try (Connection connection = dataSource.getConnection();
-                 PreparedStatement ps = connection
-                         .prepareStatement(sqlRequest.getString("specialty_delete"))) {
-                ps.setInt(1, id);
-                ps.executeUpdate();
-                return true;
-            } catch (SQLException e) {
-                logger.error(String.format(Messages.JDBC_SPECIALTY_DELETE_FAIL, id));
-                throw new RuntimeException(e);
-            }
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString("specialty_delete"))) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            logger.error(String.format(Messages.JDBC_SPECIALTY_DELETE_FAIL, id));
+            throw new RuntimeException(e);
         }
+    }
 
-        @Override
-        public Optional<Specialty> findByName (Specialty entity){
-            Optional<Specialty> specialty = Optional.empty();
+    /**
+     * Finds Specialty in DB by it's name
+     *
+     * @param entity Specialty to look for
+     * @return Optional of Specialty object from DB
+     */
+    @Override
+    public Optional<Specialty> findByName(Specialty entity) {
+        Optional<Specialty> specialty = Optional.empty();
 
-            try (Connection connection = dataSource.getConnection();
-                 PreparedStatement ps = connection
-                         .prepareStatement(sqlRequest.getString("specialty_find_by_name"))) {
-                ps.setString(1, entity.getTitle());
-                ps.setString(2, entity.getTitle_ukr());
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString("specialty_find_by_name"))) {
+            ps.setString(1, entity.getTitle());
+            ps.setString(2, entity.getTitle_ukr());
 
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    specialty = Optional.ofNullable(specialtyMapper.extractFromResultSet(rs));
-                }
-            } catch (SQLException e) {
-                logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_BY_NAME_FAIL, entity.getTitle(), entity.getTitle_ukr()));
-                throw new RuntimeException(e);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                specialty = Optional.ofNullable(specialtyMapper.extractFromResultSet(rs));
             }
-            return specialty;
+        } catch (SQLException e) {
+            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_BY_NAME_FAIL, entity.getTitle(), entity.getTitle_ukr()));
+            throw new RuntimeException(e);
         }
+        return specialty;
+    }
 
-        @Override
-        public List<Specialty> findByUniversity (University university){
-            List<Specialty> result = new ArrayList<>();
-            try (Connection connection = dataSource.getConnection();
-                 PreparedStatement universityHasQuery = connection
-                         .prepareStatement(sqlRequest.getString(
-                                 "specialty_find_by_university"));
-                 PreparedStatement specialtyQuery = connection
-                         .prepareStatement(sqlRequest.getString(
-                                 "specialty_find_by_id"))
-            ) {
-                universityHasQuery.setInt(1, university.getId());
-                connection.setAutoCommit(false);
-                ResultSet rs = universityHasQuery.executeQuery();
-                while (rs.next()) {
-                    String id = rs.getString("specialty_id");
-                    specialtyQuery.setInt(1, Integer.parseInt(id));
-                    ResultSet resultSet = specialtyQuery.executeQuery();
-                    if (resultSet.next()) {
-                        Specialty specialty = specialtyMapper.extractFromResultSet(resultSet);
-                        result.add(specialty);
-                    }
-                }
-                connection.commit();
-                return result;
-            } catch (SQLException e) {
-                logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_FOR_UNIVERSITY_FAIL, university));
-                throw new RuntimeException(e);
-            }
-        }
-
-        @Override
-        public List<Specialty> findAllButUniversity (University university){
-            try (Connection connection = dataSource.getConnection();
-                 PreparedStatement ps = connection
-                         .prepareStatement(sqlRequest.getString(
-                                 "specialty_find_all_but_university"))) {
-                ps.setInt(1, university.getId());
-                ResultSet rs = ps.executeQuery();
-                List<Specialty> result = new ArrayList<>();
-                while (rs.next()) {
-                    Specialty specialty = specialtyMapper.extractFromResultSet(rs);
+    /**
+     * Finds all Specialties for certain university in DB
+     *
+     * @param university to find specialties for
+     * @return List of Specialties from DB
+     */
+    @Override
+    public List<Specialty> findByUniversity(University university) {
+        List<Specialty> result = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement universityHasQuery = connection
+                     .prepareStatement(sqlRequest.getString(
+                             "specialty_find_by_university"));
+             PreparedStatement specialtyQuery = connection
+                     .prepareStatement(sqlRequest.getString(
+                             "specialty_find_by_id"))
+        ) {
+            universityHasQuery.setInt(1, university.getId());
+            connection.setAutoCommit(false);
+            ResultSet rs = universityHasQuery.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("specialty_id");
+                specialtyQuery.setInt(1, Integer.parseInt(id));
+                ResultSet resultSet = specialtyQuery.executeQuery();
+                if (resultSet.next()) {
+                    Specialty specialty = specialtyMapper.extractFromResultSet(resultSet);
                     result.add(specialty);
                 }
-                return result;
-            } catch (SQLException e) {
-                logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_NON_UNIVERSITY_FAIL, university));
-                throw new RuntimeException(e);
             }
+            connection.commit();
+            return result;
+        } catch (SQLException e) {
+            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_FOR_UNIVERSITY_FAIL, university));
+            throw new RuntimeException(e);
         }
+    }
 
+    /**
+     * Finds all Specialties that university do not contain
+     *
+     * @param university to exclude specialties
+     * @return List of Specialties from DB
+     */
+    @Override
+    public List<Specialty> findAllButUniversity(University university) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection
+                     .prepareStatement(sqlRequest.getString(
+                             "specialty_find_all_but_university"))) {
+            ps.setInt(1, university.getId());
+            return getSpecialties(ps);
+        } catch (SQLException e) {
+            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_NON_UNIVERSITY_FAIL, university));
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Updates Specialty object changes name and subjects
+     *
+     * @param specialty specialty to update
+     * @param subjects2 subjects for exam 2
+     * @param subjects3 subjects for exam 3
+     */
     @Override
     public void updateSpecialtyWithSubjects(Specialty specialty, List<Subject> subjects2, List<Subject> subjects3) {
         try (Connection connection = dataSource.getConnection();
@@ -203,6 +239,14 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
         }
     }
 
+    /**
+     * Creates new Specialty for certain university(ies) that contain subjects
+     *
+     * @param specialty  Specialty to create
+     * @param university University to connect with
+     * @param subjects2  subjects for exam 2
+     * @param subjects3  subjects for exam 3
+     */
     @Override
     public void createWithUniversityAndSubjects(Specialty specialty, University university, List<Subject> subjects2, List<Subject> subjects3) {
         try (Connection connection = dataSource.getConnection();
@@ -222,7 +266,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             createSpecialtyQuery.setString(2, specialty.getTitle_ukr());
             createSpecialtyQuery.executeUpdate();
             ResultSet rs = getIdQuery.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 int id = rs.getInt("id");
 
                 universityHasSpecialtyQuery.setInt(1, university.getId());
@@ -251,6 +295,12 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
         }
     }
 
+    /**
+     * Finds specialty by name in DB
+     *
+     * @param specialtyString Specialty name to look for
+     * @return Specialty object from DB
+     */
     @Override
     public Specialty findByNameString(String specialtyString) {
         Specialty specialty = new Specialty();
@@ -272,6 +322,13 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
         return specialty;
     }
 
+    /**
+     * Finds Specialties to display on one page (for pagination)
+     *
+     * @param rows       number of rows to display
+     * @param pageNumber page number to find specialties for
+     * @return List of specialties from DB
+     */
     @Override
     public List<Specialty> getSpecialtiesPerPage(int rows, int pageNumber) {
         try (Connection connection = dataSource.getConnection();
@@ -280,13 +337,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
 
             ps.setInt(1, rows);
             ps.setInt(2, pageNumber * rows - rows);
-            ResultSet rs = ps.executeQuery();
-            List<Specialty> result = new ArrayList<>();
-            while (rs.next()) {
-                Specialty specialty = specialtyMapper.extractFromResultSet(rs);
-                result.add(specialty);
-            }
-            return result;
+            return getSpecialties(ps);
         } catch (SQLException e) {
             logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_PER_PAGE, pageNumber, rows));
             throw new RuntimeException(e);

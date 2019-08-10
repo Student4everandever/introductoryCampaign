@@ -37,7 +37,7 @@ public class JDBCUserImplTest {
     @Mock
     private static ResultSet resultSet;
 
-    private User user, user2, user3;
+    private User user;
 
     @Before
     public void setUp() throws Exception {
@@ -48,8 +48,8 @@ public class JDBCUserImplTest {
 
 
         user = new User(1, Role.APPLICANT, "Alex", "Алекс", "Kidov", "Кiдов", "kidovalex@gmail.com", "AlexK", "234", 126, 0);
-        user2 = new User(2, Role.APPLICANT, "Alex", "Алекс", "Kidov", "Кiдов", "alexkidov@ukr.net", "Alex", "234", 126, 0);
-        user3 = new User(3, Role.APPLICANT, "Mark", "Марк", "Sober", "Собер", "ukrposhta@bigmir.net", "MarkS", "234", 117, 1);
+        User user2 = new User(2, Role.APPLICANT, "Alex", "Алекс", "Kidov", "Кiдов", "alexkidov@ukr.net", "Alex", "234", 126, 0);
+        User user3 = new User(3, Role.APPLICANT, "Mark", "Марк", "Sober", "Собер", "ukrposhta@bigmir.net", "MarkS", "234", 117, 1);
 
         when(userMapper.extractFromResultSet(resultSet)).thenReturn(user);
 

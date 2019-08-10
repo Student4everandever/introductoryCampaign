@@ -49,16 +49,20 @@ public class JDBCSubjectImpl implements SubjectDao {
              PreparedStatement ps = connection
                      .prepareStatement(sqlRequest.getString(
                              "subject_find_all"))) {
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Subject subject = subjectMapper.extractFromResultSet(rs);
-                result.add(subject);
-            }
-            return result;
+            return getSubjects(result, ps);
         } catch (SQLException e) {
             logger.error(Messages.JDBC_SUBJECT_FIND_ALL_FAIL);
             throw new RuntimeException(e);
         }
+    }
+
+    private List<Subject> getSubjects(List<Subject> result, PreparedStatement ps) throws SQLException {
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Subject subject = subjectMapper.extractFromResultSet(rs);
+            result.add(subject);
+        }
+        return result;
     }
 
     @Override
@@ -110,12 +114,7 @@ public class JDBCSubjectImpl implements SubjectDao {
                              "subject_find_by_specialty_and_number"))) {
             ps.setInt(1, specialty.getId());
             ps.setInt(2, number);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Subject subject = subjectMapper.extractFromResultSet(rs);
-                result.add(subject);
-            }
-            return result;
+            return getSubjects(result, ps);
         } catch (SQLException e) {
             logger.error(String.format(Messages.JDBC_SUBJECT_FIND_BY_SPECIALTY_AND_NUMBER_FAIL, number, specialty));
             throw new RuntimeException(e);
@@ -130,12 +129,7 @@ public class JDBCSubjectImpl implements SubjectDao {
                      .prepareStatement(sqlRequest.getString(
                              "subject_find_all_but_first"))) {
             ps.setInt(1, 1);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Subject subject = subjectMapper.extractFromResultSet(rs);
-                result.add(subject);
-            }
-            return result;
+            return getSubjects(result, ps);
         } catch (SQLException e) {
             logger.error(Messages.JDBC_SUBJECT_FIND_ALL_BUT_FIRST_FAIL);
             throw new RuntimeException(e);
@@ -179,12 +173,7 @@ public class JDBCSubjectImpl implements SubjectDao {
                      .prepareStatement(sqlRequest.getString(
                              "subject_find_subjects_for_user"))) {
             ps.setInt(1, user.getId());
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Subject subject = subjectMapper.extractFromResultSet(rs);
-                result.add(subject);
-            }
-            return result;
+            return getSubjects(result, ps);
         } catch (SQLException e) {
             logger.error(String.format(Messages.JDBC_SUBJECT_FIND_SUBJECTS_OF_USER_FAIL, user));
             throw new RuntimeException(e);

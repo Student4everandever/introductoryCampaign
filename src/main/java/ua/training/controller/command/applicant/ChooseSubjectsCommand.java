@@ -18,6 +18,11 @@ public class ChooseSubjectsCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(ChooseSubjectsCommand.class);
 
+    /**
+     * Returns string with path to servlet for choosing subject page and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

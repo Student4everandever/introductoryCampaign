@@ -5,6 +5,12 @@ import ua.training.controller.command.Command;
 import javax.servlet.http.HttpServletRequest;
 
 public class AdminCommand implements Command {
+
+    /**
+     * Returns string with path to servlet for admin base page
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

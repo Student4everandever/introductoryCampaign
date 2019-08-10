@@ -16,6 +16,11 @@ public class PutMarksCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(PutMarksCommand.class);
 
+    /**
+     * Returns string with path to servlet for page to input users marks and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -61,7 +66,7 @@ public class PutMarksCommand implements Command {
         message = "Marks were successfully added";
 
         request.setAttribute("message", message);
-        logger.info(String.format(Messages.ADMIN_PUT_MARKS_SUCCSESS, user.get()));
+        logger.info(String.format(Messages.ADMIN_PUT_MARKS_SUCCESS, user.get()));
         return "/campaign/admin/users_with_exams";
     }
 }

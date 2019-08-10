@@ -9,6 +9,11 @@ import java.util.Optional;
 
 public class RatingCommand implements Command {
 
+    /**
+     * Returns string with path to servlet for rating page and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -22,8 +27,6 @@ public class RatingCommand implements Command {
             request.setAttribute("error", error);
             return "/campaign/applicant/applicant_base";
         }
-
-        System.out.println(subjectService.getUserSubjects(user.get()).size());
 
         if(user.isPresent() && user.get().getRating() == 0) {
             error = "The ratings are not ready yet";

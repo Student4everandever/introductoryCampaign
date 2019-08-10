@@ -160,16 +160,20 @@ public class JDBCUserImpl implements UserDao {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
                      "user_find_with_rating"))) {
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                User user = userMapper.extractFromResultSet(rs);
-                result.add(user);
-            }
-            return result;
+            return getUsers(result, ps);
         } catch (SQLException e) {
             logger.error(Messages.JDBC_USER_FINDING_WITH_RATING_FAIL);
             throw new RuntimeException(e);
         }
+    }
+
+    private List<User> getUsers(List<User> result, PreparedStatement ps) throws SQLException {
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            User user = userMapper.extractFromResultSet(rs);
+            result.add(user);
+        }
+        return result;
     }
 
     @Override
@@ -207,7 +211,7 @@ public class JDBCUserImpl implements UserDao {
                 result = Optional.of(userMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_USER_FINDING_BYLOGIN_OR_EMAIL_FAIL, login, eMail));
+            logger.error(String.format(Messages.JDBC_USER_FINDING_BY_LOGIN_OR_EMAIL_FAIL, login, eMail));
             throw new RuntimeException(e);
         }
         return result.isPresent();
@@ -221,12 +225,7 @@ public class JDBCUserImpl implements UserDao {
              PreparedStatement ps = connection.prepareStatement(sqlRequest.getString(
                      "user_find_with_required_rating"))) {
             ps.setInt(1, rating);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                User user = userMapper.extractFromResultSet(rs);
-                result.add(user);
-            }
-            return result;
+            return getUsers(result, ps);
         } catch (SQLException e) {
             logger.error(Messages.JDBC_USER_FIND_WITH_REQUIRED_RATING_FAIL);
             throw new RuntimeException(e);

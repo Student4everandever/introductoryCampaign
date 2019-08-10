@@ -15,6 +15,11 @@ public class EditSpecialtyCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(EditSpecialtyCommand.class);
 
+    /**
+     * Returns string with path to servlet for page to edit specialty and stores data in request for jsp
+     * @param request HttpServletRequest with data from jsp
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -52,11 +57,7 @@ public class EditSpecialtyCommand implements Command {
 
         if ((title == null || title_ukr == null)
                 || request.getParameter("submitted") == null) {
-            List<Subject> specialtySubjects = subjectService.getAllButFirst();
-            request.setAttribute("specialty", specialty);
-            request.setAttribute("subjects", specialtySubjects);
-            request.setAttribute("exam2", exam2);
-            request.setAttribute("exam3", exam3);
+            loadEmtyPage(request, specialty, exam2, exam3);
             return "/WEB-INF/admin/edit_specialty.jsp";
         }
 
@@ -67,11 +68,7 @@ public class EditSpecialtyCommand implements Command {
 
             error = "You input prohibited character";
             request.setAttribute("error", error);
-            List<Subject> specialtySubjects = subjectService.getAllButFirst();
-            request.setAttribute("specialty", specialty);
-            request.setAttribute("subjects", specialtySubjects);
-            request.setAttribute("exam2", exam2);
-            request.setAttribute("exam3", exam3);
+            loadEmtyPage(request, specialty, exam2, exam3);
             logger.warn(Messages.VALIDATION_FAIL);
             return "/WEB-INF/admin/edit_specialty.jsp";
         }
@@ -110,5 +107,13 @@ public class EditSpecialtyCommand implements Command {
         request.setAttribute("exam3", subjects3);
         logger.info(String.format(Messages.ADMIN_EDIT_SPECIALTY_SUCCESS, specialty.getTitle(), specialty.getTitle_ukr()));
         return "/WEB-INF/admin/edit_specialty.jsp";
+    }
+
+    private void loadEmtyPage(HttpServletRequest request, Specialty specialty, List<Subject> exam2, List<Subject> exam3) {
+        List<Subject> specialtySubjects = subjectService.getAllButFirst();
+        request.setAttribute("specialty", specialty);
+        request.setAttribute("subjects", specialtySubjects);
+        request.setAttribute("exam2", exam2);
+        request.setAttribute("exam3", exam3);
     }
 }

@@ -6,16 +6,25 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class LocalizationFilter implements Filter {
-    //private static String MESSAGE_BUNDLE_NAME = "lang";
 
-
-
+    /**
+     * Initializes filter
+     * @param filterConfig parameters to setup filter
+     */
     @Override
     public void init(FilterConfig filterConfig) {
         Locale myLocale = new Locale("uk");
         Locale.setDefault(myLocale);
     }
 
+    /**
+     * Sets language of the pages content according to a session parameter
+     * @param servletRequest request to server, contains user data
+     * @param servletResponse response of server
+     * @param filterChain invokes next filter in the chain
+     * @throws IOException input/output exception
+     * @throws ServletException general exception of a servlet
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
@@ -37,6 +46,9 @@ public class LocalizationFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
+    /**
+     * Destroys filter
+     */
     @Override
     public void destroy() {
     }

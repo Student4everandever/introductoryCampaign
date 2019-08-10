@@ -130,7 +130,6 @@ public class JDBCUniversityImpl implements UniversityDao {
                      .prepareStatement(sqlRequest.getString("university_find_by_string_name"))) {
             ps.setString(1, universityString);
             ps.setString(2, universityString);
-
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 university = universityMapper.extractFromResultSet(rs);
@@ -187,7 +186,6 @@ public class JDBCUniversityImpl implements UniversityDao {
                      .prepareStatement(sqlRequest.getString("university_find_by_name"))) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getName_ukr());
-
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 university = Optional.ofNullable(universityMapper.extractFromResultSet(rs));

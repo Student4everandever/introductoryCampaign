@@ -39,7 +39,7 @@ public class University {
         return students;
     }
 
-    public void setStudents(List<User> students) {
+    private void setStudents(List<User> students) {
         this.students = students;
     }
 
