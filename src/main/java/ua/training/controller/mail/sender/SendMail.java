@@ -10,7 +10,9 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.Properties;
 
-
+/**
+ * Class to send mails to group of users
+ */
 public class SendMail {
 
     private final static Logger logger = LogManager.getLogger(SendMail.class);

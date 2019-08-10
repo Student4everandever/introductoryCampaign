@@ -13,6 +13,9 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Class that accesses the user table of DB
+ */
 public class JDBCUserImpl implements UserDao {
 
     private final static Logger logger = LogManager.getLogger(JDBCUserImpl.class);

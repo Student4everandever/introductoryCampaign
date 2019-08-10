@@ -9,6 +9,9 @@ import ua.training.model.dao.impl.JDBCSubjectImpl;
 import ua.training.model.dao.impl.JDBCUniversityImpl;
 import ua.training.model.dao.impl.JDBCUserImpl;
 
+/**
+ * Class to produce different implementation to work with DB
+ */
 public class JDBCDaoFactory extends DaoFactory {
 
     /**

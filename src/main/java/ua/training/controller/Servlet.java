@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+/**
+ * Class that manages get and post requests and sends responses
+ */
 public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
 

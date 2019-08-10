@@ -1,5 +1,8 @@
 package ua.training.constants;
 
+/**
+ * Regular expressions to verify entered data
+ */
 public interface Regex {
     // Cyrillic name
     String REGEX_NAME_UKR = "^[А-ЯІЇЄа-яіїє '-]{1,20}$";

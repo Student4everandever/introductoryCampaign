@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Class to resolve edit university specialties request
+ */
 public class EditUniversitySpecialties implements Command {
 
     private final static Logger logger = LogManager.getLogger(EditUniversitySpecialties.class);

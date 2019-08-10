@@ -10,6 +10,9 @@ import ua.training.model.entity.enums.Role;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class to resolve user registration request
+ */
 public class RegistrationCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(RegistrationCommand.class);

@@ -3,6 +3,9 @@ package ua.training.controller.filters;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * Filter to set response and request to "UTF-8"
+ */
 public class EncodingFilter implements Filter {
 
     /**

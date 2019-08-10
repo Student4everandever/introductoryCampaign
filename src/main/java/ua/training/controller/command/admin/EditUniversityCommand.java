@@ -8,6 +8,9 @@ import ua.training.model.entity.University;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class to resolve edit university name request
+ */
 public class EditUniversityCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(EditUniversityCommand.class);

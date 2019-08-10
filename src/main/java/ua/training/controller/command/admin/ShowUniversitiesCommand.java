@@ -6,6 +6,9 @@ import ua.training.model.entity.University;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Class to resolve show universities request
+ */
 public class ShowUniversitiesCommand implements Command {
 
     /**

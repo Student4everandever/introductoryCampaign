@@ -6,6 +6,9 @@ import ua.training.constants.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class to resolve user logout request
+ */
 public class LogoutCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(LogoutCommand.class);

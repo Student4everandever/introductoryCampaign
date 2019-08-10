@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class that accesses the university table of DB
+ */
 public class JDBCUniversityImpl implements UniversityDao {
 
     private final static Logger logger = LogManager.getLogger(JDBCUniversityImpl.class);

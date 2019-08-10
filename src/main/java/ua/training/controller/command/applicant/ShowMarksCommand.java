@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class to resolve applicant show marks request
+ */
 public class ShowMarksCommand implements Command {
 
     /**

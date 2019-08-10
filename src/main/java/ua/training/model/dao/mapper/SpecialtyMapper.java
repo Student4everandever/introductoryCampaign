@@ -5,6 +5,9 @@ import ua.training.model.entity.Specialty;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class to map Specialty objects from DB
+ */
 public class SpecialtyMapper implements ObjectMapper<Specialty> {
 
     /**

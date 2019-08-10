@@ -6,6 +6,9 @@ import ua.training.model.dao.SubjectDao;
 import ua.training.model.dao.UniversityDao;
 import ua.training.model.dao.UserDao;
 
+/**
+ * Abstract class to produce DAOs
+ */
 public abstract class DaoFactory {
 
     private static DaoFactory daoFactory;

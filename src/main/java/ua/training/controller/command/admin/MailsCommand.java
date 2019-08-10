@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class to resolve mail sending request
+ */
+
 public class MailsCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(MailsCommand.class);

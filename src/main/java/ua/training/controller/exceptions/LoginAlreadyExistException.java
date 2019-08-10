@@ -1,5 +1,8 @@
 package ua.training.controller.exceptions;
 
+/**
+ * Exception class for checking if user already logged
+ */
 public class LoginAlreadyExistException extends Exception {
 
     private String login;

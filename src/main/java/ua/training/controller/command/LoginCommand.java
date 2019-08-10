@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Class to resolve user login request
+ */
 public class LoginCommand implements Command {
     private final static Logger logger = LogManager.getLogger(LoginCommand.class);
 

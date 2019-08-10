@@ -8,6 +8,9 @@ import ua.training.model.entity.Subject;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class to resolve adding subject request
+ */
 public class AddSubjectCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(AddSubjectCommand.class);

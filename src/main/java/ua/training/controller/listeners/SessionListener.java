@@ -4,6 +4,9 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.util.HashSet;
 
+/**
+ * Listener to control session creation and destruction
+ */
 @SuppressWarnings("unchecked")
 public class SessionListener implements HttpSessionListener {
 

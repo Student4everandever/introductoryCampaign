@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class that accesses the subject table of DB
+ */
 public class JDBCSubjectImpl implements SubjectDao {
 
     private final static Logger logger = LogManager.getLogger(JDBCSubjectImpl.class);

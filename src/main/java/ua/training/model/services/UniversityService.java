@@ -10,6 +10,9 @@ import java.util.List;
 import static ua.training.constants.Regex.REGEX_UNIVERSITY_LAT;
 import static ua.training.constants.Regex.REGEX_UNIVERSITY_UKR;
 
+/**
+ * Service class for University
+ */
 public class UniversityService {
     private static UniversityDao universityDao = DaoFactory.getInstance().createUniversityDao();
 

@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * Filter to manage displaying language
+ */
 public class LocalizationFilter implements Filter {
 
     /**

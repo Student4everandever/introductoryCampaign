@@ -1,5 +1,8 @@
 package ua.training.constants;
 
+/**
+ *
+ */
 public interface Messages {
 
     String VALIDATION_FAIL = "Wrong symbols enter attempt.";

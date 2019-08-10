@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class to resolve edit specialty request
+ */
 public class EditSpecialtyCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(EditSpecialtyCommand.class);

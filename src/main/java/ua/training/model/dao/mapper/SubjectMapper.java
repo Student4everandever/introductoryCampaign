@@ -5,6 +5,9 @@ import ua.training.model.entity.Subject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class to map Subject objects from DB
+ */
 public class SubjectMapper implements ObjectMapper<Subject> {
     @Override
     public Subject extractFromResultSet(ResultSet rs) throws SQLException {

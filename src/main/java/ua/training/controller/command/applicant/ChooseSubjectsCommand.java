@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class to resolve applicant choosing subjects request
+ */
 public class ChooseSubjectsCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(ChooseSubjectsCommand.class);

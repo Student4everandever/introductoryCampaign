@@ -12,6 +12,9 @@ import java.util.Optional;
 
 import static ua.training.constants.Regex.*;
 
+/**
+ * Service class for User
+ */
 public class UserService {
 
 

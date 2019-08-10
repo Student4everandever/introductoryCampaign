@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class to resolve adding specialty request
+ */
 public class AddSpecialtyCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(AddSpecialtyCommand.class);

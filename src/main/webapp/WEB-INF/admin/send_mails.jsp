@@ -11,7 +11,8 @@
     <ul class="navbar-nav">
 
         <li class="nav-item active">
-            <a href="${pageContext.request.contextPath}/campaign/admin/admin_base"><fmt:message key="admin_mails_send_to_admin_main" bundle="${link}"/></a>
+            <a href="${pageContext.request.contextPath}/campaign/admin/admin_base"><fmt:message
+                    key="admin_mails_send_to_admin_main" bundle="${link}"/></a>
         </li>
 
     </ul>
@@ -44,10 +45,20 @@
             <tr>
                 <td>
                     <c:if test="${language != 'en'}">
-                        <c:out value="${user.name_ukr} ${user.lastName_ukr}"/>
+                        <c:if test="${user.rating >= 100}">
+                            <c:out value="${user.name_ukr} ${user.lastName_ukr}"/>
+                        </c:if>
+                        <c:if test="${user.rating < 100}">
+                            <p style="color: red"><c:out value="${user.name_ukr} ${user.lastName_ukr}"/></p>
+                        </c:if>
                     </c:if>
                     <c:if test="${language == 'en'}">
-                        <c:out value="${user.name} ${user.lastName}"/>
+                        <c:if test="${user.rating >= 100}">
+                            <c:out value="${user.name} ${user.lastName}"/>
+                        </c:if>
+                        <c:if test="${user.rating < 100}">
+                            <h5 style="color: red"><c:out value="${user.name} ${user.lastName}"/></h5>
+                        </c:if>
                     </c:if>
                 </td>
                 <td>

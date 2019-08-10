@@ -6,6 +6,9 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * Filter to restrict access for non authorized users
+ */
 public class AccessFilter implements Filter {
 
     /**

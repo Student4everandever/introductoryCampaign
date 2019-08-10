@@ -6,6 +6,9 @@ import ua.training.model.entity.User;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Class to resolve show users with exams request
+ */
 public class UsersWithExamsCommand implements Command {
 
     /**

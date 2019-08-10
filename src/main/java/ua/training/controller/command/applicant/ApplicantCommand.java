@@ -9,6 +9,9 @@ import ua.training.model.entity.User;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * Class to resolve applicant base page request
+ */
 public class ApplicantCommand implements Command {
     private final static Logger logger = LogManager.getLogger(ChooseSpecialtyCommand.class);
 

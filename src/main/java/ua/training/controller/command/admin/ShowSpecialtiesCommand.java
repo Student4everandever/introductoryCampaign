@@ -6,6 +6,9 @@ import ua.training.model.entity.Specialty;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Class to resolve show specialties request
+ */
 public class ShowSpecialtiesCommand implements Command {
 
     /**

@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class that accesses the specialty table of DB
+ */
 public class JDBCSpecialtyImpl implements SpecialtyDao {
 
     private final static Logger logger = LogManager.getLogger(JDBCSubjectImpl.class);

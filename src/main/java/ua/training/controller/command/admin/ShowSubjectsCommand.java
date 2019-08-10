@@ -6,6 +6,9 @@ import ua.training.model.entity.Subject;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Class to resolve show subjects request
+ */
 public class ShowSubjectsCommand implements Command {
 
     /**

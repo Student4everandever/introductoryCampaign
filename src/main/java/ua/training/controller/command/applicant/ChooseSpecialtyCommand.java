@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to resolve applicant choosing specialty request
+ */
 public class ChooseSpecialtyCommand implements Command {
 
     /**

@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class to resolve put marks request
+ */
 public class PutMarksCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(PutMarksCommand.class);

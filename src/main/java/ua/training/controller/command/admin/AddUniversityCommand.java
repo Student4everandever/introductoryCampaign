@@ -8,6 +8,9 @@ import ua.training.model.entity.University;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class to resolve adding university request
+ */
 public class AddUniversityCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(AddUniversityCommand.class);

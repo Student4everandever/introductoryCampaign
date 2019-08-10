@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class to resolve applicants rating request
+ */
 public class RatingCommand implements Command {
 
     /**

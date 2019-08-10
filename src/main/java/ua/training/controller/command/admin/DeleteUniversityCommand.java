@@ -7,6 +7,9 @@ import ua.training.controller.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class to resolve deleting university request
+ */
 public class DeleteUniversityCommand implements Command {
 
     private final static Logger logger = LogManager.getLogger(DeleteUniversityCommand.class);

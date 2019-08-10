@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 
+/**
+ * Helper class to keep track of logged users
+ */
 @SuppressWarnings("unchecked")
 class CommandUtility {
 

@@ -9,6 +9,9 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Class that manages connection to DB
+ */
 public class ConnectionPoolHolder {
 
     private final static Logger logger = LogManager.getLogger(ConnectionPoolHolder.class);

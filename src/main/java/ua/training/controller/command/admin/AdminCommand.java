@@ -4,6 +4,9 @@ import ua.training.controller.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class to resolve admin base page request
+ */
 public class AdminCommand implements Command {
 
     /**

@@ -13,6 +13,9 @@ import java.util.List;
 import static ua.training.constants.Regex.REGEX_SUBJECT_LAT;
 import static ua.training.constants.Regex.REGEX_SUBJECT_UKR;
 
+/**
+ * Service class for Subject
+ */
 public class SubjectService {
 
     private static SubjectDao subjectDao = DaoFactory.getInstance().createSubjectDao();

@@ -11,7 +11,9 @@ import java.util.List;
 import static ua.training.constants.Regex.REGEX_SPECIALTY_LAT;
 import static ua.training.constants.Regex.REGEX_SPECIALTY_UKR;
 
-
+/**
+ * Service class for Specialty
+ */
 public class SpecialtyService {
     private static SpecialtyDao specialtyDao = DaoFactory.getInstance().createSpecialtyDao();
 
