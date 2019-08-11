@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UniversityDao {
+
     boolean delete(int id);
 
     Optional<University> findByName(University university);

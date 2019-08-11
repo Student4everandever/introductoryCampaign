@@ -2,7 +2,8 @@ package ua.training.controller.command.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Subject;
 import ua.training.model.entity.User;
@@ -32,8 +33,6 @@ public class PutMarksCommand implements Command {
         String mark1 = request.getParameter("mark1");
         String mark2 = request.getParameter("mark2");
         String mark3 = request.getParameter("mark3");
-        String error;
-        String message;
         Optional<User> user;
 
         if(userLogin == null || !(user = userService.findUserByLogin(userLogin)).isPresent()) {
@@ -55,21 +54,19 @@ public class PutMarksCommand implements Command {
         userMarks.add(mark3);
 
         if(!userService.validateMarks(userMarks)) {
-            error = "You can put only numbers from 1 up to 200";
             List<Subject> userSubjects = subjectService.getUserSubjects(user.get());
             request.setAttribute("subjects", userSubjects);
             request.setAttribute("user", user.get());
-            request.setAttribute("error", error);
-            logger.warn(Messages.VALIDATION_FAIL);
+            request.setAttribute("error", WebPagesMessages.WRONG_INPUT);
+            logger.warn(LoggerMessages.VALIDATION_FAIL);
             return "/WEB-INF/admin/put_marks.jsp";
         }
 
         int rating = (int) (index1 * Integer.valueOf(mark1) + index2 * Integer.valueOf(mark2) + index3 * Integer.valueOf(mark3));
         userService.putUserMarks(userMarks, rating, user.get());
-        message = "Marks were successfully added";
 
-        request.setAttribute("message", message);
-        logger.info(String.format(Messages.ADMIN_PUT_MARKS_SUCCESS, user.get()));
+        request.setAttribute("message", WebPagesMessages.MARKS_ADDED);
+        logger.info(String.format(LoggerMessages.ADMIN_PUT_MARKS_SUCCESS, user.get()));
         return "/campaign/admin/users_with_exams";
     }
 }

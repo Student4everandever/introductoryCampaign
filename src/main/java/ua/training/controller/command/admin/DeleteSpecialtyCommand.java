@@ -2,7 +2,7 @@ package ua.training.controller.command.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
 import ua.training.controller.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,10 +24,10 @@ public class DeleteSpecialtyCommand implements Command {
         String idString = request.getParameter("specialty_id");
 
         if (idString != null && specialtyService.deleteSpecialty(Integer.parseInt(idString))) {
-            logger.info(String.format(Messages.ADMIN_DELETE_SPECIALTY_SUCCESS, Integer.parseInt(idString)));
+            logger.info(String.format(LoggerMessages.ADMIN_DELETE_SPECIALTY_SUCCESS, Integer.parseInt(idString)));
             return "redirect:/campaign/admin/show_specialties";
         }
-        logger.error(Messages.ADMIN_DELETE_SPECIALTY_FAIL);
+        logger.error(LoggerMessages.ADMIN_DELETE_SPECIALTY_FAIL);
         return "redirect:/campaign/exception";
     }
 }

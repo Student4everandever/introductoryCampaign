@@ -2,7 +2,7 @@ package ua.training.controller.mail.sender;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -39,7 +39,7 @@ public class SendMail {
         try {
             props.load(getClass().getClassLoader().getResourceAsStream("mail.properties"));
         } catch (IOException e) {
-            logger.error(Messages.SEND_MAIL_PROPERTIES_LOADING_FAIL);
+            logger.error(LoggerMessages.SEND_MAIL_PROPERTIES_LOADING_FAIL);
             e.printStackTrace();
         }
         return props;
@@ -76,7 +76,7 @@ public class SendMail {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            logger.error(Messages.SEND_MAIL_FAIL);
+            logger.error(LoggerMessages.SEND_MAIL_FAIL);
             throw new RuntimeException(e);
         }
     }

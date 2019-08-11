@@ -2,7 +2,8 @@ package ua.training.controller.command.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.controller.mail.sender.SendMail;
 import ua.training.model.entity.User;
@@ -32,7 +33,6 @@ public class MailsCommand implements Command {
         String sendMails = request.getParameter("send_mail");
         String user = "ukrposhta@gmail.com";
         String password = "dikanskaya1";
-        String message;
 
         if (sendMails == null) {
             List<User> usersWithRating = userService.getUsersWithRating();
@@ -47,9 +47,8 @@ public class MailsCommand implements Command {
 
         sender.send(subject, text, user, to);
 
-        message = "Email sent successfully";
-        request.setAttribute("message", message);
-        logger.info(String.format(Messages.ADMIN_MAIL_COMMAND_SENT_SUCCESS,  Arrays.toString(to)));
+        request.setAttribute("message", WebPagesMessages.EMAIL_SENT);
+        logger.info(String.format(LoggerMessages.ADMIN_MAIL_COMMAND_SENT_SUCCESS,  Arrays.toString(to)));
         return "/campaign/admin/admin_base";
     }
 }

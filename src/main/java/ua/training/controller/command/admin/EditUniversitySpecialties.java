@@ -2,7 +2,8 @@ package ua.training.controller.command.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.University;
@@ -33,7 +34,6 @@ public class EditUniversitySpecialties implements Command {
 
         Optional<String[]> specialtiesToAdd = Optional.ofNullable(request.getParameterValues("add_specialty"));
         Optional<String[]> specialtiesToRemove = Optional.ofNullable(request.getParameterValues("remove_specialty"));
-        String message;
 
         if (idString == null) {
             return "redirect:/campaign/admin/show_universities";
@@ -82,13 +82,12 @@ public class EditUniversitySpecialties implements Command {
         universityService.editUniversitySpecialties(university, universitySpecialties);
         List<Specialty> nonUniversitySpecialties = specialtyService.getNonUniversitySpecialties(university);
 
-        message = "University specialties were successfully updated";
-        request.setAttribute("message", message);
+        request.setAttribute("message", WebPagesMessages.UNIVERSITY_SPECIALTIES_UPDATED);
         request.setAttribute("universitySpecialties", universitySpecialties);
         request.setAttribute("nonUniversitySpecialties", nonUniversitySpecialties);
         request.setAttribute("university", university);
         request.setAttribute("page", page);
-        logger.info(String.format(Messages.ADMIN_EDIT_UNIVERSITY_SPECIALTIES, university));
+        logger.info(String.format(LoggerMessages.ADMIN_EDIT_UNIVERSITY_SPECIALTIES, university));
         return "/WEB-INF/admin/edit_university_specialties.jsp";
     }
 }

@@ -2,7 +2,8 @@ package ua.training.controller.command.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.Subject;
@@ -41,7 +42,7 @@ public class EditSpecialtyCommand implements Command {
         if(title.equals("") && title_ukr.equals("")
                 && !subjectsToAdd1.isPresent() && !subjectsToAdd2.isPresent()
                 && request.getParameter("submitted") != null) {
-            error = "Please choose new data";
+            error = WebPagesMessages.CHOOSE_NEW_DATA;
         }
         int id = Integer.parseInt(idString);
         Specialty specialty = specialtyService.getSpecialtyById(id);
@@ -60,7 +61,7 @@ public class EditSpecialtyCommand implements Command {
 
         if ((title == null || title_ukr == null)
                 || request.getParameter("submitted") == null) {
-            loadEmtyPage(request, specialty, exam2, exam3);
+            setPage(request, specialty, exam2, exam3);
             return "/WEB-INF/admin/edit_specialty.jsp";
         }
 
@@ -69,10 +70,9 @@ public class EditSpecialtyCommand implements Command {
 
         if (!specialtyService.validateSpecialtyData(title, title_ukr)) {
 
-            error = "You input prohibited character";
-            request.setAttribute("error", error);
-            loadEmtyPage(request, specialty, exam2, exam3);
-            logger.warn(Messages.VALIDATION_FAIL);
+            request.setAttribute("error", WebPagesMessages.PROHIBITED_CHARACTERS);
+            setPage(request, specialty, exam2, exam3);
+            logger.warn(LoggerMessages.VALIDATION_FAIL);
             return "/WEB-INF/admin/edit_specialty.jsp";
         }
 
@@ -95,8 +95,9 @@ public class EditSpecialtyCommand implements Command {
         }
 
         specialtyService.editSpecialty(specialty, subjects2, subjects3);
+
         if(error.equals("")){
-            message = "Specialty was successfully updated";
+            message = WebPagesMessages.SPECIALTY_UPDATED;
         } else {
             message = "";
         }
@@ -108,11 +109,11 @@ public class EditSpecialtyCommand implements Command {
         request.setAttribute("error", error);
         request.setAttribute("exam2", subjects2);
         request.setAttribute("exam3", subjects3);
-        logger.info(String.format(Messages.ADMIN_EDIT_SPECIALTY_SUCCESS, specialty.getTitle(), specialty.getTitle_ukr()));
+        logger.info(String.format(LoggerMessages.ADMIN_EDIT_SPECIALTY_SUCCESS, specialty.getTitle(), specialty.getTitle_ukr()));
         return "/WEB-INF/admin/edit_specialty.jsp";
     }
 
-    private void loadEmtyPage(HttpServletRequest request, Specialty specialty, List<Subject> exam2, List<Subject> exam3) {
+    private void setPage(HttpServletRequest request, Specialty specialty, List<Subject> exam2, List<Subject> exam3) {
         List<Subject> specialtySubjects = subjectService.getAllButFirst();
         request.setAttribute("specialty", specialty);
         request.setAttribute("subjects", specialtySubjects);

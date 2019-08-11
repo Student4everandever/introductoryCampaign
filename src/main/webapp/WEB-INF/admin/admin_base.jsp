@@ -1,9 +1,10 @@
-<%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Admin Page</title>
 </head>
+
+<%@ include file="../views/header_logout.jsp" %>
+
 <body>
 <h2><fmt:message key="admin_base_hello" bundle="${link}"/></h2>
 
@@ -20,8 +21,10 @@
 
     </ul>
 </div>
-<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
 
+<c:if test="${not empty requestScope.message}">
+    <h5 style="color: limegreen"><fmt:message key="${requestScope.message}" bundle="${link}"/></h5>
+</c:if>
 
 <%@ include file="../views/footer.jsp" %>
 </body>

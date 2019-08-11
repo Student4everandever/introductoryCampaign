@@ -6,10 +6,7 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ page isELIgnored="false" %>
 
-    <c:set var="language"
-           value="${not empty param.language ? param.language : not empty applicationScope.language ? applicationScope.language : pageContext.request.locale}"
-           scope="session"/>
-    <fmt:setLocale value="${language}"/>
+    <fmt:setLocale value="${applicationScope.language}"/>
     <fmt:setBundle var="link" basename="lang" scope="session"/>
 </header>
 

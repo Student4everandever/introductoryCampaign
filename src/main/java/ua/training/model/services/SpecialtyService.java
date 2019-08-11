@@ -81,7 +81,7 @@ public class SpecialtyService {
     }
 
     /**
-     * Retuns Specialty from DB by it's id
+     * Returns Specialty from DB by it's id
      *
      * @param id id of the Specialty to look for
      * @return Specialty from DB

@@ -2,7 +2,8 @@ package ua.training.controller.command.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.University;
 
@@ -27,8 +28,6 @@ public class EditUniversityCommand implements Command {
         int page = Integer.parseInt(request.getParameter("page"));
         String name = request.getParameter("name");
         String name_ukr = request.getParameter("name_ukr");
-        String message;
-        String error;
 
         if(idString == null) {
             return "redirect:/campaign/admin/show_universities";
@@ -47,11 +46,10 @@ public class EditUniversityCommand implements Command {
 
         if (!universityService.validateUniversityData(name, name_ukr)) {
 
-            error = "You input prohibited character";
-            request.setAttribute("error", error);
+            request.setAttribute("error", WebPagesMessages.PROHIBITED_CHARACTERS);
             request.setAttribute("page", page);
             request.setAttribute("university", university);
-            logger.warn(Messages.VALIDATION_FAIL);
+            logger.warn(LoggerMessages.VALIDATION_FAIL);
             return "/WEB-INF/admin/edit_university.jsp";
         }
 
@@ -59,11 +57,10 @@ public class EditUniversityCommand implements Command {
         university.setName_ukr(name_ukr);
 
         universityService.editUniversity(university);
-        message = "University was successfully updated";
-        request.setAttribute("message", message);
+        request.setAttribute("message", WebPagesMessages.UNIVERSITY_UPDATED);
         request.setAttribute("university", university);
         request.setAttribute("page", page);
-        logger.info(String.format(Messages.ADMIN_EDIT_UNIVERSITY_NAME, university));
+        logger.info(String.format(LoggerMessages.ADMIN_EDIT_UNIVERSITY_NAME, university));
         return "/WEB-INF/admin/edit_university.jsp";
     }
 }

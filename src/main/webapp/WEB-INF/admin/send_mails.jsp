@@ -1,12 +1,16 @@
-<%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Mails page</title>
 </head>
+
+<%@ include file="../views/header_logout.jsp" %>
+
 <body>
 
-<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
+<c:if test="${not empty requestScope.message}">
+    <h5 style="color: limegreen"><fmt:message key="${requestScope.message}" bundle="${link}"/></h5>
+</c:if>
+
 <div>
     <ul class="navbar-nav">
 
@@ -57,7 +61,7 @@
                             <c:out value="${user.name} ${user.lastName}"/>
                         </c:if>
                         <c:if test="${user.rating < 100}">
-                            <h5 style="color: red"><c:out value="${user.name} ${user.lastName}"/></h5>
+                            <p style="color: red"><c:out value="${user.name} ${user.lastName}"/></p>
                         </c:if>
                     </c:if>
                 </td>

@@ -3,7 +3,7 @@ package ua.training.model.dao.cp;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class ConnectionPoolHolder {
                         dataSource = ds;
 
                     } catch (IOException e) {
-                        logger.error(Messages.CONNECTION_POOL_DATA_FAIL);
+                        logger.error(LoggerMessages.CONNECTION_POOL_DATA_FAIL);
                         throw new RuntimeException(e);
                     }
                 }

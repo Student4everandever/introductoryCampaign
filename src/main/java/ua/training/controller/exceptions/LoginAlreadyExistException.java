@@ -5,6 +5,9 @@ package ua.training.controller.exceptions;
  */
 public class LoginAlreadyExistException extends Exception {
 
+    /**
+     * User login & email
+     */
     private String login;
     private String email;
 

@@ -3,7 +3,8 @@ package ua.training.controller.command;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.exceptions.LoginAlreadyExistException;
 import ua.training.model.entity.User;
 import ua.training.model.entity.enums.Role;
@@ -33,7 +34,6 @@ public class RegistrationCommand implements Command {
         String password = request.getParameter("password");
         String eMail = request.getParameter("email");
         String role = Role.APPLICANT.toString();
-        String error;
         User user;
 
         if (name == null || name.equals("") || nameUkr == null || nameUkr.equals("")
@@ -56,9 +56,8 @@ public class RegistrationCommand implements Command {
                 .build();
 
         if (!userService.validateUserData(user)) {
-            error = "You input prohibited characters";
-            request.setAttribute("error", error);
-            logger.error(String.format(Messages.REGISTRATION_FAIL_REGISTRATION, login));
+            request.setAttribute("error", WebPagesMessages.PROHIBITED_CHARACTERS);
+            logger.error(String.format(LoggerMessages.REGISTRATION_FAIL_REGISTRATION, login));
             return "/registration.jsp";
         }
 
@@ -68,12 +67,11 @@ public class RegistrationCommand implements Command {
             userService.createUser(user);
             CommandUtility.addUserToLoggedUsers(request, user.getLogin(), user.getRole());
         } catch (LoginAlreadyExistException e) {
-            error = "User with login or email you put already exists";
-            request.setAttribute("error", error);
-            logger.error(String.format(Messages.REGISTRATION_ALREADY_EXIST, e.getLogin(), e.getEmail()));
+            request.setAttribute("error", WebPagesMessages.USER_ALREADY_EXISTS);
+            logger.error(String.format(LoggerMessages.REGISTRATION_ALREADY_EXIST, e.getLogin(), e.getEmail()));
             return "/registration.jsp";
     }
-        logger.info(String.format(Messages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));
+        logger.info(String.format(LoggerMessages.REGISTRATION_SUCCESSFUL_REGISTRATION, user.getRole(), login));
             return "/campaign/" + user.getRole().toString().toLowerCase() + "/" + user.getRole().toString().toLowerCase() + "_base";
     }
 }

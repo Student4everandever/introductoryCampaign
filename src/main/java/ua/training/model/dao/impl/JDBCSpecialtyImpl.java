@@ -2,7 +2,7 @@ package ua.training.model.dao.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
 import ua.training.model.dao.SpecialtyDao;
 import ua.training.model.dao.cp.ConnectionPoolHolder;
 import ua.training.model.dao.mapper.SpecialtyMapper;
@@ -50,7 +50,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
                 result = specialtyMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_BY_ID_FAIL, id));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_FIND_BY_ID_FAIL, id));
             throw new RuntimeException(e);
         }
         return result;
@@ -69,7 +69,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
                              "specialty_find_all"))) {
             return getSpecialties(ps);
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_SPECIALTY_FIND_ALL_FAIL);
+            logger.error(LoggerMessages.JDBC_SPECIALTY_FIND_ALL_FAIL);
             throw new RuntimeException(e);
         }
     }
@@ -100,7 +100,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_DELETE_FAIL, id));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_DELETE_FAIL, id));
             throw new RuntimeException(e);
         }
     }
@@ -126,7 +126,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
                 specialty = Optional.ofNullable(specialtyMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_BY_NAME_FAIL, entity.getTitle(), entity.getTitle_ukr()));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_FIND_BY_NAME_FAIL, entity.getTitle(), entity.getTitle_ukr()));
             throw new RuntimeException(e);
         }
         return specialty;
@@ -164,7 +164,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             connection.commit();
             return result;
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_FOR_UNIVERSITY_FAIL, university));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_FIND_FOR_UNIVERSITY_FAIL, university));
             throw new RuntimeException(e);
         }
     }
@@ -184,7 +184,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             ps.setInt(1, university.getId());
             return getSpecialties(ps);
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_NON_UNIVERSITY_FAIL, university));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_FIND_NON_UNIVERSITY_FAIL, university));
             throw new RuntimeException(e);
         }
     }
@@ -237,7 +237,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             connection.commit();
 
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_UPDATE_WITH_SUBJECTS_FAIL, specialty));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_UPDATE_WITH_SUBJECTS_FAIL, specialty));
             throw new RuntimeException(e);
         }
     }
@@ -293,7 +293,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
                 connection.commit();
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_CREATE_WITH_UNIVERSITY_AND_SUBJECT_FAIL, specialty.getTitle(), specialty.getTitle_ukr()));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_CREATE_WITH_UNIVERSITY_AND_SUBJECT_FAIL, specialty.getTitle(), specialty.getTitle_ukr()));
             throw new RuntimeException(e);
         }
     }
@@ -319,7 +319,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
                 specialty = specialtyMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_BY_STRING_NAME_FAIL, specialtyString));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_FIND_BY_STRING_NAME_FAIL, specialtyString));
             throw new RuntimeException(e);
         }
         return specialty;
@@ -342,7 +342,7 @@ public class JDBCSpecialtyImpl implements SpecialtyDao {
             ps.setInt(2, pageNumber * rows - rows);
             return getSpecialties(ps);
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SPECIALTY_FIND_PER_PAGE, pageNumber, rows));
+            logger.error(String.format(LoggerMessages.JDBC_SPECIALTY_FIND_PER_PAGE, pageNumber, rows));
             throw new RuntimeException(e);
         }
     }

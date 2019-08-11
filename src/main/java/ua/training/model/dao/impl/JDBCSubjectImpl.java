@@ -2,7 +2,7 @@ package ua.training.model.dao.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
 import ua.training.model.dao.SubjectDao;
 import ua.training.model.dao.cp.ConnectionPoolHolder;
 import ua.training.model.dao.mapper.SubjectMapper;
@@ -40,7 +40,7 @@ public class JDBCSubjectImpl implements SubjectDao {
             ps.setString(2, entity.getName_ukr());
             ps.executeUpdate();
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SUBJECT_CREATION_FAIL, entity.getName(), entity.getName_ukr()));
+            logger.error(String.format(LoggerMessages.JDBC_SUBJECT_CREATION_FAIL, entity.getName(), entity.getName_ukr()));
             throw new RuntimeException(e);
         }
     }
@@ -54,7 +54,7 @@ public class JDBCSubjectImpl implements SubjectDao {
                              "subject_find_all"))) {
             return getSubjects(result, ps);
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_SUBJECT_FIND_ALL_FAIL);
+            logger.error(LoggerMessages.JDBC_SUBJECT_FIND_ALL_FAIL);
             throw new RuntimeException(e);
         }
     }
@@ -82,7 +82,7 @@ public class JDBCSubjectImpl implements SubjectDao {
                 subject = Optional.ofNullable(subjectMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SUBJECT_FIND_BY_NAME_FAIL, entity.getName(), entity.getName_ukr()));
+            logger.error(String.format(LoggerMessages.JDBC_SUBJECT_FIND_BY_NAME_FAIL, entity.getName(), entity.getName_ukr()));
             throw new RuntimeException(e);
         }
         return subject;
@@ -102,7 +102,7 @@ public class JDBCSubjectImpl implements SubjectDao {
                 subject = subjectMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SUBJECT_FIND_BY_STRING_NAME_FAIL, name));
+            logger.error(String.format(LoggerMessages.JDBC_SUBJECT_FIND_BY_STRING_NAME_FAIL, name));
             throw new RuntimeException(e);
         }
         return subject;
@@ -119,7 +119,7 @@ public class JDBCSubjectImpl implements SubjectDao {
             ps.setInt(2, number);
             return getSubjects(result, ps);
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SUBJECT_FIND_BY_SPECIALTY_AND_NUMBER_FAIL, number, specialty));
+            logger.error(String.format(LoggerMessages.JDBC_SUBJECT_FIND_BY_SPECIALTY_AND_NUMBER_FAIL, number, specialty));
             throw new RuntimeException(e);
         }
     }
@@ -134,7 +134,7 @@ public class JDBCSubjectImpl implements SubjectDao {
             ps.setInt(1, 1);
             return getSubjects(result, ps);
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_SUBJECT_FIND_ALL_BUT_FIRST_FAIL);
+            logger.error(LoggerMessages.JDBC_SUBJECT_FIND_ALL_BUT_FIRST_FAIL);
             throw new RuntimeException(e);
         }
     }
@@ -163,7 +163,7 @@ public class JDBCSubjectImpl implements SubjectDao {
 
             connection.commit();
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SUBJECT_ADD_SUBJECTS_TO_USER_FAIL, user));
+            logger.error(String.format(LoggerMessages.JDBC_SUBJECT_ADD_SUBJECTS_TO_USER_FAIL, user));
             throw new RuntimeException(e);
         }
     }
@@ -178,7 +178,7 @@ public class JDBCSubjectImpl implements SubjectDao {
             ps.setInt(1, user.getId());
             return getSubjects(result, ps);
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_SUBJECT_FIND_SUBJECTS_OF_USER_FAIL, user));
+            logger.error(String.format(LoggerMessages.JDBC_SUBJECT_FIND_SUBJECTS_OF_USER_FAIL, user));
             throw new RuntimeException(e);
         }
     }

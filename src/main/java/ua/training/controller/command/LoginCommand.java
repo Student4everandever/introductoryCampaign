@@ -3,7 +3,8 @@ package ua.training.controller.command;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,6 @@ public class LoginCommand implements Command {
 
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
-        String error;
 
         if (login == null || login.equals("") || pass == null || pass.equals("")) {
 
@@ -49,19 +49,17 @@ public class LoginCommand implements Command {
         if (user.isPresent() && passHashed.equals(user.get().getPassword())) {
 
             if (CommandUtility.userIsLogged(request, user.get().getLogin())) {
-                error = "This user is already logged";
-                request.setAttribute("error", error);
-                logger.warn(String.format(Messages.LOGIN_LOGGED_ALREADY, user.get().getRole(), login));
+                request.setAttribute("error", WebPagesMessages.USER_IS_ALREADY_LOGGED);
+                logger.warn(String.format(LoggerMessages.LOGIN_LOGGED_ALREADY, user.get().getRole(), login));
                 return "/login.jsp";
             }
 
             CommandUtility.addUserToLoggedUsers(request, user.get().getLogin(), user.get().getRole());
-            logger.info(String.format(Messages.LOGIN_SUCCESSFUL_LOGIN, user.get().getRole(), login));
+            logger.info(String.format(LoggerMessages.LOGIN_SUCCESSFUL_LOGIN, user.get().getRole(), login));
             return pages.getOrDefault(user.get().getRole().name().toLowerCase(), pages.get("login"));
         }
-        error = "Wrong login or password";
-        request.setAttribute("error", error);
-        logger.error(String.format(Messages.LOGIN_FAIL_LOGIN, login));
+        request.setAttribute("error", WebPagesMessages.WRONG_LOGIN_OR_PASSWORD);
+        logger.error(String.format(LoggerMessages.LOGIN_FAIL_LOGIN, login));
         return pages.getOrDefault(login, pages.get("login"));
     }
 }

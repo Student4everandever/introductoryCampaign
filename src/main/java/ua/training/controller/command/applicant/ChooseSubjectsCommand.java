@@ -2,7 +2,8 @@ package ua.training.controller.command.applicant;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.Subject;
@@ -63,13 +64,12 @@ public class ChooseSubjectsCommand implements Command {
         if(user.isPresent()) {
 
             subjectService.addSubjectsToUser(user.get(), university, specialty, subjectsToAdd);
-            String message = "Thank you for choosing our service. You are successfully registered for exams";
-            request.setAttribute("message", message);
-            request.setAttribute("applied", message);
-            logger.info(String.format(Messages.APPLICANT_CHOOSE_SUBJECTS_REGISTERED, user.get().getLogin()));
+            request.setAttribute("message", WebPagesMessages.REGISTERED_SUCCESSFULLY);
+            request.setAttribute("applied", "true");
+            logger.info(String.format(LoggerMessages.APPLICANT_CHOOSE_SUBJECTS_REGISTERED, user.get().getLogin()));
             return "/WEB-INF/applicant/applicant_base.jsp";
         }
-        logger.error(Messages.APPLICANT_CHOOSE_SUBJECTS_FAIL);
+        logger.error(LoggerMessages.APPLICANT_CHOOSE_SUBJECTS_FAIL);
         return "/login.jsp";
     }
 }

@@ -3,7 +3,7 @@ package ua.training.constants;
 /**
  *
  */
-public interface Messages {
+public interface LoggerMessages {
 
     String VALIDATION_FAIL = "Wrong symbols enter attempt.";
 
@@ -28,7 +28,6 @@ public interface Messages {
     String ADMIN_DELETE_UNIVERSITY_FAIL = "University deleting failed.";
     String ADMIN_DELETE_UNIVERSITY_SUCCESS = "University with id %s was successfully deleted.";
     String ADMIN_EDIT_SPECIALTY_SUCCESS = "Specialty %s, %s was successfully updated.";
-    String ADMIN_EDIT_SPECIALTY_ALREADY_EXIST = "Attempt to create existing specialty %s, %s.";
     String ADMIN_EDIT_UNIVERSITY_NAME = "University name was updated successfully for university %s.";
     String ADMIN_EDIT_UNIVERSITY_SPECIALTIES = "Specialties were updated successfully fo university %s.";
     String ADMIN_MAIL_COMMAND_SENT_SUCCESS = "Emails were sent successfully to applicants %s.";

@@ -1,13 +1,18 @@
-<%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Applicants rating page</title>
 </head>
+
+<%@ include file="../views/header_logout.jsp" %>
+
 <body>
 
-<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
-<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+<c:if test="${not empty requestScope.message}">
+    <h5 style="color: limegreen"><fmt:message key="${requestScope.message}" bundle="${link}"/></h5>
+</c:if>
+<c:if test="${not empty requestScope.error}">
+    <h5 style="color: red"><fmt:message key="${requestScope.error}" bundle="${link}"/></h5>
+</c:if>
 
 <a href="${pageContext.request.contextPath}/campaign/applicant/applicant_base"><fmt:message key="applicants_rating_back"
                                                                                             bundle="${link}"/></a>

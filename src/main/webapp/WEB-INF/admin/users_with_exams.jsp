@@ -1,12 +1,16 @@
-<%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Admin page to show users who had exams</title>
 </head>
+
+<%@ include file="../views/header_logout.jsp" %>
+
 <body>
 
-<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
+<c:if test="${not empty requestScope.message}">
+    <h5 style="color: limegreen"><fmt:message key="${requestScope.message}" bundle="${link}"/></h5>
+</c:if>
+
 <div>
     <ul class="navbar-nav">
 

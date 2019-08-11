@@ -1,9 +1,10 @@
-<%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Admin edit university page</title>
 </head>
+
+<%@ include file="../views/header_logout.jsp" %>
+
 <body>
 
 <a href="${pageContext.request.contextPath}/campaign/admin/show_universities?page=${requestScope.page}"><fmt:message key="edit_university_back" bundle="${link}"/></a>
@@ -11,8 +12,12 @@
 
 <h2><fmt:message key="edit_university_enter_new_data" bundle="${link}"/></h2>
 
-<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
-<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+<c:if test="${not empty requestScope.message}">
+    <h5 style="color: limegreen"><fmt:message key="${requestScope.message}" bundle="${link}"/></h5>
+</c:if>
+<c:if test="${not empty requestScope.error}">
+    <h5 style="color: red"><fmt:message key="${requestScope.error}" bundle="${link}"/></h5>
+</c:if>
 
 <div class="container" style="vertical-align: auto">
 

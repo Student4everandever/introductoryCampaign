@@ -1,5 +1,6 @@
 package ua.training.controller.command.applicant;
 
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 
@@ -20,9 +21,6 @@ public class ShowMarksCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String userLoginString = request.getParameter("login");
-        String error;
-
-        System.out.println(userLoginString);
 
         if(userLoginString == null) {
             return "/campaign/applicant/form_applicant_rating";
@@ -30,8 +28,7 @@ public class ShowMarksCommand implements Command {
 
         Optional<User> user = userService.findUserByLogin(userLoginString);
         if(!user.isPresent()) {
-            error = "Can not find user";
-            request.setAttribute("error", error);
+            request.setAttribute("error", WebPagesMessages.USER_NOT_FOUND);
             return "/campaign/applicant/form_applicants_rating";
         }
 

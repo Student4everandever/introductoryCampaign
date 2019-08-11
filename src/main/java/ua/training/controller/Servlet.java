@@ -1,9 +1,6 @@
 package ua.training.controller;
 
-import ua.training.controller.command.Command;
-import ua.training.controller.command.LoginCommand;
-import ua.training.controller.command.LogoutCommand;
-import ua.training.controller.command.RegistrationCommand;
+import ua.training.controller.command.*;
 import ua.training.controller.command.admin.*;
 import ua.training.controller.command.applicant.*;
 
@@ -34,6 +31,7 @@ public class Servlet extends HttpServlet {
         commands.put("logout", new LogoutCommand());
         commands.put("login", new LoginCommand());
         commands.put("registration", new RegistrationCommand());
+        commands.put("exception", new ExceptionCommand());
         commands.put("admin/admin_base", new AdminCommand());
         commands.put("admin/show_universities", new ShowUniversitiesCommand());
         commands.put("admin/show_specialties", new ShowSpecialtiesCommand());

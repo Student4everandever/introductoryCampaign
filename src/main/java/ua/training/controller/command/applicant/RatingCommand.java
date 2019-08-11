@@ -1,5 +1,6 @@
 package ua.training.controller.command.applicant;
 
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 
@@ -23,24 +24,16 @@ public class RatingCommand implements Command {
         final int ROW_NUMBER = 5;
         String userLogin = (String) request.getSession().getAttribute("userLogin");
         Optional<User> user = userService.findUserByLogin(userLogin);
-        String error;
 
         if(user.isPresent() && subjectService.getUserSubjects(user.get()).size() == 0) {
-            error = "You did not send request for exams";
-            request.setAttribute("error", error);
+            request.setAttribute("error", WebPagesMessages.NO_REQUEST);
             return "/campaign/applicant/applicant_base";
         }
 
-        if(user.isPresent() && user.get().getRating() == 0) {
-            error = "The ratings are not ready yet";
-            request.setAttribute("error", error);
-            return "/campaign/applicant/applicant_base";
-        }
         int numberOfPages = userService.getNumberOfPages(ROW_NUMBER);
 
-        if (numberOfPages == 0) {
-            error = "The ratings are not ready yet";
-            request.setAttribute("error", error);
+        if((user.isPresent() && user.get().getRating() == 0) || numberOfPages == 0) {
+            request.setAttribute("error", WebPagesMessages.RATINGS_ARE_NOT_READY);
             return "/campaign/applicant/applicant_base";
         }
 

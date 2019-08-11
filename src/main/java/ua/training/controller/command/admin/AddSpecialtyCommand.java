@@ -2,7 +2,8 @@ package ua.training.controller.command.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
+import ua.training.constants.WebPagesMessages;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Specialty;
 import ua.training.model.entity.Subject;
@@ -36,8 +37,6 @@ public class AddSpecialtyCommand implements Command {
         List<University> allUniversities = universityService.getAllUniversities();
         request.setAttribute("universities", allUniversities);
 
-
-
         if (title == null || title.equals("") || title_ukr == null || title_ukr.equals("") || universityString == null) {
             List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
@@ -45,17 +44,14 @@ public class AddSpecialtyCommand implements Command {
         }
         Specialty specialty = new Specialty();
         University university = universityService.getUniversityByName(universityString);
-        String message;
-        String error;
 
         List<Subject> subjects2;
         List<Subject> subjects3;
         if(!subjectsToAdd1.isPresent() || !subjectsToAdd2.isPresent()) {
 
-            error = "Please choose subjects to put";
             List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
-            request.setAttribute("error", error);
+            request.setAttribute("error", WebPagesMessages.CHOOSE_SUBJECTS_TO_PUT);
             return "/WEB-INF/admin/add_specialty.jsp";
         } else {
             subjects2 = subjectService.setSubjectsList(subjectsToAdd1.get());
@@ -64,11 +60,10 @@ public class AddSpecialtyCommand implements Command {
 
         if (!specialtyService.validateSpecialtyData(title, title_ukr)) {
 
-            error = "You input prohibited character";
             List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
-            request.setAttribute("error", error);
-            logger.warn(Messages.VALIDATION_FAIL);
+            request.setAttribute("error", WebPagesMessages.PROHIBITED_CHARACTERS);
+            logger.warn(LoggerMessages.VALIDATION_FAIL);
             return "/WEB-INF/admin/add_specialty.jsp";
         }
 
@@ -76,20 +71,18 @@ public class AddSpecialtyCommand implements Command {
         specialty.setTitle_ukr(title_ukr);
 
         if (specialtyService.specialtyExists(specialty)) {
-            error = "The specialty already in the system";
             List<Subject> specialtySubjects = subjectService.getAllButFirst();
             request.setAttribute("subjects", specialtySubjects);
-            request.setAttribute("error", error);
-            logger.warn(String.format(Messages.ADMIN_ADD_SPECIALTY_ALREADY_EXIST, specialty.getTitle(), specialty.getTitle_ukr()));
+            request.setAttribute("error", WebPagesMessages.SPECIALTY_IN_THE_SYSTEM);
+            logger.warn(String.format(LoggerMessages.ADMIN_ADD_SPECIALTY_ALREADY_EXIST, specialty.getTitle(), specialty.getTitle_ukr()));
             return "/WEB-INF/admin/add_specialty.jsp";
         }
 
         specialtyService.addSpecialty(specialty, university, subjects2, subjects3);
-        message = "Specialty was successfully added to base";
         List<Subject> specialtySubjects = subjectService.getAllButFirst();
         request.setAttribute("subjects", specialtySubjects);
-        request.setAttribute("message", message);
-        logger.info(String.format(Messages.ADMIN_ADD_SPECIALTY_SUCCESS, specialty.getTitle(), specialty.getTitle_ukr()));
+        request.setAttribute("message", WebPagesMessages.SPECIALTY_ADDED);
+        logger.info(String.format(LoggerMessages.ADMIN_ADD_SPECIALTY_SUCCESS, specialty.getTitle(), specialty.getTitle_ukr()));
         return "/WEB-INF/admin/add_specialty.jsp";
     }
 }

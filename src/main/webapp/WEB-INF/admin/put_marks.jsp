@@ -4,17 +4,24 @@
 <head>
     <title>Admin page to put marks</title>
 </head>
+
+<%@ include file="../views/header_logout.jsp" %>
+
 <body>
 
-<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
-<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+<c:if test="${not empty requestScope.message}">
+    <h5 style="color: limegreen"><fmt:message key="${requestScope.message}" bundle="${link}"/></h5>
+</c:if>
+<c:if test="${not empty requestScope.error}">
+    <h5 style="color: red"><fmt:message key="${requestScope.error}" bundle="${link}"/></h5>
+</c:if>
 
 <div>
     <ul class="navbar-nav">
 
         <li class="nav-item active">
             <a href="${pageContext.request.contextPath}/campaign/admin/admin_base"><fmt:message
-                    key="put_marks_enter_marks" bundle="${link}"/></a>
+                    key="put_marks_admin_main" bundle="${link}"/></a>
         </li>
 
     </ul>

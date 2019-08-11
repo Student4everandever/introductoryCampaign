@@ -2,7 +2,7 @@ package ua.training.model.dao.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
 import ua.training.controller.exceptions.LoginAlreadyExistException;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.cp.ConnectionPoolHolder;
@@ -43,7 +43,7 @@ public class JDBCUserImpl implements UserDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new LoginAlreadyExistException(e.getMessage(), user.getLogin(), user.getEmail());
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_USER_CREATION_FAIL, user.getEmail()));
+            logger.error(String.format(LoggerMessages.JDBC_USER_CREATION_FAIL, user.getEmail()));
             throw new RuntimeException(e);
         }
     }
@@ -62,7 +62,7 @@ public class JDBCUserImpl implements UserDao {
             }
             return new ArrayList<>(uniqueUsers.values());
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_USER_FIND_ALL_APPLICANTS_FAIL);
+            logger.error(LoggerMessages.JDBC_USER_FIND_ALL_APPLICANTS_FAIL);
             throw new RuntimeException(e);
         }
     }
@@ -80,7 +80,7 @@ public class JDBCUserImpl implements UserDao {
                 result = Optional.of(userMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_USER_FINDING_FAIL, login));
+            logger.error(String.format(LoggerMessages.JDBC_USER_FINDING_FAIL, login));
             throw new RuntimeException(e);
         }
         return result;
@@ -101,7 +101,7 @@ public class JDBCUserImpl implements UserDao {
             }
             return uniqueUsers;
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_USER_FINDING_WITH_EXAMS_FAIL);
+            logger.error(LoggerMessages.JDBC_USER_FINDING_WITH_EXAMS_FAIL);
             throw new RuntimeException(e);
         }
     }
@@ -128,7 +128,7 @@ public class JDBCUserImpl implements UserDao {
 
             connection.commit();
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_USER_PUTTING_MARKS_FAIL, user));
+            logger.error(String.format(LoggerMessages.JDBC_USER_PUTTING_MARKS_FAIL, user));
             throw new RuntimeException(e);
         }
     }
@@ -151,7 +151,7 @@ public class JDBCUserImpl implements UserDao {
             }
             connection.commit();
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_USER_FINDING_USER_MARKS_FAIL, user));
+            logger.error(String.format(LoggerMessages.JDBC_USER_FINDING_USER_MARKS_FAIL, user));
             throw new RuntimeException(e);
         }
         return result;
@@ -165,7 +165,7 @@ public class JDBCUserImpl implements UserDao {
                      "user_find_with_rating"))) {
             return getUsers(result, ps);
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_USER_FINDING_WITH_RATING_FAIL);
+            logger.error(LoggerMessages.JDBC_USER_FINDING_WITH_RATING_FAIL);
             throw new RuntimeException(e);
         }
     }
@@ -195,7 +195,7 @@ public class JDBCUserImpl implements UserDao {
             }
             return result;
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_USER_GET_PER_PAGE, pageNumber, rows));
+            logger.error(String.format(LoggerMessages.JDBC_USER_GET_PER_PAGE, pageNumber, rows));
             throw new RuntimeException(e);
         }
     }
@@ -214,7 +214,7 @@ public class JDBCUserImpl implements UserDao {
                 result = Optional.of(userMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_USER_FINDING_BY_LOGIN_OR_EMAIL_FAIL, login, eMail));
+            logger.error(String.format(LoggerMessages.JDBC_USER_FINDING_BY_LOGIN_OR_EMAIL_FAIL, login, eMail));
             throw new RuntimeException(e);
         }
         return result.isPresent();
@@ -230,7 +230,7 @@ public class JDBCUserImpl implements UserDao {
             ps.setInt(1, rating);
             return getUsers(result, ps);
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_USER_FIND_WITH_REQUIRED_RATING_FAIL);
+            logger.error(LoggerMessages.JDBC_USER_FIND_WITH_REQUIRED_RATING_FAIL);
             throw new RuntimeException(e);
         }
     }

@@ -1,9 +1,10 @@
-<%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Applicant Page</title>
 </head>
+
+<%@ include file="../views/header_logout.jsp" %>
+
 <body>
 
 <h2><fmt:message key="applicant_base_hello" bundle="${link}"/></h2>
@@ -21,8 +22,12 @@
     </ul>
 </div>
 
-<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
-<h5 style="color: limegreen"><c:out value="${requestScope.message}"/></h5>
+<c:if test="${not empty requestScope.message}">
+    <h5 style="color: limegreen"><fmt:message key="${requestScope.message}" bundle="${link}"/></h5>
+</c:if>
+<c:if test="${not empty requestScope.error}">
+    <h5 style="color: red"><fmt:message key="${requestScope.error}" bundle="${link}"/></h5>
+</c:if>
 
 <!-- Footer -->
 <%@ include file="../views/footer.jsp" %>

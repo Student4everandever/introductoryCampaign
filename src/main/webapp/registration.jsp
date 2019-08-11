@@ -2,16 +2,15 @@
 <head>
     <title>Registration Page</title>
 </head>
-<%@ include file="./WEB-INF/views/header_login.jsp"%>
 
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle var="link" basename="lang" scope="session" />
+<%@ include file="./WEB-INF/views/header_login.jsp"%>
 
 <body>
 <h2><fmt:message key="registration_page" bundle="${link}"/></h2>
-<br/>
-<h5 style="color: red"><c:out value="${requestScope.error}"/></h5>
+
+<c:if test="${not empty requestScope.error}">
+    <h5 style="color: red"><fmt:message key="${requestScope.error}" bundle="${link}"/></h5>
+</c:if>
 
 <div class="container" style="vertical-align: auto">
 

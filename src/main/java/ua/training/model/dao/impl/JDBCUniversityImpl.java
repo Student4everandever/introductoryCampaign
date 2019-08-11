@@ -2,7 +2,7 @@ package ua.training.model.dao.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.constants.Messages;
+import ua.training.constants.LoggerMessages;
 import ua.training.model.dao.UniversityDao;
 import ua.training.model.dao.cp.ConnectionPoolHolder;
 import ua.training.model.dao.mapper.UniversityMapper;
@@ -39,7 +39,7 @@ public class JDBCUniversityImpl implements UniversityDao {
             ps.setString(2, entity.getName_ukr());
             ps.executeUpdate();
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_CREATION_FAIL, entity.getName(), entity.getName_ukr()));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_CREATION_FAIL, entity.getName(), entity.getName_ukr()));
             throw new RuntimeException(e);
         }
     }
@@ -58,7 +58,7 @@ public class JDBCUniversityImpl implements UniversityDao {
                 result = universityMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_FIND_BY_ID_FAIL, id));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_FIND_BY_ID_FAIL, id));
             throw new RuntimeException(e);
         }
         return result;
@@ -77,7 +77,7 @@ public class JDBCUniversityImpl implements UniversityDao {
                 result.add(university);
             }
         } catch (SQLException e) {
-            logger.error(Messages.JDBC_UNIVERSITY_FIND_ALL_FAIL);
+            logger.error(LoggerMessages.JDBC_UNIVERSITY_FIND_ALL_FAIL);
             throw new RuntimeException(e);
         }
         return result;
@@ -94,7 +94,7 @@ public class JDBCUniversityImpl implements UniversityDao {
             ps.setInt(3, university.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_UPDATE_FAIL, university));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_UPDATE_FAIL, university));
             throw new RuntimeException(e);
         }
     }
@@ -119,7 +119,7 @@ public class JDBCUniversityImpl implements UniversityDao {
                 int[] count = insertQuery.executeBatch();
             connection.commit();
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_UPDATE_SPECIALTIES_FAIL, university));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_UPDATE_SPECIALTIES_FAIL, university));
             throw new RuntimeException(e);
         }
     }
@@ -138,7 +138,7 @@ public class JDBCUniversityImpl implements UniversityDao {
                 university = universityMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_FIND_BY_STRING_NAME_FAIL, universityString));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_FIND_BY_STRING_NAME_FAIL, universityString));
             throw new RuntimeException(e);
         }
         return university;
@@ -160,7 +160,7 @@ public class JDBCUniversityImpl implements UniversityDao {
             }
             return result;
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_FIND_PER_PAGE_FAIL, pageNumber, rows));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_FIND_PER_PAGE_FAIL, pageNumber, rows));
             throw new RuntimeException(e);
         }
     }
@@ -175,7 +175,7 @@ public class JDBCUniversityImpl implements UniversityDao {
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_DELETE_FAIL, id));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_DELETE_FAIL, id));
             throw new RuntimeException(e);
         }
     }
@@ -194,7 +194,7 @@ public class JDBCUniversityImpl implements UniversityDao {
                 university = Optional.ofNullable(universityMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
-            logger.error(String.format(Messages.JDBC_UNIVERSITY_FIND_BY_NAME_FAIL, entity.getName(), entity.getName_ukr()));
+            logger.error(String.format(LoggerMessages.JDBC_UNIVERSITY_FIND_BY_NAME_FAIL, entity.getName(), entity.getName_ukr()));
             throw new RuntimeException(e);
         }
         return university;
