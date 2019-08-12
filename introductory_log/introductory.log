@@ -1,0 +1,136 @@
+2019-08-10 15:42:42.474 [http-nio-8080-exec-6] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-10 15:43:26.810 [http-nio-8080-exec-3] INFO  ua.training.controller.command.admin.EditUniversitySpecialties - Specialties were updated successfully fo university University{id=1, name='National Technical University of Ukraine ”Igor Sikorsky Kyiv Polytechnic Institute”', name_ukr='Національний технічний університет України «Київський політехнічний інститут»'}.
+2019-08-10 15:43:55.191 [http-nio-8080-exec-10] INFO  ua.training.controller.command.admin.PutMarksCommand - Marks were entered successfully for applicant User{id=32, role=APPLICANT, name='Don', name_ukr='Дон', lastName='Rot', lastName_ukr='Рот', email='donrot@gmail.com', login='DonR', password='289dff07669d7a23de0ef88d2f7129e7', rating=0, universityId=0}.
+2019-08-10 15:44:20.861 [http-nio-8080-exec-4] INFO  ua.training.controller.command.admin.PutMarksCommand - Marks were entered successfully for applicant User{id=34, role=APPLICANT, name='Ted', name_ukr='Тед', lastName='Talk - Back', lastName_ukr='Ток - Бек', email='tedtalk@gmail.com', login='TedT', password='289dff07669d7a23de0ef88d2f7129e7', rating=0, universityId=0}.
+2019-08-10 18:09:43.978 [http-nio-8080-exec-5] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-10 18:10:39.968 [http-nio-8080-exec-1] INFO  ua.training.controller.command.admin.PutMarksCommand - Marks were entered successfully for applicant User{id=35, role=APPLICANT, name='Vlad', name_ukr='Влад', lastName='Stan', lastName_ukr='Стен', email='vladstan@gmail.com', login='VladS', password='289dff07669d7a23de0ef88d2f7129e7', rating=0, universityId=0}.
+2019-08-10 18:12:19.714 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-10 18:13:55.861 [http-nio-8080-exec-7] INFO  ua.training.controller.command.LogoutCommand - Admin logged out.
+2019-08-10 23:07:08.512 [http-nio-8080-exec-10] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: csdc.
+2019-08-10 23:13:49.771 [http-nio-8080-exec-8] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: dfvdfv.
+2019-08-10 23:15:12.782 [http-nio-8080-exec-8] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: njklf.
+2019-08-10 23:15:30.367 [http-nio-8080-exec-3] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: vndkjvn.
+2019-08-10 23:16:46.318 [http-nio-8080-exec-10] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: lkml.
+2019-08-10 23:17:03.036 [http-nio-8080-exec-4] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: lkl.
+2019-08-10 23:24:21.917 [http-nio-8080-exec-9] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: scsc.
+2019-08-10 23:24:34.186 [http-nio-8080-exec-4] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: vdvdv.
+2019-08-10 23:25:37.301 [http-nio-8080-exec-9] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: Jkjnv.
+2019-08-10 23:25:52.746 [http-nio-8080-exec-4] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: njkdlfv.
+2019-08-11 00:18:06.325 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 00:18:14.875 [http-nio-8080-exec-3] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:18:41.371 [http-nio-8080-exec-6] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:22:23.121 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 00:22:29.685 [http-nio-8080-exec-3] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:22:38.786 [http-nio-8080-exec-8] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:39:55.273 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 00:40:02.837 [http-nio-8080-exec-4] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:43:14.096 [http-nio-8080-exec-9] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:44:22.165 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 00:44:29.119 [http-nio-8080-exec-3] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:44:40.848 [http-nio-8080-exec-8] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:44:55.351 [http-nio-8080-exec-3] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:47:18.138 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 00:47:23.850 [http-nio-8080-exec-3] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:47:52.856 [http-nio-8080-exec-9] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:48:42.088 [http-nio-8080-exec-1] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:48:53.982 [http-nio-8080-exec-4] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:49:05.983 [http-nio-8080-exec-6] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:49:19.845 [http-nio-8080-exec-8] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:49:25.699 [http-nio-8080-exec-9] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:50:37.671 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 00:50:45.191 [http-nio-8080-exec-4] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:50:52.148 [http-nio-8080-exec-2] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 00:51:00.321 [http-nio-8080-exec-6] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 01:51:49.257 [http-nio-8080-exec-2] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: мам.
+2019-08-11 01:52:04.913 [http-nio-8080-exec-5] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: Фвьшт.
+2019-08-11 01:52:10.752 [http-nio-8080-exec-6] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 01:52:18.675 [http-nio-8080-exec-9] WARN  ua.training.controller.command.LoginCommand - Logged user ADMIN Admin tried to sign up.
+2019-08-11 01:53:09.636 [http-nio-8080-exec-7] ERROR ua.training.controller.command.RegistrationCommand - Registration fail. Login dfvdfvdfv already exists or data invalid.
+2019-08-11 01:53:42.882 [http-nio-8080-exec-8] ERROR ua.training.controller.command.RegistrationCommand - Registration fail. Login Alex already exists or data invalid.
+2019-08-11 01:53:58.566 [http-nio-8080-exec-9] ERROR ua.training.controller.command.RegistrationCommand - Registration fail. Login dfvdfvdfv already exists or data invalid.
+2019-08-11 01:54:16.450 [http-nio-8080-exec-2] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 01:58:01.145 [http-nio-8080-exec-9] WARN  ua.training.controller.command.admin.AddSubjectCommand - Wrong symbols enter attempt.
+2019-08-11 02:00:15.848 [http-nio-8080-exec-9] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 02:00:32.786 [http-nio-8080-exec-4] WARN  ua.training.controller.command.admin.AddSubjectCommand - Attempt to create existing subject Maths, Математика.
+2019-08-11 02:01:44.742 [http-nio-8080-exec-3] WARN  ua.training.controller.command.admin.AddUniversityCommand - Attempt to create existing university Kyiv National University of Technologies and Design, Київський національний університет технологій та дизайну.
+2019-08-11 02:04:02.770 [http-nio-8080-exec-8] INFO  ua.training.controller.command.admin.EditUniversitySpecialties - Specialties were updated successfully fo university University{id=1, name='National Technical University of Ukraine ”Igor Sikorsky Kyiv Polytechnic Institute”', name_ukr='Національний технічний університет України «Київський політехнічний інститут»'}.
+2019-08-11 02:04:43.749 [http-nio-8080-exec-4] INFO  ua.training.controller.command.admin.MailsCommand - Emails were sent successfully to applicants [kidovalex@gmail.com, ukrposhta@bigmir.net, donrot@gmail.com].
+2019-08-11 02:05:21.285 [http-nio-8080-exec-10] WARN  ua.training.controller.command.admin.PutMarksCommand - Wrong symbols enter attempt.
+2019-08-11 02:09:43.957 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 02:10:38.997 [http-nio-8080-exec-9] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 02:12:32.247 [http-nio-8080-exec-6] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 02:13:39.559 [http-nio-8080-exec-10] INFO  ua.training.controller.command.LogoutCommand - Admin logged out.
+2019-08-11 02:13:47.597 [http-nio-8080-exec-5] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: Alex.
+2019-08-11 02:13:53.726 [http-nio-8080-exec-6] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alex logged successfully.
+2019-08-11 02:21:07.893 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alex logged successfully.
+2019-08-11 02:22:14.974 [http-nio-8080-exec-8] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: Admin.
+2019-08-11 02:22:21.181 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alex logged successfully.
+2019-08-11 02:26:12.308 [http-nio-8080-exec-9] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alex logged successfully.
+2019-08-11 02:30:22.841 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - APPLICANT AlexK logged successfully.
+2019-08-11 02:30:22.857 [http-nio-8080-exec-3] ERROR ua.training.controller.command.applicant.ChooseSpecialtyCommand - User AlexK tried to register second time.
+2019-08-11 02:31:49.262 [http-nio-8080-exec-3] ERROR ua.training.controller.command.applicant.ChooseSpecialtyCommand - User AlexK tried to register second time.
+2019-08-11 02:31:53.701 [http-nio-8080-exec-4] INFO  ua.training.controller.command.LogoutCommand - AlexK logged out.
+2019-08-11 16:52:39.387 [http-nio-8080-exec-5] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 16:56:32.687 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 17:09:24.021 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 17:09:43.600 [http-nio-8080-exec-1] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 17:10:04.863 [http-nio-8080-exec-6] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 17:10:57.730 [http-nio-8080-exec-3] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Management, Менеджмент was successfully updated.
+2019-08-11 17:12:08.659 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 17:13:59.393 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 17:14:44.235 [http-nio-8080-exec-6] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-11 21:37:36.204 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 21:41:02.646 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 21:44:53.957 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 21:55:21.964 [http-nio-8080-exec-9] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 22:00:29.030 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 22:03:16.657 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-11 22:04:12.344 [http-nio-8080-exec-9] WARN  ua.training.controller.command.LoginCommand - Logged user ADMIN Admin tried to sign up.
+2019-08-12 01:31:36.384 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 01:33:34.690 [http-nio-8080-exec-10] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-12 01:33:58.709 [http-nio-8080-exec-9] INFO  ua.training.controller.command.admin.EditUniversitySpecialties - Specialties were updated successfully fo university University{id=1, name='National Technical University of Ukraine ”Igor Sikorsky Kyiv Polytechnic Institute”', name_ukr='Національний технічний університет України «Київський політехнічний інститут»'}.
+2019-08-12 01:37:04.807 [http-nio-8080-exec-10] INFO  ua.training.controller.command.LoginCommand - APPLICANT AlexK logged successfully.
+2019-08-12 01:37:04.830 [http-nio-8080-exec-9] ERROR ua.training.controller.command.applicant.ChooseSpecialtyCommand - User AlexK tried to register second time.
+2019-08-12 01:38:08.613 [http-nio-8080-exec-10] ERROR ua.training.controller.command.applicant.ChooseSpecialtyCommand - User AlexK tried to register second time.
+2019-08-12 01:38:11.571 [http-nio-8080-exec-9] INFO  ua.training.controller.command.LogoutCommand - AlexK logged out.
+2019-08-12 01:38:29.286 [http-nio-8080-exec-6] ERROR ua.training.controller.command.LoginCommand - Sign in fail with login: Alex.
+2019-08-12 01:38:35.385 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alex logged successfully.
+2019-08-12 01:39:09.038 [http-nio-8080-exec-7] INFO  ua.training.controller.command.LogoutCommand - Alex logged out.
+2019-08-12 01:39:16.581 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alex logged successfully.
+2019-08-12 01:40:22.352 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LogoutCommand - Alex logged out.
+2019-08-12 01:40:37.348 [http-nio-8080-exec-10] INFO  ua.training.controller.command.LogoutCommand - null logged out.
+2019-08-12 09:47:56.030 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 09:51:25.270 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:14:43.874 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:17:51.655 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:36:33.935 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:38:19.204 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:46:15.515 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:47:55.462 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:50:49.019 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:52:46.129 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:54:25.153 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:56:45.075 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 10:59:00.392 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:00:38.000 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:05:28.183 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:05:45.508 [http-nio-8080-exec-10] INFO  ua.training.controller.command.admin.EditSpecialtyCommand - Specialty Economic Cybernetics, Економічна кібернетика was successfully updated.
+2019-08-12 11:08:16.701 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:14:21.139 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:15:52.016 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:24:37.399 [http-nio-8080-exec-9] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:28:42.829 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:37:42.487 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:43:21.525 [http-nio-8080-exec-2] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:46:55.639 [http-nio-8080-exec-4] INFO  ua.training.controller.command.LogoutCommand - Admin logged out.
+2019-08-12 11:47:22.981 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LoginCommand - ADMIN Admin logged successfully.
+2019-08-12 11:50:38.260 [http-nio-8080-exec-7] INFO  ua.training.controller.command.LogoutCommand - Admin logged out.
+2019-08-12 11:50:45.056 [http-nio-8080-exec-10] INFO  ua.training.controller.command.LogoutCommand - null logged out.
+2019-08-12 11:51:03.446 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - APPLICANT AlexK logged successfully.
+2019-08-12 11:51:03.471 [http-nio-8080-exec-4] ERROR ua.training.controller.command.applicant.ChooseSpecialtyCommand - User AlexK tried to register second time.
+2019-08-12 11:53:23.835 [http-nio-8080-exec-1] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alexk logged successfully.
+2019-08-12 11:53:23.857 [http-nio-8080-exec-3] ERROR ua.training.controller.command.applicant.ChooseSpecialtyCommand - User AlexK tried to register second time.
+2019-08-12 11:53:54.956 [http-nio-8080-exec-6] ERROR ua.training.controller.command.applicant.ChooseSpecialtyCommand - User AlexK tried to register second time.
+2019-08-12 11:53:59.622 [http-nio-8080-exec-8] INFO  ua.training.controller.command.LogoutCommand - AlexK logged out.
+2019-08-12 11:54:06.046 [http-nio-8080-exec-3] INFO  ua.training.controller.command.LoginCommand - APPLICANT Alex logged successfully.
+2019-08-12 11:54:52.324 [http-nio-8080-exec-4] INFO  ua.training.controller.command.LogoutCommand - Alex logged out.

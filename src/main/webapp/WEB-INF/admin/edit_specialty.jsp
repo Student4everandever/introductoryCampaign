@@ -62,20 +62,20 @@
                                                             bundle="${link}"/>
                             <br/>
                             <c:forEach var="exam" items="${requestScope.exam2}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <c:out value="${exam.name_ukr}"/>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <c:out value="${exam.name}"/>
                                 </c:if>
                             </c:forEach>
                         </label>
                         <select class="custom-select" multiple name="subject_2" id="subject_2">
                             <c:forEach var="subject" items="${requestScope.subjects}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>
@@ -87,20 +87,20 @@
                                                             bundle="${link}"/>
                             <br/>
                             <c:forEach var="exams" items="${requestScope.exam3}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <c:out value="${exams.name_ukr}"/>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <c:out value="${exams.name}"/>
                                 </c:if>
                             </c:forEach>
                         </label>
                         <select class="custom-select" multiple name="subject_3" id="subject_3">
                             <c:forEach var="subject" items="${requestScope.subjects}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>
