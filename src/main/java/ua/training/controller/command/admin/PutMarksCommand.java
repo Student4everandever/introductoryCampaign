@@ -35,8 +35,15 @@ public class PutMarksCommand implements Command {
         String mark3 = request.getParameter("mark3");
         Optional<User> user;
 
-        if(userLogin == null || !(user = userService.findUserByLogin(userLogin)).isPresent()) {
-            return "/login.jsp";
+        if(userLogin == null) {
+            userLogin = (String) request.getSession().getAttribute("user");
+        }
+
+        request.getSession().setAttribute("user", userLogin);
+
+        if( !(user = userService.findUserByLogin(userLogin)).isPresent()) {
+            request.setAttribute("error", WebPagesMessages.USER_NOT_FOUND);
+            return "/WEB-INF/admin/users_with_exams.jsp";
         }
 
         if((mark1 == null || mark1.equals("") ||

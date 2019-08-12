@@ -5,8 +5,6 @@
 </head>
 <%@ include file="./WEB-INF/views/header_login.jsp" %>
 
-<fmt:setBundle var="link" basename="lang" scope="session"/>
-
 <body>
 <header class="main">
     <div class=" text-center col-lg-11 my-5  ml-5">

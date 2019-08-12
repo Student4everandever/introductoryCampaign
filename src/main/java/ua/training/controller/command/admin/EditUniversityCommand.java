@@ -8,6 +8,7 @@ import ua.training.controller.command.Command;
 import ua.training.model.entity.University;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 /**
  * Class to resolve edit university name request
@@ -25,13 +26,15 @@ public class EditUniversityCommand implements Command {
     public String execute(HttpServletRequest request) {
 
         String idString = request.getParameter("id");
-        int page = Integer.parseInt(request.getParameter("page"));
+        int page = Integer.parseInt(Optional.ofNullable(request.getParameter("page")).orElse("1"));
         String name = request.getParameter("name");
         String name_ukr = request.getParameter("name_ukr");
 
         if(idString == null) {
-            return "redirect:/campaign/admin/show_universities";
+            idString = (String) request.getSession().getAttribute("universityId");
         }
+
+        request.getSession().setAttribute("universityId", idString);
 
         int id = Integer.parseInt(idString);
         University university = universityService.getUniversityById(id);

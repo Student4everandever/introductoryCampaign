@@ -36,10 +36,10 @@
                                                              bundle="${link}"/></label>
                         <select class="custom-select" name="university" id="university" required>
                             <c:forEach var="university" items="${requestScope.universities}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <option value="${university.name_ukr}">${university.name_ukr}</option>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <option value="${university.name}">${university.name}</option>
                                 </c:if>
                             </c:forEach>
@@ -51,10 +51,10 @@
                                                                 bundle="${link}"/></label>
                             <select class="custom-select" name="specialty" id="specialty" required>
                                 <c:forEach var="specialty" items="${requestScope.specialties}">
-                                    <c:if test="${language != 'en'}">
+                                    <c:if test="${sessionScope.language != 'en'}">
                                         <option value="${specialty.title_ukr}">${specialty.title_ukr}</option>
                                     </c:if>
-                                    <c:if test="${language == 'en'}">
+                                    <c:if test="${sessionScope.language == 'en'}">
                                         <option value="${specialty.title}">${specialty.title}</option>
                                     </c:if>
                                 </c:forEach>
@@ -76,10 +76,10 @@
                                                                 bundle="${link}"/></label>
                             <select class="custom-select" multiple name="subject_2" id="subject_2" required>
                                 <c:forEach var="subject" items="${requestScope.subjects2}">
-                                    <c:if test="${language != 'en'}">
+                                    <c:if test="${sessionScope.language != 'en'}">
                                         <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                     </c:if>
-                                    <c:if test="${language == 'en'}">
+                                    <c:if test="${sessionScope.language == 'en'}">
                                         <option value="${subject.name}">${subject.name}</option>
                                     </c:if>
                                 </c:forEach>
@@ -91,10 +91,10 @@
                                                                 bundle="${link}"/></label>
                             <select class="custom-select" multiple name="subject_3" id="subject_3" required>
                                 <c:forEach var="subject" items="${requestScope.subjects3}">
-                                    <c:if test="${language != 'en'}">
+                                    <c:if test="${sessionScope.language != 'en'}">
                                         <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                     </c:if>
-                                    <c:if test="${language == 'en'}">
+                                    <c:if test="${sessionScope.language == 'en'}">
                                         <option value="${subject.name}">${subject.name}</option>
                                     </c:if>
                                 </c:forEach>

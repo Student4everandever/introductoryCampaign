@@ -30,14 +30,16 @@ public class EditUniversitySpecialties implements Command {
     public String execute(HttpServletRequest request) {
 
         String idString = request.getParameter("id");
-        int page = Integer.parseInt(request.getParameter("page"));
+        int page = Integer.parseInt(Optional.ofNullable(request.getParameter("page")).orElse("1"));
 
         Optional<String[]> specialtiesToAdd = Optional.ofNullable(request.getParameterValues("add_specialty"));
         Optional<String[]> specialtiesToRemove = Optional.ofNullable(request.getParameterValues("remove_specialty"));
 
-        if (idString == null) {
-            return "redirect:/campaign/admin/show_universities";
+        if(idString == null) {
+            idString = (String) request.getSession().getAttribute("universityId");
         }
+
+        request.getSession().setAttribute("universityId", idString);
 
         int id = Integer.parseInt(idString);
         University university = universityService.getUniversityById(id);

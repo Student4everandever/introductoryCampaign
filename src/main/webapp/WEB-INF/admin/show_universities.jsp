@@ -45,10 +45,10 @@
         <c:forEach var="university" items="${requestScope.allUniversitiesByPage}">
             <tr>
                 <td>
-                    <c:if test="${language != 'en'}">
+                    <c:if test="${sessionScope.language != 'en'}">
                         <c:out value="${university.name_ukr}"/>
                     </c:if>
-                    <c:if test="${language == 'en'}">
+                    <c:if test="${sessionScope.language == 'en'}">
                         <c:out value="${university.name}"/>
                     </c:if>
                 </td>

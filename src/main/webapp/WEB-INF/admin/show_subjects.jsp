@@ -38,10 +38,10 @@
         <c:forEach var="subject" items="${requestScope.subjects}">
             <tr style="text-align: center">
                 <td>
-                    <c:if test="${language != 'en'}">
+                    <c:if test="${sessionScope.language != 'en'}">
                         <c:out value="${subject.name_ukr}"/>
                     </c:if>
-                    <c:if test="${language == 'en'}">
+                    <c:if test="${sessionScope.language == 'en'}">
                         <c:out value="${subject.name}"/>
                     </c:if>
                 </td>

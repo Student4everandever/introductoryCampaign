@@ -1,3 +1,4 @@
+<html>
 <head>
     <title>Admin page to show specialties</title>
 </head>
@@ -39,10 +40,10 @@
         <c:forEach var="specialty" items="${requestScope.allSpecialtiesByPage}">
             <tr>
                 <td>
-                    <c:if test="${language != 'en'}">
+                    <c:if test="${sessionScope.language != 'en'}">
                         <c:out value="${specialty.title_ukr}"/>
                     </c:if>
-                    <c:if test="${language == 'en'}">
+                    <c:if test="${sessionScope.language == 'en'}">
                         <c:out value="${specialty.title}"/>
                     </c:if>
                 </td>

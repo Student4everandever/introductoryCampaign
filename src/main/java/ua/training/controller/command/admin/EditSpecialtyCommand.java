@@ -36,7 +36,21 @@ public class EditSpecialtyCommand implements Command {
         String error = "";
 
         if(idString == null) {
-            return "redirect:/campaign/admin/show_specialties";
+            idString = (String) request.getSession().getAttribute("specialtyId");
+        }
+
+        request.getSession().setAttribute("specialtyId", idString);
+
+        int id = Integer.parseInt(idString);
+        Specialty specialty = specialtyService.getSpecialtyById(id);
+
+        List<Subject> exam2 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, 2);
+        List<Subject> exam3 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, 3);
+
+        if ((title == null || title_ukr == null)
+                || request.getParameter("submitted") == null) {
+            setPage(request, specialty, exam2, exam3);
+            return "/WEB-INF/admin/edit_specialty.jsp";
         }
 
         if(title.equals("") && title_ukr.equals("")
@@ -44,11 +58,6 @@ public class EditSpecialtyCommand implements Command {
                 && request.getParameter("submitted") != null) {
             error = WebPagesMessages.CHOOSE_NEW_DATA;
         }
-        int id = Integer.parseInt(idString);
-        Specialty specialty = specialtyService.getSpecialtyById(id);
-
-        List<Subject> exam2 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, 2);
-        List<Subject> exam3 = subjectService.getSubjectsBySpecialtyAndNumber(specialty, 3);
 
         if(title.equals("")) {
             title = specialty.getTitle();
@@ -58,15 +67,10 @@ public class EditSpecialtyCommand implements Command {
             title_ukr = specialty.getTitle_ukr();
         }
 
-
-        if ((title == null || title_ukr == null)
-                || request.getParameter("submitted") == null) {
-            setPage(request, specialty, exam2, exam3);
-            return "/WEB-INF/admin/edit_specialty.jsp";
-        }
-
         specialty.setTitle(title);
         specialty.setTitle_ukr(title_ukr);
+
+        System.out.println(request.getSession().getAttribute("specialtyId"));
 
         if (!specialtyService.validateSpecialtyData(title, title_ukr)) {
 
@@ -114,9 +118,9 @@ public class EditSpecialtyCommand implements Command {
     }
 
     private void setPage(HttpServletRequest request, Specialty specialty, List<Subject> exam2, List<Subject> exam3) {
-        List<Subject> specialtySubjects = subjectService.getAllButFirst();
+
         request.setAttribute("specialty", specialty);
-        request.setAttribute("subjects", specialtySubjects);
+        request.setAttribute("subjects", subjectService.getAllButFirst());
         request.setAttribute("exam2", exam2);
         request.setAttribute("exam3", exam3);
     }

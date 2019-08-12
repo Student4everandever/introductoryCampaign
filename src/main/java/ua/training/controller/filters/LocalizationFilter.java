@@ -34,12 +34,12 @@ public class LocalizationFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
 
-        String lang = servletRequest.getParameter("locale");
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
 
-        if (lang != null) {
-            HttpServletRequest request = (HttpServletRequest) servletRequest;
-            request.getServletContext().setAttribute("language", lang);
+        if (req.getParameter("locale") != null) {
+            req.getSession().setAttribute("language", req.getParameter("locale"));
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

@@ -23,8 +23,10 @@ public class ShowMarksCommand implements Command {
         String userLoginString = request.getParameter("login");
 
         if(userLoginString == null) {
-            return "/campaign/applicant/form_applicant_rating";
+            userLoginString = (String) request.getSession().getAttribute("user");
         }
+
+        request.getSession().setAttribute("user", userLoginString);
 
         Optional<User> user = userService.findUserByLogin(userLoginString);
         if(!user.isPresent()) {

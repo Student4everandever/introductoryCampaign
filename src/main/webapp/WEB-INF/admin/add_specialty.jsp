@@ -5,8 +5,6 @@
 
 <%@ include file="../views/header_logout.jsp" %>
 
-<%--<fmt:setBundle var="link" basename="lang" scope="session"/>--%>
-
 <body>
 
 <a href="${pageContext.request.contextPath}/campaign/admin/show_specialties"><fmt:message key="add_specialty_back"
@@ -36,10 +34,10 @@
                                                          bundle="${link}"/></label>
                     <select class="custom-select" name="university" id="university" required>
                         <c:forEach var="university" items="${requestScope.universities}">
-                            <c:if test="${language != 'en'}">
+                            <c:if test="${sessionScope.language != 'en'}">
                                 <option value="${university.name_ukr}">${university.name_ukr}</option>
                             </c:if>
-                            <c:if test="${language == 'en'}">
+                            <c:if test="${sessionScope.language == 'en'}">
                                 <option value="${university.name}">${university.name}</option>
                             </c:if>
                         </c:forEach>
@@ -83,10 +81,10 @@
                                                             bundle="${link}"/></label>
                         <select class="custom-select" multiple name="subject_2" id="subject_2">
                             <c:forEach var="subject" items="${requestScope.subjects}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>
@@ -99,10 +97,10 @@
                                                             bundle="${link}"/></label>
                         <select class="custom-select" multiple name="subject_3" id="subject_3">
                             <c:forEach var="subject" items="${requestScope.subjects}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>

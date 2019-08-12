@@ -8,6 +8,7 @@ import ua.training.controller.command.Command;
 import ua.training.model.entity.University;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 /**
  * Class to resolve adding university request
@@ -24,7 +25,7 @@ public class AddUniversityCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
-        int page = Integer.parseInt(request.getParameter("page"));
+        int page = Integer.parseInt(Optional.ofNullable(request.getParameter("page")).orElse("1"));
         String name = request.getParameter("name");
         String name_ukr = request.getParameter("name_ukr");
 

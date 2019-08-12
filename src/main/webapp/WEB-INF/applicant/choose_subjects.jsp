@@ -25,18 +25,18 @@
 
     <div class="row ">
         <div class="col-md-12 mb-3 mt-6">
-            <c:if test="${language != 'en'}">
+            <c:if test="${sessionScope.language != 'en'}">
                 <h3>${requestScope.university.name_ukr}</h3>
             </c:if>
-            <c:if test="${language == 'en'}">
+            <c:if test="${sessionScope.language == 'en'}">
                 <h3>${requestScope.university.name}</h3>
             </c:if>
         </div>
         <div class="col-md-12 mb-3 mt-6">
-            <c:if test="${language != 'en'}">
+            <c:if test="${sessionScope.language != 'en'}">
                 <h4>${requestScope.specialty.title_ukr}</h4>
             </c:if>
-            <c:if test="${language == 'en'}">
+            <c:if test="${sessionScope.language == 'en'}">
                 <h4>${requestScope.specialty.title}</h4>
             </c:if>
         </div>
@@ -62,10 +62,10 @@
                                                             bundle="${link}"/></label>
                         <select class="custom-select" name="subject_2" id="subject_2" required>
                             <c:forEach var="subject" items="${requestScope.subjects2}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>
@@ -77,10 +77,10 @@
                                                             bundle="${link}"/></label>
                         <select class="custom-select" name="subject_3" id="subject_3" required>
                             <c:forEach var="subject" items="${requestScope.subjects3}">
-                                <c:if test="${language != 'en'}">
+                                <c:if test="${sessionScope.language != 'en'}">
                                     <option value="${subject.name_ukr}">${subject.name_ukr}</option>
                                 </c:if>
-                                <c:if test="${language == 'en'}">
+                                <c:if test="${sessionScope.language == 'en'}">
                                     <option value="${subject.name}">${subject.name}</option>
                                 </c:if>
                             </c:forEach>

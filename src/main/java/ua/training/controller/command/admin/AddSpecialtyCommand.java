@@ -34,6 +34,13 @@ public class AddSpecialtyCommand implements Command {
         Optional<String[]> subjectsToAdd1 = Optional.ofNullable(request.getParameterValues("subject_2"));
         Optional<String[]> subjectsToAdd2 = Optional.ofNullable(request.getParameterValues("subject_3"));
 
+        if(universityString == null) {
+            universityString = (String) request.getSession().getAttribute("universityId");
+        }
+
+        request.getSession().setAttribute("universityId", universityString);
+
+
         List<University> allUniversities = universityService.getAllUniversities();
         request.setAttribute("universities", allUniversities);
 

@@ -48,7 +48,7 @@
         <c:forEach var="user" items="${requestScope.users}">
             <tr>
                 <td>
-                    <c:if test="${language != 'en'}">
+                    <c:if test="${sessionScope.language != 'en'}">
                         <c:if test="${user.rating >= 100}">
                             <c:out value="${user.name_ukr} ${user.lastName_ukr}"/>
                         </c:if>
@@ -56,7 +56,7 @@
                             <p style="color: red"><c:out value="${user.name_ukr} ${user.lastName_ukr}"/></p>
                         </c:if>
                     </c:if>
-                    <c:if test="${language == 'en'}">
+                    <c:if test="${sessionScope.language == 'en'}">
                         <c:if test="${user.rating >= 100}">
                             <c:out value="${user.name} ${user.lastName}"/>
                         </c:if>

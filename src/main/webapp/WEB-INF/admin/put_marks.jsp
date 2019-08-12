@@ -1,5 +1,3 @@
-<%@ include file="../views/header_logout.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Admin page to put marks</title>
@@ -37,10 +35,10 @@
             <tr>
                 <c:forEach var="subject" items="${requestScope.subjects}">
                     <th scope="col" style="text-align: left">
-                        <c:if test="${language != 'en'}">
+                        <c:if test="${sessionScope.language != 'en'}">
                             <c:out value="${subject.name_ukr}"/>
                         </c:if>
-                        <c:if test="${language == 'en'}">
+                        <c:if test="${sessionScope.language == 'en'}">
                             <c:out value="${subject.name}"/>
                         </c:if>
                     </th>
